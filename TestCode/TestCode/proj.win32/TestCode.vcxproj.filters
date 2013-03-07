@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Commons">
+      <UniqueIdentifier>{e5d3102f-7661-4656-b326-48276ce5d261}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{78fd5037-9a51-411c-a4db-1745429cbdaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Math">
+      <UniqueIdentifier>{6b038faf-97a4-41cf-b6a9-636fe5bf2182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine2D">
+      <UniqueIdentifier>{3925acc6-13b7-495b-b639-4163c79dd6ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine2D\Render">
+      <UniqueIdentifier>{b032f8d7-51d7-4c2a-996f-2daa13fb1f5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine2D\Scene">
+      <UniqueIdentifier>{a9e52a60-5572-4827-ac42-2a635f0047bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine2D\Texture">
+      <UniqueIdentifier>{206e6ac2-2954-4080-be94-6e0da31ad099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine2D\Touch">
+      <UniqueIdentifier>{48bd9a3d-29bc-4b74-9af9-3596fc5862d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameApp">
+      <UniqueIdentifier>{54389ad9-191d-4bfa-af7a-4c5a5d6e5bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL">
+      <UniqueIdentifier>{059424c7-950e-49b2-a2d5-bd13c4d5fa30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{f6b0e17f-93af-4f27-aead-ca8700ebd4b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\JNI">
+      <UniqueIdentifier>{dec112f6-63de-44bc-a90e-989524030180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{5a87e1dc-d4b1-4160-8d4f-2ce83828ed18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Support">
+      <UniqueIdentifier>{c62c4dd1-02cd-48f0-904e-aaba374dacde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Support\json">
+      <UniqueIdentifier>{b58c176f-2d75-42ed-9c11-f671e8ddc30f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Support\zip_support">
+      <UniqueIdentifier>{047c5a26-3c96-4973-b3e7-a0bec75fe3eb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Commons\TCCommon.cpp">
+      <Filter>Commons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Math\TCMatrix3x3.cpp">
+      <Filter>Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\AutoReleaseObject.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\AutoReleasePool.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TCTime.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Texture\TCTexture.cpp">
+      <Filter>Engine2D\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Texture\TextureRegion.cpp">
+      <Filter>Engine2D\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\BaseComponent.cpp">
+      <Filter>Engine2D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\BaseNode.cpp">
+      <Filter>Engine2D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\TCDrawer.cpp">
+      <Filter>Engine2D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\TCSceneManager.cpp">
+      <Filter>Engine2D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\TCSprite.cpp">
+      <Filter>Engine2D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\TCTouchComponent.cpp">
+      <Filter>Engine2D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\TCTransform.cpp">
+      <Filter>Engine2D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Render\TCSceneRenderer.cpp">
+      <Filter>Engine2D\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OpenGL\TCEGLView.cpp">
+      <Filter>OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OpenGL\TCRender.cpp">
+      <Filter>OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Platform\jniMethod.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Platform\TCApplication.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Platform\TCApplication_android.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Platform\TCApplication_win32.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Resources\TCBitmap.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Resources\TCFileUtils.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Resources\TCPngUtils.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Resources\TCResources.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Resources\TCTexturePackerUtil.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Resources\TCTextureRegionManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Support\zip_support\ioapi.c">
+      <Filter>Support\zip_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Support\zip_support\iowin32.c">
+      <Filter>Support\zip_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Support\zip_support\unzip.c">
+      <Filter>Support\zip_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Support\zip_support\zip.c">
+      <Filter>Support\zip_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Support\json\lib_json\json_reader.cpp">
+      <Filter>Support\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Support\json\lib_json\json_value.cpp">
+      <Filter>Support\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Support\json\lib_json\json_writer.cpp">
+      <Filter>Support\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Platform\TCScreen.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Render\TCPaint.cpp">
+      <Filter>Engine2D\Render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Commons\TCCommon.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Commons\TCMacros.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Commons\tooold.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Math\Rect.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Math\TCMatrix3x3.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Math\TCVector2f.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\AutoReleaseObject.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\AutoReleasePool.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TCArrayList.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TCTime.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Touch\TCTouchEvent.h">
+      <Filter>Engine2D\Touch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Texture\TCTexture.h">
+      <Filter>Engine2D\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Texture\TextureRegion.h">
+      <Filter>Engine2D\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\BaseNode.h">
+      <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\TCDrawer.h">
+      <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\TCSceneManager.h">
+      <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\TCSprite.h">
+      <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\TCTouchComponent.h">
+      <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\TCTransform.h">
+      <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Render\TCBatchUtil.h">
+      <Filter>Engine2D\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Render\TCSceneRenderer.h">
+      <Filter>Engine2D\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GameApp\AppDelegate.h">
+      <Filter>GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OpenGL\TCEGLView.h">
+      <Filter>OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OpenGL\TCRender.h">
+      <Filter>OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\JNI\JNIHelper.h">
+      <Filter>Platform\JNI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\jniMethod.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\TCApplication.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\TCApplication_android.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\TCApplication_win32.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\TCPlatform.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resources\TCBitmap.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resources\TCFileUtils.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resources\TCPngUtils.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resources\TCResources.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resources\TCTexturePackerUtil.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resources\TCTextureRegionManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\json\include\json\autolink.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\json\include\json\config.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\json\include\json\features.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\json\include\json\forwards.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\json\include\json\json.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\json\include\json\reader.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\json\include\json\value.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\json\include\json\writer.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\zip_support\crypt.h">
+      <Filter>Support\zip_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\zip_support\ioapi.h">
+      <Filter>Support\zip_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\zip_support\iowin32.h">
+      <Filter>Support\zip_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\zip_support\unzip.h">
+      <Filter>Support\zip_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Support\zip_support\zip.h">
+      <Filter>Support\zip_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TCSingleton.h" />
+    <ClInclude Include="..\Support\json\lib_json\json_batchallocator.h">
+      <Filter>Support\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\TCScreen.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Render\TCPaint.h">
+      <Filter>Engine2D\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\OpenGL\tcgles.h">
+      <Filter>OpenGL</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Commons\TCCommon.cpp" />
+    <ClCompile Include="..\Core\AutoReleaseObject.cpp" />
+    <ClCompile Include="..\Core\AutoReleasePool.cpp" />
+    <ClCompile Include="..\Core\Math\TCMatrix3x3.cpp" />
+    <ClCompile Include="..\Core\TCTime.cpp" />
+    <ClCompile Include="..\Engine2D\Render\TCPaint.cpp" />
+    <ClCompile Include="..\Engine2D\Render\TCSceneRenderer.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\BaseComponent.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\BaseNode.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\TCDrawer.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\TCSceneManager.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\TCSprite.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\TCTouchComponent.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\TCTransform.cpp" />
+    <ClCompile Include="..\Engine2D\Texture\TCTexture.cpp" />
+    <ClCompile Include="..\Engine2D\Texture\TextureRegion.cpp" />
+    <ClCompile Include="..\OpenGL\TCEGLView.cpp" />
+    <ClCompile Include="..\OpenGL\TCRender.cpp" />
+    <ClCompile Include="..\Platform\jniMethod.cpp" />
+    <ClCompile Include="..\Platform\TCApplication.cpp" />
+    <ClCompile Include="..\Platform\TCApplication_android.cpp" />
+    <ClCompile Include="..\Platform\TCApplication_win32.cpp" />
+    <ClCompile Include="..\Platform\TCScreen.cpp" />
+    <ClCompile Include="..\Resources\TCBitmap.cpp" />
+    <ClCompile Include="..\Resources\TCFileUtils.cpp" />
+    <ClCompile Include="..\Resources\TCPngUtils.cpp" />
+    <ClCompile Include="..\Resources\TCResources.cpp" />
+    <ClCompile Include="..\Resources\TCTexturePackerUtil.cpp" />
+    <ClCompile Include="..\Resources\TCTextureRegionManager.cpp" />
+    <ClCompile Include="..\Support\json\lib_json\json_reader.cpp" />
+    <ClCompile Include="..\Support\json\lib_json\json_value.cpp" />
+    <ClCompile Include="..\Support\json\lib_json\json_writer.cpp" />
+    <ClCompile Include="..\Support\zip_support\ioapi.c" />
+    <ClCompile Include="..\Support\zip_support\iowin32.c" />
+    <ClCompile Include="..\Support\zip_support\unzip.c" />
+    <ClCompile Include="..\Support\zip_support\zip.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Commons\TCCommon.h" />
+    <ClInclude Include="..\Commons\TCMacros.h" />
+    <ClInclude Include="..\Commons\tooold.h" />
+    <ClInclude Include="..\Core\AutoReleaseObject.h" />
+    <ClInclude Include="..\Core\AutoReleasePool.h" />
+    <ClInclude Include="..\Core\Math\Rect.h" />
+    <ClInclude Include="..\Core\Math\TCMatrix3x3.h" />
+    <ClInclude Include="..\Core\Math\TCVector2f.h" />
+    <ClInclude Include="..\Core\TCArrayList.h" />
+    <ClInclude Include="..\Core\TCTime.h" />
+    <ClInclude Include="..\Engine2D\Render\TCPaint.h" />
+    <ClInclude Include="..\Engine2D\Render\TCBatchUtil.h" />
+    <ClInclude Include="..\Engine2D\Render\TCSceneRenderer.h" />
+    <ClInclude Include="..\Engine2D\Scene\BaseNode.h" />
+    <ClInclude Include="..\Engine2D\Scene\TCDrawer.h" />
+    <ClInclude Include="..\Engine2D\Scene\TCSceneManager.h" />
+    <ClInclude Include="..\Engine2D\Scene\TCSprite.h" />
+    <ClInclude Include="..\Engine2D\Scene\TCTouchComponent.h" />
+    <ClInclude Include="..\Engine2D\Scene\TCTransform.h" />
+    <ClInclude Include="..\Engine2D\Texture\TCTexture.h" />
+    <ClInclude Include="..\Engine2D\Texture\TextureRegion.h" />
+    <ClInclude Include="..\Engine2D\Touch\TCTouchEvent.h" />
+    <ClInclude Include="..\GameApp\AppDelegate.h" />
+    <ClInclude Include="..\OpenGL\TCEGLView.h" />
+    <ClInclude Include="..\OpenGL\tcgles.h" />
+    <ClInclude Include="..\OpenGL\TCRender.h" />
+    <ClInclude Include="..\Platform\jniMethod.h" />
+    <ClInclude Include="..\Platform\JNI\JNIHelper.h" />
+    <ClInclude Include="..\Platform\TCScreen.h" />
+    <ClInclude Include="..\Platform\TCApplication.h" />
+    <ClInclude Include="..\Platform\TCApplication_android.h" />
+    <ClInclude Include="..\Platform\TCApplication_win32.h" />
+    <ClInclude Include="..\Platform\TCPlatform.h" />
+    <ClInclude Include="..\Resources\TCBitmap.h" />
+    <ClInclude Include="..\Resources\TCFileUtils.h" />
+    <ClInclude Include="..\Resources\TCPngUtils.h" />
+    <ClInclude Include="..\Resources\TCResources.h" />
+    <ClInclude Include="..\Resources\TCTexturePackerUtil.h" />
+    <ClInclude Include="..\Resources\TCTextureRegionManager.h" />
+    <ClInclude Include="..\Support\json\include\json\autolink.h" />
+    <ClInclude Include="..\Support\json\include\json\config.h" />
+    <ClInclude Include="..\Support\json\include\json\features.h" />
+    <ClInclude Include="..\Support\json\include\json\forwards.h" />
+    <ClInclude Include="..\Support\json\include\json\json.h" />
+    <ClInclude Include="..\Support\json\include\json\reader.h" />
+    <ClInclude Include="..\Support\json\include\json\value.h" />
+    <ClInclude Include="..\Support\json\include\json\writer.h" />
+    <ClInclude Include="..\Support\json\lib_json\json_batchallocator.h" />
+    <ClInclude Include="..\Support\zip_support\crypt.h" />
+    <ClInclude Include="..\Support\zip_support\ioapi.h" />
+    <ClInclude Include="..\Support\zip_support\iowin32.h" />
+    <ClInclude Include="..\Support\zip_support\unzip.h" />
+    <ClInclude Include="..\Support\zip_support\zip.h" />
+    <ClInclude Include="..\TCSingleton.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6B9A1E84-2A69-4962-9B71-7479CB3E57CF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>NewCode</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir>$(Configuration).win32\</IntDir>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NEWCODE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..;$(SolutionDir)\TestCode;$(SolutionDir)\TestCode\Commons;$(SolutionDir)\TestCode\Core;$(SolutionDir)\TestCode\Core\Math;$(SolutionDir)\TestCode\Engine2D;$(SolutionDir)\TestCode\Engine2D\Render;$(SolutionDir)\TestCode\Engine2D\Scene;$(SolutionDir)\TestCode\Engine2D\Texture;$(SolutionDir)\TestCode\Engine2D\Touch;$(SolutionDir)\TestCode\GameApp;$(SolutionDir)\TestCode\OpenGL;$(SolutionDir)\TestCode\Platform;$(SolutionDir)\TestCode\Platform\JNI;$(SolutionDir)\TestCode\Resources;$(SolutionDir)\TestCode\Support;$(SolutionDir)\TestCode\Support\json\include;$(SolutionDir)\TestCode\Support\zip_support;$(SolutionDir)\TestCode\third_part\win32\libpng;$(SolutionDir)\TestCode\third_part\win32\OGLES;$(SolutionDir)\TestCode\third_part\win32\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libEGL.lib;libgles_cm.lib;libjpeg.lib;libpng.lib;libzlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries> ;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <OutputFile>$(OutDir)$(TargetName).dll</OutputFile>
+    </Link>
+    <PreLinkEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\third_part\win32\librarys\*.*" "$(OutDir)"</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NEWCODE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

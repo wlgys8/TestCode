@@ -1,0 +1,100 @@
+{"frames": {
+
+"bg.png":
+{
+	"frame": {"x":2,"y":2,"w":480,"h":854},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":480,"h":854},
+	"sourceSize": {"w":480,"h":854}
+},
+"boluo.png":
+{
+	"frame": {"x":96,"y":858,"w":45,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
+	"sourceSize": {"w":45,"h":45}
+},
+"caomei.png":
+{
+	"frame": {"x":49,"y":952,"w":45,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
+	"sourceSize": {"w":45,"h":45}
+},
+"juzi.png":
+{
+	"frame": {"x":49,"y":905,"w":45,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
+	"sourceSize": {"w":45,"h":45}
+},
+"lanmei.png":
+{
+	"frame": {"x":49,"y":858,"w":45,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
+	"sourceSize": {"w":45,"h":45}
+},
+"mangguo.png":
+{
+	"frame": {"x":2,"y":952,"w":45,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
+	"sourceSize": {"w":45,"h":45}
+},
+"pingguo.png":
+{
+	"frame": {"x":96,"y":952,"w":43,"h":45},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":43,"h":45},
+	"sourceSize": {"w":45,"h":45}
+},
+"putao.png":
+{
+	"frame": {"x":2,"y":905,"w":45,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
+	"sourceSize": {"w":45,"h":45}
+},
+"role_xigua.png":
+{
+	"frame": {"x":141,"y":905,"w":77,"h":35},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":26,"y":59,"w":77,"h":35},
+	"sourceSize": {"w":133,"h":133}
+},
+"xigua.png":
+{
+	"frame": {"x":96,"y":905,"w":43,"h":45},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":43,"h":45},
+	"sourceSize": {"w":45,"h":45}
+},
+"yingtao.png":
+{
+	"frame": {"x":2,"y":858,"w":45,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
+	"sourceSize": {"w":45,"h":45}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "fruit.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3766c332c6c9bab55cd263c1996d109f$"
+}
+}

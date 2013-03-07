@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="win32">
+      <UniqueIdentifier>{20d0320b-6ba9-488c-b653-fd601806e62a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{cc970255-2892-413b-a68a-565696909f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Map">
+      <UniqueIdentifier>{c14b4b59-020c-4812-a342-9d0f7fd27358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Fruit">
+      <UniqueIdentifier>{26b2a37f-17e4-43c5-9e0b-e8fffbc39ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Role">
+      <UniqueIdentifier>{a119532c-4035-42cc-915e-bd9eb781687b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="FruitMatch.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FruitMatch.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FruitMatch.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestAppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestO.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Map\FruitMap.cpp">
+      <Filter>Classes\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Fruit\Fruit.cpp">
+      <Filter>Classes\Fruit</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FruitMatch.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestAppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestO.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Map\FruitMap.h">
+      <Filter>Classes\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Fruit\Fruit.h">
+      <Filter>Classes\Fruit</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Role\RoleXigua.h">
+      <Filter>Classes\Role</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
