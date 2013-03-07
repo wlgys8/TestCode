@@ -89,6 +89,7 @@
   <ItemGroup>
     <ClCompile Include="..\Classes\Fruit\Fruit.cpp" />
     <ClCompile Include="..\Classes\Map\FruitMap.cpp" />
+    <ClCompile Include="..\Classes\Role\Role.cpp" />
     <ClCompile Include="..\Classes\TestAppDelegate.cpp" />
     <ClCompile Include="..\Classes\TestO.cpp" />
     <ClCompile Include="FruitMatch.cpp" />
@@ -97,6 +98,7 @@
   <ItemGroup>
     <ClInclude Include="..\Classes\Fruit\Fruit.h" />
     <ClInclude Include="..\Classes\Map\FruitMap.h" />
+    <ClInclude Include="..\Classes\Role\Role.h" />
     <ClInclude Include="..\Classes\Role\RoleXigua.h" />
     <ClInclude Include="..\Classes\TestAppDelegate.h" />
     <ClInclude Include="..\Classes\TestO.h" />

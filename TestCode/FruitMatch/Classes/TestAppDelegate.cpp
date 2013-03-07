@@ -8,7 +8,7 @@
 #include "AutoReleaseObject.h"
 #include "TCTextureRegionManager.h"
 #include "Map/FruitMap.h"
-#include <math.h>
+#include "Role/Role.h"
 USING_NS_TC;
 
 bool TestAppDelegate::onDown(const TCTouchEvent& event){
@@ -31,9 +31,10 @@ void TestAppDelegate::onCreateGame(){
 	TCResources::loadTextureRegions("fruit.png","fruit.txt",RGBA_8888);
 	Sprite* node=Sprite::alloc("bg.png");
 	node->addChild(FruitMap::instance()->node());
-	Sprite* xigua= Sprite::alloc("role_xigua.png");
-	node->addChild(xigua);
-	xigua->setLocalPosition(Vector2f(-170,270));
+
+	Role* role=Role::alloc(Role_Xigua)->retain<Role>();
+	role->sprite()->setLocalPosition(Vector2f(-170,270));
+	node->addChild(role->sprite());
 	TCSceneManager::instance()->addChild(node);
 }
 

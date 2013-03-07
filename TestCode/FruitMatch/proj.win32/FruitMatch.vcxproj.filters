@@ -53,6 +53,9 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Role\Role.cpp">
+      <Filter>Classes\Role</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FruitMatch.h">
@@ -80,6 +83,9 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Role\RoleXigua.h">
+      <Filter>Classes\Role</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Role\Role.h">
       <Filter>Classes\Role</Filter>
     </ClInclude>
   </ItemGroup>
