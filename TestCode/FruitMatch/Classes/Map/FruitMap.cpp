@@ -129,8 +129,8 @@ bool FruitMap::isConnectedDirectly(Vector2 v1,Vector2 v2){
 bool FruitMap::isConnectedByOneCross(Vector2 v1,Vector2 v2){
 	Vector2 c1=Vector2(v1.x,v2.y);
 	Vector2 c2=Vector2(v2.x,v1.y);
-	return (isConnectedDirectly(v1,c1)&&isConnectedDirectly(v2,c1))||
-		(isConnectedDirectly(v1,c2)&&isConnectedDirectly(v2,c2));
+	return (!_fruitMap[c1.x][c1.y]&&isConnectedDirectly(v1,c1)&&isConnectedDirectly(v2,c1))||
+		(!_fruitMap[c2.x][c2.y]&&isConnectedDirectly(v1,c2)&&isConnectedDirectly(v2,c2));
 }
 
 bool FruitMap::isConnectedByTwoCross(Vector2 v1,Vector2 v2){
