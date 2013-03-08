@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCode", "TestCode\proj.win32\TestCode.vcxproj", "{6B9A1E84-2A69-4962-9B71-7479CB3E57CF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FruitMatch", "FruitMatch\proj.win32\FruitMatch.vcxproj", "{0B70B443-D1CC-4A8C-BB4E-1773F6F8221B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6B9A1E84-2A69-4962-9B71-7479CB3E57CF} = {6B9A1E84-2A69-4962-9B71-7479CB3E57CF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
