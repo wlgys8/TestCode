@@ -21,6 +21,7 @@ protected:
 
 	bool onClick(const TCTouchEvent& event);
 
+	void lateUpdate();
 
 	Sprite* pingguo;
 public:

@@ -20,6 +20,9 @@ protected:
 	void init(const std::string& imageName);
 public:
 	Sprite* sprite();
+
+	void attack();
+
 	static Role* alloc(RoleType roleType);
 };
 

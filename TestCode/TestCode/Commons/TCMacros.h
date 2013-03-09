@@ -11,6 +11,6 @@
 
 #define TC_DELETE(p)			if(p) { delete (p); (p) = 0; }
 #define TC_DELETE_ARRAY(p)    if(p) { delete[] (p); (p) = 0; }
-#define TC_RELEASE(p)		if(p) {p->release();p=0}
+#define TC_RELEASE(p)		if(p) {p->release();p=0;}
 
 #endif

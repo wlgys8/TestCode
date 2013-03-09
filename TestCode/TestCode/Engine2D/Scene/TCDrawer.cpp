@@ -4,6 +4,9 @@
 NS_TC_BEGIN
 
 void TCDrawer::draw(const TCMatrix3x3& localToWorldMatrix){
+	if(!_region){
+		return;
+	}
 	Vector2f* vertex=new Vector2f[4];
 	float width=_region->width();
 	float height=_region->height();
@@ -46,7 +49,11 @@ void TCDrawer::draw(const TCMatrix3x3& localToWorldMatrix){
 
 TCDrawer::TCDrawer(TextureRegion* region){
 	_region=region;
-	region->retain();
+	if(region){
+		region->retain();
+		return;
+	}
+
 }
 TCDrawer::~TCDrawer(){
 	if(_region){
