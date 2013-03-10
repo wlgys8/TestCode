@@ -33,7 +33,7 @@ struct TYPE_OF<CLASSNAME>{\
 DECLARE_RESOURCES_TYPE(TCTexture,RES_TYPE_TEXTURE)
 DECLARE_RESOURCES_TYPE(TCBitmap,RES_TYPE_BITMAP)
 
-#undef DECLARE_RESOURCES_TYPE(CLASSNAME,TYPEVALUE)
+#undef DECLARE_RESOURCES_TYPE
 
 class TCResources:public TCSingleton<TCResources>{
 	typedef map<string,TCTexture*> TextureMap;
