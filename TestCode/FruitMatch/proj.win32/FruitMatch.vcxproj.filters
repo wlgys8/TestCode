@@ -53,6 +53,18 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Role\Role.cpp">
+      <Filter>Classes\Role</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Fruit\Bullet.cpp">
+      <Filter>Classes\Fruit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Fruit\BulletFactory.cpp">
+      <Filter>Classes\Fruit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FruitMatch.h">
@@ -81,6 +93,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Role\RoleXigua.h">
       <Filter>Classes\Role</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Role\Role.h">
+      <Filter>Classes\Role</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Fruit\Bullet.h">
+      <Filter>Classes\Fruit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Fruit\BulletFactory.h">
+      <Filter>Classes\Fruit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

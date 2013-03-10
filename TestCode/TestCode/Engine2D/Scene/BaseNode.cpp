@@ -1,5 +1,6 @@
 #include "BaseNode.h"
 #include "TCDrawer.h"
+#include "TCAnimation.h"
 NS_TC_BEGIN
 
 BaseNode::BaseNode():_parent(NULL),_rotation(0),_position(Vector2f()),
@@ -57,7 +58,7 @@ void BaseNode::removeAllComponement(){
 	for(it=_componentMap.begin();it!=_componentMap.end();it++){
 		it->second->attachToNode(NULL);
 		it->second->release();
-		
+
 	}
 	_componentMap.clear();
 }
@@ -69,6 +70,15 @@ BaseComponent* BaseNode::getComponment(ComponentType type){
 	}else{
 		return it->second;
 	}
+}
+testCode::AnimationContainer* BaseNode::animation(){
+	map<ComponentType,BaseComponent*>::iterator it= _componentMap.find(ComponentAnimation);
+	if(it==_componentMap.end()){
+		AnimationContainer* ret=AnimationContainer::alloc()->retain<AnimationContainer>();
+		_componentMap[ComponentAnimation]=ret;
+		return ret;
+	}
+	return (AnimationContainer*)(it->second);
 }
 
 TCMatrix3x3 BaseNode::localToParentMatrix() const{
@@ -88,12 +98,18 @@ void BaseNode::invokeUpdate(){
 	if(_updateTarget&&_delegateUpdate){
 		(_updateTarget->*_delegateUpdate)();
 	}
+	AnimationContainer* anim=(AnimationContainer*) getComponment(ComponentAnimation);
+	if(anim){
+		anim->invokeUpdate(this);
+	}
 }
 
 void BaseNode::removeSelf(){
 	if(_parent){
 		_parent->removeChild(this);
 	}
+
+
 }
 
 //static method

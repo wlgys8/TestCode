@@ -2,7 +2,7 @@
 #include "TCVector2f.h"
 #include "TCTouchComponent.h"
 #include <math.h>
-
+#include "GameMain.h"
 static int xsize=9;
 static int ysize=10;
 static int xoffset=-200;
@@ -63,7 +63,7 @@ int FruitMap::select(Vector2 ij){
 
 			selectedOne.x=-1;
 			selectedOne.y=-1;
-
+			GameMain::instance()->role()->attack();
 			return 0;
 		}
 		DebugLog("unmatch");

@@ -49,6 +49,12 @@
     <Filter Include="Support\zip_support">
       <UniqueIdentifier>{047c5a26-3c96-4973-b3e7-a0bec75fe3eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine2D\Animation">
+      <UniqueIdentifier>{742edc77-d615-4fcb-96a0-ab1f0c13c041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine2D\ParticleSystem">
+      <UniqueIdentifier>{ab10e041-af99-4739-8a74-edb5ca62c011}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Commons\TCCommon.cpp">
@@ -158,6 +164,15 @@
     </ClCompile>
     <ClCompile Include="..\Engine2D\Render\TCPaint.cpp">
       <Filter>Engine2D\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Animation\TCAnimationCurve.cpp">
+      <Filter>Engine2D\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Math\TCHermiteInterpolation3.cpp">
+      <Filter>Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\TCAnimation.cpp">
+      <Filter>Engine2D\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +335,21 @@
     </ClInclude>
     <ClInclude Include="..\OpenGL\tcgles.h">
       <Filter>OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Animation\TCAnimationCurve.h">
+      <Filter>Engine2D\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\ParticleSystem\TCParticle.h">
+      <Filter>Engine2D\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\ParticleSystem\TCParticleSystem.h">
+      <Filter>Engine2D\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Math\TCHermiteInterpolation3.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\TCAnimation.h">
+      <Filter>Engine2D\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

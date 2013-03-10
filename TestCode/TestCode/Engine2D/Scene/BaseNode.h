@@ -6,12 +6,16 @@
 #include "BaseComponent.h"
 #include "TCVector2f.h"
 #include "TCMatrix3x3.h"
+
+
+
 using namespace std;
 NS_TC_BEGIN
 
 enum ComponentType{
 	ComponentDrawer=0,
 	ComponentTouch=1,
+	ComponentAnimation=2,
 };
 
 typedef bool (AutoReleaseObject::*delegateUpdate)();
@@ -19,6 +23,8 @@ typedef bool (AutoReleaseObject::*delegateUpdate)();
 
 class BaseComponent;
 class AutoReleaseObject;
+class AnimationContainer;
+
 class BaseNode:public AutoReleaseObjectTemplete<BaseNode>{
 	friend class AutoReleaseObjectTemplete<BaseNode>;
 	typedef vector<BaseNode*> ArrayList;
@@ -43,6 +49,8 @@ public:
 	void addComponent(BaseComponent* component);
 
 	BaseComponent* getComponment(ComponentType type);
+
+	AnimationContainer* animation();
 
 	void removeAllComponement();
 
@@ -85,7 +93,7 @@ public:
 		_delegateUpdate=updateAction;
 	}
 
-	void invokeUpdate();
+	void virtual invokeUpdate();
 
 	void removeSelf();
 };
