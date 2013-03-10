@@ -10,7 +10,11 @@ NS_TC_BEGIN
 	((unsigned)((unsigned char)(vg) * ((unsigned char)(va) + 1) >> 8) << 8) | \
 	((unsigned)((unsigned char)(vb) * ((unsigned char)(va) + 1) >> 8) << 16) | \
 	((unsigned)(unsigned char)(va) << 24))
-
+#define TC_RGBA_ALPHA(vr, vg, vb, va) \
+	(unsigned)((unsigned)(unsigned char)(vr)  ) | \
+	((unsigned)((unsigned char)(vg)  << 8)) | \
+	((unsigned)((unsigned char)(vb) << 16)) | \
+	((unsigned)(unsigned char)(va) << 24)
 TCBitmap* TCPngUtils::decodePngByFileName(const char* fileName)
 {
 #if 1==1
