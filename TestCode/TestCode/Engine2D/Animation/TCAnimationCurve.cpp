@@ -16,7 +16,7 @@ int AnimationCurve::keyNumbners(){
 }
 
 float AnimationCurve::evaluate(float time){
-	for(int i=1;i<_interpolations.size();i++){
+	for(unsigned int i=1;i<_interpolations.size();i++){
 		const CurveKey& key= _interpolations[i];
 		const CurveKey& preKey=_interpolations[i-1];
 		if(i==_interpolations.size()-1&&time>=key.time()){
@@ -34,6 +34,7 @@ float AnimationCurve::evaluate(float time){
 				);
 		}
 	}
+	return 0;
 }
 
 NS_TC_END

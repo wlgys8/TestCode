@@ -154,8 +154,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NEWCODE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NEWCODE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..;$(SolutionDir)\TestCode;$(SolutionDir)\TestCode\Commons;$(SolutionDir)\TestCode\Core;$(SolutionDir)\TestCode\Core\Math;$(SolutionDir)\TestCode\Engine2D;$(SolutionDir)\TestCode\Engine2D\Render;$(SolutionDir)\TestCode\Engine2D\Scene;$(SolutionDir)\TestCode\Engine2D\Texture;$(SolutionDir)\TestCode\Engine2D\Touch;$(SolutionDir)\TestCode\GameApp;$(SolutionDir)\TestCode\OpenGL;$(SolutionDir)\TestCode\Platform;$(SolutionDir)\TestCode\Platform\JNI;$(SolutionDir)\TestCode\Resources;$(SolutionDir)\TestCode\Support;$(SolutionDir)\TestCode\Support\json\include;$(SolutionDir)\TestCode\Support\zip_support;$(SolutionDir)\TestCode\third_part\win32\libpng;$(SolutionDir)\TestCode\third_part\win32\OGLES;$(SolutionDir)\TestCode\third_part\win32\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

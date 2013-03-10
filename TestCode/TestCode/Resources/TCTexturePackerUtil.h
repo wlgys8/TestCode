@@ -1,6 +1,6 @@
 #ifndef __TC_TEXTUREPACKERUTIL_H__
 #define __TC_TEXTUREPACKERUTIL_H__
-#include <map>;
+#include <map>
 #include <string>
 #include "TCVector2f.h"
 #include "TCFileUtils.h"
