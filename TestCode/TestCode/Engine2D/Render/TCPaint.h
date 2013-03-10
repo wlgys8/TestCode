@@ -2,6 +2,7 @@
 #define __TC_PAINT_H__
 #include "tcgles.h"
 #include "TCMacros.h"
+#include "TCColor.h"
 NS_TC_BEGIN
 
 #define  BLEND_ZERO GL_ZERO
@@ -17,6 +18,7 @@ class Paint{
 private:
 	BlendMode _blendSrc;
 	BlendMode _blendDst;
+	Color _color;
 public:
 	Paint();
 	~Paint();
@@ -27,6 +29,15 @@ public:
 	inline BlendMode blendDst() const{
 		return _blendDst;
 	}
+	bool isBatchable(const Paint& p);
+
+	inline void setColor(const Color& color){
+		_color=color;
+	}
+	inline Color color() const {
+		return _color;
+	}
+
 	friend bool operator==(const Paint& p1,const Paint& p2);
 	friend bool operator!=(const Paint& p1,const Paint& p2);
 };

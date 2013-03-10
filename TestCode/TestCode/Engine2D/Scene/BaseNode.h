@@ -16,6 +16,7 @@ enum ComponentType{
 	ComponentDrawer=0,
 	ComponentTouch=1,
 	ComponentAnimation=2,
+	ComponentParticleSystem=3,
 };
 
 typedef bool (AutoReleaseObject::*delegateUpdate)();
@@ -44,7 +45,12 @@ protected:
 	BaseNode();
 public:
 	void addChild(BaseNode* child);
+
 	BaseNode* getChild(int index);
+
+	inline BaseNode* parent(){
+		return _parent;
+	}
 	void removeAllChildren();
 
 	void addComponent(BaseComponent* component);

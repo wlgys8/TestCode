@@ -174,6 +174,12 @@
     <ClCompile Include="..\Engine2D\Scene\TCAnimation.cpp">
       <Filter>Engine2D\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Engine2D\ParticleSystem\TCParticleSystem.cpp">
+      <Filter>Engine2D\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Math\TCRandom.cpp">
+      <Filter>Core\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Commons\TCCommon.h">
@@ -339,9 +345,6 @@
     <ClInclude Include="..\Engine2D\Animation\TCAnimationCurve.h">
       <Filter>Engine2D\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine2D\Scene\ParticleSystem\TCParticle.h">
-      <Filter>Engine2D\ParticleSystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine2D\Scene\ParticleSystem\TCParticleSystem.h">
       <Filter>Engine2D\ParticleSystem</Filter>
     </ClInclude>
@@ -350,6 +353,12 @@
     </ClInclude>
     <ClInclude Include="..\Engine2D\Scene\TCAnimation.h">
       <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Math\TCRandom.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Math\TCColor.h">
+      <Filter>Core\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

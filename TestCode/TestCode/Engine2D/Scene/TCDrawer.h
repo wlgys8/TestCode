@@ -21,7 +21,7 @@ public:
 	inline void setPaint(const Paint& paint){
 		_paint=paint;
 	}
-	inline const Paint& paint() const {
+	inline Paint& paint() {
 		return _paint;
 	}  
 	void draw(const TCMatrix3x3& matrix);

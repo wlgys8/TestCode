@@ -9,6 +9,7 @@ class TCSceneRenderer:public TCSingleton<TCSceneRenderer>{
 private:
 	float* _vertexBuffer;
 	float* _uvBuffer;
+	unsigned char* _colorBuffer;
 	unsigned short* _indicesBuffer;
 	~TCSceneRenderer();
 	TCSceneRenderer();
@@ -21,7 +22,7 @@ private:
 	void checkAndExpand();
 public:
 
-	void render(const int& textureID,Vector2f* vertex,Vector2f* uv,const Paint& paint);
+	void render(const int& textureID,Vector2f* vertex,Vector2f* uv, const Paint& paint);
 
 	void flush();
 };

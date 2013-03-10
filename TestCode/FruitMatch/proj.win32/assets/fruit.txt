@@ -8,9 +8,25 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":480,"h":854},
 	"sourceSize": {"w":480,"h":854}
 },
+"bloodbar_green.png":
+{
+	"frame": {"x":2,"y":1008,"w":57,"h":6},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":9,"y":35,"w":57,"h":6},
+	"sourceSize": {"w":75,"h":76}
+},
+"bloodbar_red.png":
+{
+	"frame": {"x":2,"y":1000,"w":57,"h":6},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":9,"y":35,"w":57,"h":6},
+	"sourceSize": {"w":75,"h":76}
+},
 "boluo.png":
 {
-	"frame": {"x":96,"y":858,"w":45,"h":45},
+	"frame": {"x":189,"y":858,"w":45,"h":45},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
@@ -74,15 +90,23 @@
 },
 "caomei.png":
 {
-	"frame": {"x":49,"y":952,"w":45,"h":45},
+	"frame": {"x":170,"y":905,"w":45,"h":45},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
 	"sourceSize": {"w":45,"h":45}
 },
+"enemy_snake.png":
+{
+	"frame": {"x":2,"y":932,"w":72,"h":66},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":7,"w":72,"h":66},
+	"sourceSize": {"w":82,"h":82}
+},
 "juzi.png":
 {
-	"frame": {"x":49,"y":905,"w":45,"h":45},
+	"frame": {"x":142,"y":858,"w":45,"h":45},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
@@ -90,7 +114,7 @@
 },
 "lanmei.png":
 {
-	"frame": {"x":49,"y":858,"w":45,"h":45},
+	"frame": {"x":123,"y":971,"w":45,"h":45},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
@@ -98,7 +122,7 @@
 },
 "mangguo.png":
 {
-	"frame": {"x":2,"y":952,"w":45,"h":45},
+	"frame": {"x":123,"y":924,"w":45,"h":45},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
@@ -106,7 +130,7 @@
 },
 "pingguo.png":
 {
-	"frame": {"x":96,"y":952,"w":43,"h":45},
+	"frame": {"x":215,"y":952,"w":43,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":1,"y":0,"w":43,"h":45},
@@ -114,7 +138,7 @@
 },
 "putao.png":
 {
-	"frame": {"x":2,"y":905,"w":45,"h":45},
+	"frame": {"x":76,"y":971,"w":45,"h":45},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
@@ -122,15 +146,31 @@
 },
 "role_xigua.png":
 {
-	"frame": {"x":141,"y":905,"w":77,"h":35},
+	"frame": {"x":217,"y":905,"w":77,"h":35},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":26,"y":59,"w":77,"h":35},
 	"sourceSize": {"w":133,"h":133}
 },
+"white_point.png":
+{
+	"frame": {"x":76,"y":858,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64}
+},
+"wp.png":
+{
+	"frame": {"x":2,"y":858,"w":72,"h":72},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":7,"w":72,"h":72},
+	"sourceSize": {"w":86,"h":86}
+},
 "xigua.png":
 {
-	"frame": {"x":96,"y":905,"w":43,"h":45},
+	"frame": {"x":170,"y":952,"w":43,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":1,"y":0,"w":43,"h":45},
@@ -138,7 +178,7 @@
 },
 "yingtao.png":
 {
-	"frame": {"x":2,"y":858,"w":45,"h":45},
+	"frame": {"x":76,"y":924,"w":45,"h":45},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":45,"h":45},
@@ -151,6 +191,6 @@
 	"format": "RGBA8888",
 	"size": {"w":512,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:518967477d55046fb157f70b903b517c$"
+	"smartupdate": "$TexturePacker:SmartUpdate:b6b80e334e29e5ad07bc1c9e87de114d$"
 }
 }
