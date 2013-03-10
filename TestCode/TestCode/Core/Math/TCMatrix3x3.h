@@ -26,6 +26,7 @@ public:
 
 	static TCMatrix3x3 matrixWithRotation(float rot);
 
+	static TCMatrix3x3 matrixWithScale(float scaleX,float scaleY);
 };
 NS_TC_END
 #endif
