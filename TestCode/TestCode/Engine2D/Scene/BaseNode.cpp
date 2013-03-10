@@ -5,7 +5,8 @@ NS_TC_BEGIN
 
 BaseNode::BaseNode():_parent(NULL),_rotation(0),_position(Vector2f()),
 _updateTarget(0),
-_delegateUpdate(0)
+_delegateUpdate(0),
+_scale(Vector2f(1,1))
 {
 	_childrenList=ArrayList();
 	_componentMap=map<ComponentType,BaseComponent*>();
@@ -82,17 +83,32 @@ testCode::AnimationContainer* BaseNode::animation(){
 }
 
 TCMatrix3x3 BaseNode::localToParentMatrix() const{
-	TCMatrix3x3 rotMat=TCMatrix3x3::matrixWithRotation(_rotation);
 	TCMatrix3x3 translateMat=TCMatrix3x3::matrixWithTranslate(_position.x,_position.y);
-	translateMat.mul(rotMat);
+	if(_rotation!=0){
+		TCMatrix3x3 rotMat=TCMatrix3x3::matrixWithRotation(_rotation);
+		translateMat.mul(rotMat);
+	}
+	if(_scale!=Vector2f::zero()){
+		TCMatrix3x3 scaleMat=TCMatrix3x3::matrixWithScale(_scale.x,_scale.y);
+		translateMat.mul(scaleMat);
+	}
 	return translateMat;
 }
 
 TCMatrix3x3 BaseNode::parentToLocalMatrix() const{
+	TCMatrix3x3 mat;
+	if(_scale!=Vector2f::zero()){
+		TCMatrix3x3 scaleMat=TCMatrix3x3::matrixWithScale(1/_scale.x,1/_scale.y);
+		mat.mul(scaleMat);
+	}
+	if(_rotation!=0){
+		TCMatrix3x3 rotMat=TCMatrix3x3::matrixWithRotation(-_rotation);
+		mat.mul(rotMat);
+	}
 	TCMatrix3x3 translateMat=TCMatrix3x3::matrixWithTranslate(-_position.x,-_position.y);
-	TCMatrix3x3 rotMat=TCMatrix3x3::matrixWithRotation(-_rotation);
-	rotMat.mul(translateMat);
-	return rotMat;
+	mat.mul(translateMat);
+	return 	mat;
+;
 }
 void BaseNode::invokeUpdate(){
 	if(_updateTarget&&_delegateUpdate){

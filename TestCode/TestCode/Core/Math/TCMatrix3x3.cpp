@@ -64,6 +64,22 @@ void TCMatrix3x3::apply(float result[3], const float vect[3]) const{
 	result[2]=_matrix[6]*vect[0]+_matrix[7]*vect[1]+_matrix[8]*vect[2];
 }
 
+
+
+Vector2f TCMatrix3x3::mulWithPoint(const Vector2f& point)const{
+	Vector2f ret;
+	ret.x = _matrix[0] * point.x+ _matrix[1] * point.y+_matrix[2];
+	ret.y = _matrix[3] * point.x + _matrix[4] *point.y + _matrix[5];
+	return ret;
+}
+Vector2f TCMatrix3x3::mulWithVector(const Vector2f& vector)const{
+	Vector2f ret;
+	ret.x = _matrix[0] * vector.x+ _matrix[1] * vector.y;
+	ret.y = _matrix[3] * vector.x + _matrix[4] *vector.y;
+	return ret;
+}
+
+//static method
 TCMatrix3x3 TCMatrix3x3::matrixWithTranslate(float x,float y){
 	float mat[9]={1, 0, x, 0, 1, y, 0, 0, 1};
 	TCMatrix3x3 ret=TCMatrix3x3(mat);
@@ -82,17 +98,9 @@ TCMatrix3x3 TCMatrix3x3::matrixWithRotation(float degree){
 	return ret;
 }
 
-Vector2f TCMatrix3x3::mulWithPoint(const Vector2f& point)const{
-	Vector2f ret;
-	ret.x = _matrix[0] * point.x+ _matrix[1] * point.y+_matrix[2];
-	ret.y = _matrix[3] * point.x + _matrix[4] *point.y + _matrix[5];
+TCMatrix3x3 TCMatrix3x3::matrixWithScale(float scaleX,float scaleY){
+	float mat[9]={scaleX, 0, 0, 0, scaleY, 0, 0, 0, 1};
+	TCMatrix3x3 ret=TCMatrix3x3(mat);
 	return ret;
 }
-Vector2f TCMatrix3x3::mulWithVector(const Vector2f& vector)const{
-	Vector2f ret;
-	ret.x = _matrix[0] * vector.x+ _matrix[1] * vector.y;
-	ret.y = _matrix[3] * vector.x + _matrix[4] *vector.y;
-	return ret;
-}
-
 NS_TC_END

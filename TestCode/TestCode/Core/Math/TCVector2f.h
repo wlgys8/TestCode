@@ -61,6 +61,26 @@ public:
 		x-=v.x;
 		y-=v.y;
 	}
+
+	void operator*=(const Vector2f& v){
+		x*=v.x;
+		y*=v.y;
+	}
+	friend bool operator==(const Vector2f& v1,const Vector2f& v2){
+		return v1.x==v2.x&&v1.y==v2.y;
+	}
+
+	friend bool operator!=(const Vector2f& v1,const Vector2f& v2){
+		return !(v1==v2);
+	}
+
+public:
+	static Vector2f zero(){
+		return Vector2f(0,0);
+	}
+	static Vector2f one(){
+		return Vector2f(1,1);
+	}
 };
 
 NS_TC_END

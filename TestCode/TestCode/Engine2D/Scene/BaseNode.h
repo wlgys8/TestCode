@@ -36,6 +36,7 @@ private:
 	BaseNode* _parent;
 	Vector2f _position;
 	float _rotation;
+	Vector2f _scale;
 	AutoReleaseObject* _updateTarget;//weak ref
 	delegateUpdate _delegateUpdate;
 protected:
@@ -81,13 +82,32 @@ public:
 		_position+=(pos-worldPosition());
 	}
 
+	inline void setRotation(const float& degree){
+		_rotation=degree;
+	}
+
+	inline void rotate(const float& degree){
+		_rotation+=degree;
+	}
+	inline const float& localRotation(){
+		return _rotation;
+	}
+
+	inline void scale(const Vector2f& scale){
+		_scale*=scale;
+	}
+	inline void setScale(const Vector2f& scale){
+		_scale=scale;
+	}
+	inline const Vector2f& localScale(){
+		return _scale;
+	}
+
 	TCMatrix3x3 localToParentMatrix() const;
 
 	TCMatrix3x3 parentToLocalMatrix() const;
 
-	inline void rotate(float degree){
-		_rotation+=degree;
-	}
+
 	inline void registerUpdate(AutoReleaseObject* target,delegateUpdate updateAction){
 		_updateTarget=target;//weak ref
 		_delegateUpdate=updateAction;
