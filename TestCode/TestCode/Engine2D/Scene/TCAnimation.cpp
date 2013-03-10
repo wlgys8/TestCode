@@ -2,20 +2,18 @@
 #include "TCTime.h"
 NS_TC_BEGIN
 
-bool TranslateAnimation::invokeUpdate(BaseNode* target){
+bool TranslateAnimation::invokeUpdate(BaseNode* target,float ctime){
 	bool ret=false;
-	if(_currentTime>=_time){
-		_currentTime=_time;
+	if(ctime>=_time){
+		ctime=_time;
 		ret=true;
 	}
-	float x=_xCurve.evaluate(_currentTime);
-	float y=_yCurve.evaluate(_currentTime);
+	float x=_xCurve.evaluate(ctime);
+	float y=_yCurve.evaluate(ctime);
 	target->setLocalPosition(Vector2f(x,y));
-	_currentTime+=Time::deltaTime();
 	return ret;
 }
 void TranslateAnimation::reset(){
-	_currentTime=0;
 }
 TranslateAnimation* TranslateAnimation::alloc(const AnimationCurve& x,const AnimationCurve& y,float time){
 	TranslateAnimation* ret=new TranslateAnimation(x,y,time);
@@ -24,15 +22,16 @@ TranslateAnimation* TranslateAnimation::alloc(const AnimationCurve& x,const Anim
 }
 
 AnimationContainer::AnimationContainer():_animation(0),
-_isPlaying(false)
+_isPlaying(false),_currentTime(0)
 {
 
 }
 void AnimationContainer::invokeUpdate(BaseNode* target){
 	if(_animation&&_isPlaying){
-		if(_animation->invokeUpdate(target)){
+		if(_animation->invokeUpdate(target,_currentTime)){
 			stop();
 		}
+		_currentTime+=Time::deltaTime();
 	}
 }
 
@@ -43,6 +42,7 @@ void AnimationContainer::play(Animation* animation){
 	_animation=animation;
 	_animation->retain();
 	_animation->reset();
+	_currentTime=0;
 	_isPlaying=true;
 }
 
@@ -57,6 +57,7 @@ void AnimationContainer::pause(){
 void AnimationContainer::stop(){
 	_isPlaying=false;
 	_animation->reset();
+	_currentTime=0;
 }
 
 AnimationContainer::~AnimationContainer(){

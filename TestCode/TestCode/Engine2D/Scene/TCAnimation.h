@@ -10,7 +10,7 @@ class AnimationContainer;
 class Animation:public AutoReleaseObject{
 	friend class AnimationContainer;
 protected:
-	virtual bool invokeUpdate(BaseNode* target)=0;
+	virtual bool invokeUpdate(BaseNode* target,float time)=0;
 	virtual void reset()=0;
 };
 
@@ -19,16 +19,16 @@ private:
 	AnimationCurve _xCurve;
 	AnimationCurve _yCurve;
 	float _time;
-	float _currentTime;
+	
 public:
 	TranslateAnimation(const AnimationCurve& x,const AnimationCurve& y,float time){
 		_xCurve=x;
 		_yCurve=y;
 		_time=time;
-		_currentTime=0;
+		
 	}
 
-	bool invokeUpdate(BaseNode* target);
+	bool invokeUpdate(BaseNode* target,float time);
 	
 	void reset();
 
@@ -43,7 +43,7 @@ private:
 	void invokeUpdate(BaseNode* target);
 
 	bool _isPlaying;
-
+	float _currentTime;
 	AnimationContainer();
 	~AnimationContainer();
 public:

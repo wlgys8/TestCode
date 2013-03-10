@@ -13,19 +13,18 @@ void GameMain::initGame(){
 	bg->addChild(_role->sprite());
 
 	AnimationCurve curvX=AnimationCurve();
-	curvX.addKey(0,-170);
-	curvX.addKey(2,170);
-
+	curvX.addKey(CurveKey(0,-170,0,1));
+	curvX.addKey(0.8f,100);
+	curvX.addKey(1,50);
 	AnimationCurve curvY=AnimationCurve();
 	curvY.addKey(0,270);
-	curvY.addKey(1,380);
-	curvY.addKey(2,270);
+	curvY.addKey(1,270);
 
 	_role->sprite()->animation()->play(
 			TranslateAnimation::alloc(
 				curvX,
 				curvY,
-				2
+				1
 			)
 		);
 	float ret=HermiteInterpolation3::evaluate(1,280,0,2,270,0,1.5f);
