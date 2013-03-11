@@ -4,7 +4,7 @@ NS_TC_BEGIN
 
 bool TranslateAnimation::invokeUpdate(BaseNode* target,float ctime){
 	bool ret=false;
-	if(ctime>=_time){
+	if(_time!=0&&ctime>=_time){
 		ctime=_time;
 		ret=true;
 	}

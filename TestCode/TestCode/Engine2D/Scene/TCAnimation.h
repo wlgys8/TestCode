@@ -25,7 +25,6 @@ public:
 		_xCurve=x;
 		_yCurve=y;
 		_time=time;
-		
 	}
 
 	bool invokeUpdate(BaseNode* target,float time);

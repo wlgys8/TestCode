@@ -23,6 +23,7 @@ class ParticleSystem:public BaseComponent{
 	typedef std::vector<Particle> Array;
 
 private:
+	BaseNode* _spaceNode;
 
 	Vector2f _minStartVelocity;
 	Vector2f _maxStartVelocity;
@@ -50,11 +51,13 @@ public:
 		return ComponentParticleSystem;
 	}
 
-	void setImageName(const std::string& name){
+	inline void setImageName(const std::string& name){
 		_imageName=name;
 	}
 
-	void setIsInLocalSpace(bool isLocalSpace);
+	inline void setParticleSpace(BaseNode* spaceNode){
+		_spaceNode=spaceNode;//weak ref
+	}
 
 	void setFireRate(int particleCountPerSecond){
 		_fireRate=1.0f/particleCountPerSecond;

@@ -16,10 +16,51 @@ int AnimationCurve::keyNumbners(){
 }
 
 float AnimationCurve::evaluate(float time){
+	int size=keyNumbners();
+	if(size==0){
+		return 0;
+	}
+	if(size==1){
+		return _interpolations[0].value();
+	}
+	float firstTime=_interpolations[0].time();
+	float endTime=_interpolations[size-1].time();
+	float deltaTime=endTime-firstTime;
+	if(time>endTime||time<firstTime){
+		if(_wrapMode==CurveWrapLoop){
+			if(time<firstTime){
+				int s=(int)((endTime-time)/(deltaTime));
+				time+=s*deltaTime;
+			}else if(time>endTime){
+				int s=(int)((time-firstTime)/deltaTime);
+				time-=s*deltaTime;
+			}
+		}else if(_wrapMode==CurveWrapPingPong){
+			if(time<firstTime){
+				int s=(int)((endTime-time)/(deltaTime));
+				time+=s*deltaTime;
+				if(s%2==1){
+					time=deltaTime-time;
+				}
+			}else if(time>endTime){
+				int s=(int)((time-firstTime)/deltaTime);
+				time-=s*deltaTime;
+				if(s%2==1){
+					time=deltaTime-time;
+				}
+			}
+		}else if(_wrapMode==CurveWrapClamp){
+			if(time>endTime){
+				return _interpolations[size-1].value();
+			}else if(time<firstTime){
+				return _interpolations[0].value();
+			}
+		}
+	}
 	for(unsigned int i=1;i<_interpolations.size();i++){
 		const CurveKey& key= _interpolations[i];
 		const CurveKey& preKey=_interpolations[i-1];
-		if(i==_interpolations.size()-1&&time>=key.time()){
+		if(i==_interpolations.size()-1&&time==key.time()){
 			return key.value();
 		}
 		if(time>=preKey.time()&&time<key.time()){
@@ -34,6 +75,7 @@ float AnimationCurve::evaluate(float time){
 				);
 		}
 	}
+
 	return 0;
 }
 
