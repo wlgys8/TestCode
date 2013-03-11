@@ -1,6 +1,7 @@
 #include "BaseNode.h"
 #include "TCDrawer.h"
 #include "TCAnimation.h"
+#include "ParticleSystem/TCParticleSystem.h"
 NS_TC_BEGIN
 
 BaseNode::BaseNode():_parent(NULL),_rotation(0),_position(Vector2f()),
@@ -117,6 +118,11 @@ void BaseNode::invokeUpdate(){
 	AnimationContainer* anim=(AnimationContainer*) getComponment(ComponentAnimation);
 	if(anim){
 		anim->invokeUpdate(this);
+	}
+
+	ParticleSystem* ps=(ParticleSystem*)getComponment(ComponentParticleSystem);
+	if(ps){
+		ps->invokeUpdate();
 	}
 }
 

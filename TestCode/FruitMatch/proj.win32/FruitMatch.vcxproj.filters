@@ -20,6 +20,9 @@
     <Filter Include="Classes\Role">
       <UniqueIdentifier>{a119532c-4035-42cc-915e-bd9eb781687b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Enemy">
+      <UniqueIdentifier>{31c0bd72-addd-44f1-a25e-436a36cf54bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -65,6 +68,9 @@
     <ClCompile Include="..\Classes\GameMain.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Enemy\Enemy.cpp">
+      <Filter>Classes\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FruitMatch.h">
@@ -105,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemy\Enemy.h">
+      <Filter>Classes\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

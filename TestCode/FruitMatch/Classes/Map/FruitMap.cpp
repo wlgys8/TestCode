@@ -1,8 +1,8 @@
 #include "FruitMap.h"
 #include "TCVector2f.h"
 #include "TCTouchComponent.h"
-#include <math.h>
 #include "GameMain.h"
+#include "TCRandom.h"
 static int xsize=9;
 static int ysize=10;
 static int xoffset=-200;
@@ -27,7 +27,7 @@ FruitMap::FruitMap(){
 		_fruitMap[i]=new ptr_fruit[ysize];
 		for(int j=0;j<ysize;j++){
 			if(i!=0&&i!=xsize-1&&j!=0&&j!=ysize-1){
-			int rd=rand()*9/RAND_MAX;
+			int rd=(int)(Random::value()*9);
 			Fruit* fruit=Fruit::alloc(types[rd]);
 			_fruitMap[i][j]=fruit;
 			fruit->retain();
