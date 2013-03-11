@@ -3,7 +3,7 @@
 NS_TC_BEGIN
 
 Sprite::Sprite(){
-	addComponent(TCDrawer::alloc(NULL));
+	init();
 }
 void Sprite::initWithImageName(const std::string& imageName){
 	init();

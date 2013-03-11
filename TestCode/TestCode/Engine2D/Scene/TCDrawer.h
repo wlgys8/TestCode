@@ -10,6 +10,7 @@ class TCDrawer:public BaseComponent{
 private:
 	TextureRegion* _region;
 	Paint _paint;
+	Rect _part;
 private:
 	~TCDrawer();
 	TCDrawer(TextureRegion* region);
@@ -24,6 +25,12 @@ public:
 	inline Paint& paint() {
 		return _paint;
 	}  
+	inline const Rect& part() const{
+		return _part;
+	}
+	inline void setPart(const Rect& part){
+		_part=part;
+	}
 	void draw(const TCMatrix3x3& matrix);
 
 	Vector2f size(){
