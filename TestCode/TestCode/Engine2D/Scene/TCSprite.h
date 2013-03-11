@@ -3,9 +3,10 @@
 #include "BaseNode.h"
 #include "TCDrawer.h"
 #include <string>
+#include "Rect.h"
 NS_TC_BEGIN
 class Sprite:public BaseNode{
-
+private:
 protected:
 	Sprite();
 	~Sprite();
@@ -17,8 +18,6 @@ public:
 	}
 	void setImage(const std::string& imageName);
 	static Sprite* alloc(const std::string& key);
-
-
 };
 
 NS_TC_END

@@ -30,6 +30,7 @@ void GameMain::initGame(){
 		);
 	_role->sprite()->scale(Vector2f(1,1));
 	_role->sprite()->drawer()->paint().setColor(Color(0,1,0,1));
+	_role->sprite()->drawer()->setPart(Rect(0,0,1,0.5f));
 	Enemy* snake=Enemy::alloc(Enemy_Snake);
 	bg->addChild(snake);
 	snake->setLocalPosition(Vector2f(170,180));
