@@ -23,21 +23,35 @@ FruitMap::FruitMap(){
 		FRUIT_YINTAO,
 		FRUTT_LANMEI,
 	};
+	srand((unsigned)time(NULL));
+	int* fruitT;
+	int halfSize = (xsize - 2) * (ysize - 2) / 2;
+	fruitT = new int[halfSize];
+	for(int i = 0 ; i < halfSize ; i++){
+		fruitT[i]=(int)(Random::value()*9);
+	}
+	int index = 0;
 	for(int i=0;i<xsize;i++){
 		_fruitMap[i]=new ptr_fruit[ysize];
 		for(int j=0;j<ysize;j++){
 			if(i!=0&&i!=xsize-1&&j!=0&&j!=ysize-1){
-			int rd=(int)(Random::value()*9);
-			Fruit* fruit=Fruit::alloc(types[rd]);
-			_fruitMap[i][j]=fruit;
-			fruit->retain();
-			_node->addChild(fruit->sprite());
-			fruit->sprite()->setLocalPosition(Vector2f(xoffset+50*i,yoffset+50*j));}
-			else{
+				Fruit* fruit=Fruit::alloc(types[fruitT[index]]);
+				_fruitMap[i][j]=fruit;
+				fruit->retain();
+				_node->addChild(fruit->sprite());
+				fruit->sprite()->setLocalPosition(Vector2f(xoffset+50*i,yoffset+50*j));
+
+				index++;
+				if(index >= halfSize){
+					index = 0;
+				}
+			}else{
 				_fruitMap[i][j]=0;
 			}
 		}
 	}
+
+	delete[] fruitT;
 }
 
 Vector2 FruitMap::xy2ij(Vector2f xy){
