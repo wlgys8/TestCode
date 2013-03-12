@@ -17,29 +17,34 @@ void GameMain::initGame(){
 	curvX.addKey(CurveKey(0,-170,0,1));
 	curvX.addKey(0.8f,100);
 	curvX.addKey(1,50);
+	curvX.setWrapMode(CurveWrapPingPong);
 	AnimationCurve curvY=AnimationCurve();
 	curvY.addKey(0,270);
-	curvY.addKey(1,270);
-
+	curvY.addKey(1,-270);
+	curvY.setWrapMode(CurveWrapPingPong);
 	_role->sprite()->animation()->play(
 		TranslateAnimation::alloc(
 		curvX,
 		curvY,
-		1
+		0
 			)
 		);
 	_role->sprite()->scale(Vector2f(1,1));
 	_role->sprite()->drawer()->paint().setColor(Color(0,1,0,1));
-	_role->sprite()->drawer()->setPart(Rect(0,0,1,0.5f));
 	Enemy* snake=Enemy::alloc(Enemy_Snake);
 	bg->addChild(snake);
 	snake->setLocalPosition(Vector2f(170,180));
-
+	snake->animation()->play(
+		TranslateAnimation::alloc(
+		curvX,curvY,0
+		)
+		);
 	ParticleSystem* pt=ParticleSystem::alloc();
 	pt->setImageName("wp.png");
-	pt->setFireRate(5);
+	pt->setFireRate(20);
 	pt->setStartLiftTime(2);
-	pt->setStartVelocity(Vector2f(-70,-20),Vector2f(-70,20));
+	pt->setStartVelocity(Vector2f(-10,-10),Vector2f(10,10));
+	pt->setParticleSpace(bg);
 	snake->addComponent(pt);
 	TCSceneManager::instance()->addChild(bg);
 

@@ -42,9 +42,9 @@ public:
 	}
 };
 enum CurveWrapMode{
-	Once,
-	Loop,
-	PingPong,
+	CurveWrapLoop=0,
+	CurveWrapPingPong=1,
+	CurveWrapClamp,
 };
 class AnimationCurve{
 	typedef std::vector<CurveKey> KeyList;
@@ -52,12 +52,12 @@ private:
 	KeyList  _interpolations;
 	CurveWrapMode _wrapMode;
 public:
-	AnimationCurve():_wrapMode(Once){
+	AnimationCurve():_wrapMode(CurveWrapLoop){
 	}
 
-	inline const enum CurveWrapMode& wrapMode(){
+	inline const enum CurveWrapMode& wrapMode() const{
 		return _wrapMode;
-	};
+	}
 	inline void setWrapMode(const CurveWrapMode& mode){
 		_wrapMode=mode;
 	}
@@ -70,7 +70,6 @@ public:
 	float evaluate(float time);
 
 	int keyNumbners();
-
 
 };
 

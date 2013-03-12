@@ -31,6 +31,7 @@
     <None Include="FruitMatch.ico">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FruitMatch.rc">
