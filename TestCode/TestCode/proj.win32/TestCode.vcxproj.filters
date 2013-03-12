@@ -165,9 +165,6 @@
     <ClCompile Include="..\Engine2D\Render\TCPaint.cpp">
       <Filter>Engine2D\Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\Engine2D\Animation\TCAnimationCurve.cpp">
-      <Filter>Engine2D\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="..\Core\Math\TCHermiteInterpolation3.cpp">
       <Filter>Core\Math</Filter>
     </ClCompile>
@@ -178,6 +175,9 @@
       <Filter>Engine2D\ParticleSystem</Filter>
     </ClCompile>
     <ClCompile Include="..\Core\Math\TCRandom.cpp">
+      <Filter>Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Math\TCAnimationCurve.cpp">
       <Filter>Core\Math</Filter>
     </ClCompile>
   </ItemGroup>
@@ -342,9 +342,6 @@
     <ClInclude Include="..\OpenGL\tcgles.h">
       <Filter>OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine2D\Animation\TCAnimationCurve.h">
-      <Filter>Engine2D\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine2D\Scene\ParticleSystem\TCParticleSystem.h">
       <Filter>Engine2D\ParticleSystem</Filter>
     </ClInclude>
@@ -358,6 +355,12 @@
       <Filter>Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="..\Core\Math\TCColor.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Math\TCAnimationCurve.h">
+      <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Math\TCColorCurve.h">
       <Filter>Core\Math</Filter>
     </ClInclude>
   </ItemGroup>

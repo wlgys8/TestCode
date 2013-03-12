@@ -19,7 +19,7 @@ void Sprite::setImage(const std::string& imageName){
 	drawer()->setTextureRegion(region);
 }
 Sprite::~Sprite(){
-	DebugLog("delete a sprite");
+//	DebugLog("delete a sprite");
 }
 
 Sprite* Sprite::alloc(const std::string& key){

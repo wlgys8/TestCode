@@ -1,4 +1,4 @@
-#include "Animation/TCAnimationCurve.h"
+#include "TCAnimationCurve.h"
 #include "TCVector2f.h"
 NS_TC_BEGIN
 
@@ -14,11 +14,30 @@ void AnimationCurve::addKey(const CurveKey& key){
 int AnimationCurve::keyNumbners(){
 	return _interpolations.size();
 }
-
+void AnimationCurve::normalized(){
+	const int& size=keyNumbners();
+	if(size==0){
+		return;
+	}
+	if(size==1){
+		CurveKey& key= _interpolations[0];
+		key.set(0,key.value());
+	}
+	float firstTime=_interpolations[0].time();
+	float endTime=_interpolations[size-1].time();
+	float len=endTime-firstTime;
+	float offset=_interpolations[0].time();
+	KeyList::iterator it;
+	for(it=_interpolations.begin();it!=_interpolations.end();it++){
+		CurveKey& key= *it;
+		key.set((key.time()-offset)/len,key.value());
+	}
+	
+}
 float AnimationCurve::evaluate(float time){
 	int size=keyNumbners();
 	if(size==0){
-		return 0;
+		return 1;
 	}
 	if(size==1){
 		return _interpolations[0].value();

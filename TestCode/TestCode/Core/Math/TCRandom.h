@@ -9,7 +9,9 @@ private:
 public:
 	static void setSeed(int seed);
 
-	static float value();
+	static float value();//[0,1]
+
+	static float between(float min,float max);//[min,max]
 
 };
 

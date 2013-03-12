@@ -31,7 +31,6 @@
     <None Include="FruitMatch.ico">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FruitMatch.rc">
@@ -71,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Enemy\Enemy.cpp">
       <Filter>Classes\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Map\ConnectionEffect.cpp">
+      <Filter>Classes\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +117,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Enemy\Enemy.h">
       <Filter>Classes\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Map\ConnectionEffect.h">
+      <Filter>Classes\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

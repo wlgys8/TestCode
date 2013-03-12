@@ -14,11 +14,11 @@
     <ClCompile Include="..\Commons\TCCommon.cpp" />
     <ClCompile Include="..\Core\AutoReleaseObject.cpp" />
     <ClCompile Include="..\Core\AutoReleasePool.cpp" />
+    <ClCompile Include="..\Core\Math\TCAnimationCurve.cpp" />
     <ClCompile Include="..\Core\Math\TCRandom.cpp" />
     <ClCompile Include="..\Core\Math\TCHermiteInterpolation3.cpp" />
     <ClCompile Include="..\Core\Math\TCMatrix3x3.cpp" />
     <ClCompile Include="..\Core\TCTime.cpp" />
-    <ClCompile Include="..\Engine2D\Animation\TCAnimationCurve.cpp" />
     <ClCompile Include="..\Engine2D\ParticleSystem\TCParticleSystem.cpp" />
     <ClCompile Include="..\Engine2D\Render\TCPaint.cpp" />
     <ClCompile Include="..\Engine2D\Render\TCSceneRenderer.cpp" />
@@ -59,6 +59,8 @@
     <ClInclude Include="..\Commons\tooold.h" />
     <ClInclude Include="..\Core\AutoReleaseObject.h" />
     <ClInclude Include="..\Core\AutoReleasePool.h" />
+    <ClInclude Include="..\Core\Math\TCColorCurve.h" />
+    <ClInclude Include="..\Core\Math\TCAnimationCurve.h" />
     <ClInclude Include="..\Core\Math\TCColor.h" />
     <ClInclude Include="..\Core\Math\TCRandom.h" />
     <ClInclude Include="..\Core\Math\Rect.h" />
@@ -67,7 +69,6 @@
     <ClInclude Include="..\Core\Math\TCVector2f.h" />
     <ClInclude Include="..\Core\TCArrayList.h" />
     <ClInclude Include="..\Core\TCTime.h" />
-    <ClInclude Include="..\Engine2D\Animation\TCAnimationCurve.h" />
     <ClInclude Include="..\Engine2D\Render\TCPaint.h" />
     <ClInclude Include="..\Engine2D\Render\TCBatchUtil.h" />
     <ClInclude Include="..\Engine2D\Render\TCSceneRenderer.h" />

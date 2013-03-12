@@ -19,4 +19,8 @@ float Random::value(){
 	return rand()*1.0f/RAND_MAX;
 }
 
+float Random::between(float min,float max){
+	return min+(max-min)*value();
+}
+
 NS_TC_END

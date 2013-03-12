@@ -18,6 +18,8 @@ public:
 	Vector2 selectedTwo;
 
 	Vector2 xy2ij(Vector2f xy);
+	Vector2f ij2xy(Vector2 ij);
+
 	int select( Vector2 ij);//0:match,1=unmatch,2=wait for next select
 protected:
 	FruitMap();

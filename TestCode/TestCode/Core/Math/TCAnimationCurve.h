@@ -25,6 +25,18 @@ public:
 	_outTangent(outTangent)
 	{
 	}
+	inline void set(const float& time,const float& value,const float& inTangent,const float& outTangent){
+		_time=time;
+		_value=value;
+		_inTangent=inTangent;
+		_outTangent=outTangent;
+	}
+
+	inline void set(const float& time,const float& value){
+		_time=time;
+		_value=value;
+	}
+
 	inline const float& time() const{
 		return _time;
 	}
@@ -46,6 +58,7 @@ enum CurveWrapMode{
 	CurveWrapPingPong=1,
 	CurveWrapClamp,
 };
+//if key number is 0,curve always return 1;
 class AnimationCurve{
 	typedef std::vector<CurveKey> KeyList;
 private:
@@ -61,6 +74,7 @@ public:
 	inline void setWrapMode(const CurveWrapMode& mode){
 		_wrapMode=mode;
 	}
+	void normalized();//normalize time to (0,1)
 
 	void addKey(float key,float value);
 	//Smooth tangents are automatically computed for the key

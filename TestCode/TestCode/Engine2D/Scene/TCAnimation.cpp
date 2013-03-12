@@ -7,6 +7,9 @@ bool TranslateAnimation::invokeUpdate(BaseNode* target,float ctime){
 	if(_time!=0&&ctime>=_time){
 		ctime=_time;
 		ret=true;
+		if(_target&&_evt){
+			(_target->*_evt)(ctime);
+		}
 	}
 	float x=_xCurve.evaluate(ctime);
 	float y=_yCurve.evaluate(ctime);

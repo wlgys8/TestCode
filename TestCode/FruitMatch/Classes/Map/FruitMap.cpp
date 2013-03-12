@@ -3,6 +3,7 @@
 #include "TCTouchComponent.h"
 #include "GameMain.h"
 #include "TCRandom.h"
+#include "Map/ConnectionEffect.h"
 static int xsize=9;
 static int ysize=10;
 static int xoffset=-200;
@@ -59,6 +60,9 @@ Vector2 FruitMap::xy2ij(Vector2f xy){
 	int j=(int)((xy.y-yoffset+25)/50);
 	return Vector2(i,j);
 }
+Vector2f FruitMap::ij2xy(Vector2 ij){
+	return Vector2f(xoffset+50*ij.x,yoffset+50*ij.y);
+}
 int FruitMap::select(Vector2 ij){
 	if(selectedOne.x<0){
 		selectedOne=ij;
@@ -67,6 +71,9 @@ int FruitMap::select(Vector2 ij){
 	else{
 		if(match(selectedOne.x,selectedOne.y,ij.x,ij.y)){
 			DebugLog("match");
+			ConnectionEffect::instance()->generateConnection(
+				ij2xy(selectedOne),ij2xy(ij)
+				);
 			_fruitMap[selectedOne.x][selectedOne.y]->sprite()->removeSelf();
 			_fruitMap[selectedOne.x][selectedOne.y]->release();
 			_fruitMap[selectedOne.x][selectedOne.y]=0;
