@@ -102,9 +102,10 @@ public:
 	inline void scale(const Vector2f& scale){
 		_scale*=scale;
 	}
-	inline void setScale(const Vector2f& scale){
+	inline void setLocalScale(const Vector2f& scale){
 		_scale=scale;
 	}
+
 	inline const Vector2f& localScale(){
 		return _scale;
 	}

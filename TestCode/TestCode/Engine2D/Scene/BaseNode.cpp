@@ -13,7 +13,7 @@ _scale(Vector2f(1,1))
 	_componentMap=map<ComponentType,BaseComponent*>();
 }
 BaseNode::~BaseNode(){
-	DebugLog("delete a node");
+//	DebugLog("delete a node");
 	removeAllComponement();
 	removeAllChildren();
 }

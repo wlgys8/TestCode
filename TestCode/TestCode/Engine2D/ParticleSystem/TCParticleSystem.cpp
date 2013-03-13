@@ -5,11 +5,16 @@
 NS_TC_BEGIN
 
 ParticleSystem::ParticleSystem():
-_time(0),_spaceNode(0)
+_time(0),_spaceNode(0),
+_minStartSize(1),_maxStartSize(1),
+_isScaleEnable(false),_isEmiting(false)
 {
 	_paint=Paint();
 	_paint.setBlendMode(BLEND_ONE,BLEND_ONE);
 	_paint.setColor(Color(1,0.5f,0.1f,1));
+
+	_sizeOverLifeTime.addKey(0,1);
+	_rotationOverLifeTime.addKey(0,0);
 }
 ParticleSystem::~ParticleSystem(){
 	List::iterator it;
@@ -28,6 +33,7 @@ ParticleSystem::~ParticleSystem(){
 void ParticleSystem::initParticle(Particle& pt){
 	pt.age=0;
 	pt.velocity=_minStartVelocity+(_maxStartVelocity-_minStartVelocity)*(Random::value());
+	pt.size=Random::between(_minStartSize,_maxStartSize);
 }
 void ParticleSystem::GenerateParticle(){
 	if(_freeList.size()>0){
@@ -41,7 +47,7 @@ void ParticleSystem::GenerateParticle(){
 		}else{
 			node()->addChild(p.sprite);
 		}
-		
+
 	}else{
 		Particle p=Particle();
 		p.sprite=Sprite::alloc(_imageName)->retain<Sprite>();
@@ -49,36 +55,35 @@ void ParticleSystem::GenerateParticle(){
 		initParticle(p);
 		p.sprite->setWorldPosition(node()->worldPosition());
 		_busyList.push_back(p);
-		
+
 		if(_spaceNode){
 			_spaceNode->addChild(p.sprite);
 		}else{
 			node()->addChild(p.sprite);
 		}
-		
+
 	}
 }
-
-
-void ParticleSystem::setStartRotation(const float& minRotation,const float& maxRotation){
-
-}
-
-void ParticleSystem::setStartSize(const float& minSize,const float& maxSize){
-
-}
-
 
 void ParticleSystem::invokeUpdate(){
-	if(_time>=_fireRate){
-		GenerateParticle();
-		_time-=_fireRate;
+	if(_isEmiting){
+		if(_time>=_fireRate){
+			GenerateParticle();
+			_time-=_fireRate;
+		}
+		_time+=Time::deltaTime();
 	}
 
+	float deltaTime=Time::deltaTime();
 	Array::iterator it=_busyList.begin();
 	while(it!=_busyList.end()){
 		Particle& pt=*it;
-		pt.sprite->setLocalPosition(pt.sprite->localPosition()+(pt.velocity*Time::deltaTime()));
+		pt.sprite->setLocalPosition(pt.sprite->localPosition()+(pt.velocity*deltaTime));
+		
+		if(_isScaleEnable){
+			float scale=_sizeOverLifeTime.evaluate(pt.age/_lifeTime)*pt.size;
+			pt.sprite->setLocalScale(Vector2f(scale,scale));
+		}
 		
 		pt.age+=Time::deltaTime();
 		if(pt.age>=_lifeTime){
@@ -89,6 +94,6 @@ void ParticleSystem::invokeUpdate(){
 			it++;
 		}
 	}
-	_time+=Time::deltaTime();
+	
 }
 NS_TC_END

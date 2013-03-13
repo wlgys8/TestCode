@@ -80,7 +80,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="FruitMatch.ico" />
     <None Include="small.ico" />
   </ItemGroup>
@@ -93,6 +92,7 @@
     <ClCompile Include="..\Classes\Fruit\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\Fruit\Fruit.cpp" />
     <ClCompile Include="..\Classes\GameMain.cpp" />
+    <ClCompile Include="..\Classes\Map\ConnectionEffect.cpp" />
     <ClCompile Include="..\Classes\Map\FruitMap.cpp" />
     <ClCompile Include="..\Classes\Role\Role.cpp" />
     <ClCompile Include="..\Classes\TestAppDelegate.cpp" />
@@ -106,6 +106,7 @@
     <ClInclude Include="..\Classes\Fruit\BulletFactory.h" />
     <ClInclude Include="..\Classes\Fruit\Fruit.h" />
     <ClInclude Include="..\Classes\GameMain.h" />
+    <ClInclude Include="..\Classes\Map\ConnectionEffect.h" />
     <ClInclude Include="..\Classes\Map\FruitMap.h" />
     <ClInclude Include="..\Classes\Role\Role.h" />
     <ClInclude Include="..\Classes\Role\RoleXigua.h" />

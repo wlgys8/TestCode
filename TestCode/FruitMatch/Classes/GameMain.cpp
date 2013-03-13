@@ -2,9 +2,10 @@
 #include "Map/FruitMap.h"
 #include "TCSceneManager.h"
 #include "TCAnimation.h"
-#include "Animation/TCAnimationCurve.h"
+#include "TCAnimationCurve.h"
 #include "Enemy/Enemy.h"
 #include "ParticleSystem/TCParticleSystem.h"
+#include "Map/ConnectionEffect.h"
 void GameMain::initGame(){
 	_role=Role::alloc(Role_Xigua)->retain<Role>();
 	Sprite* bg=Sprite::alloc("bg.png");
@@ -34,18 +35,8 @@ void GameMain::initGame(){
 	Enemy* snake=Enemy::alloc(Enemy_Snake);
 	bg->addChild(snake);
 	snake->setLocalPosition(Vector2f(170,180));
-	snake->animation()->play(
-		TranslateAnimation::alloc(
-		curvX,curvY,0
-		)
-		);
-	ParticleSystem* pt=ParticleSystem::alloc();
-	pt->setImageName("wp.png");
-	pt->setFireRate(20);
-	pt->setStartLiftTime(2);
-	pt->setStartVelocity(Vector2f(-10,-10),Vector2f(10,10));
-	pt->setParticleSpace(bg);
-	snake->addComponent(pt);
+
+	ConnectionEffect::instance()->setSpaceNode(bg);
 	TCSceneManager::instance()->addChild(bg);
 
 }

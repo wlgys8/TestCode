@@ -2,7 +2,7 @@
 NS_TC_BEGIN
 
 BaseComponent::~BaseComponent(){
-	DebugLog("delete a component");
+//	DebugLog("delete a component");
 
 }
 void BaseComponent::attachToNode(BaseNode* node){
