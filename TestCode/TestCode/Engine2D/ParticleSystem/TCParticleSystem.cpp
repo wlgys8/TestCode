@@ -40,20 +40,20 @@ void ParticleSystem::GenerateParticle(){
 		Particle p=_freeList.front();
 		_freeList.pop_front();
 		initParticle(p);
-		p.sprite->setWorldPosition(node()->worldPosition());
+		
 		_busyList.push_back(p);
 		if(_spaceNode){
 			_spaceNode->addChild(p.sprite);
 		}else{
 			node()->addChild(p.sprite);
 		}
-
+		p.sprite->setWorldPosition(node()->worldPosition());
 	}else{
 		Particle p=Particle();
 		p.sprite=Sprite::alloc(_imageName)->retain<Sprite>();
 		p.sprite->drawer()->setPaint(_paint);
 		initParticle(p);
-		p.sprite->setWorldPosition(node()->worldPosition());
+		
 		_busyList.push_back(p);
 
 		if(_spaceNode){
@@ -61,7 +61,7 @@ void ParticleSystem::GenerateParticle(){
 		}else{
 			node()->addChild(p.sprite);
 		}
-
+		p.sprite->setWorldPosition(node()->worldPosition());
 	}
 }
 

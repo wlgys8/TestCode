@@ -6,8 +6,8 @@
 static ParticleSystem* createPS(){
 	ParticleSystem* pt=ParticleSystem::alloc();
 	pt->setImageName("wp.png");
-	pt->setFireRate(10);
-	pt->setStartLiftTime(2);
+	pt->setFireRate(20);
+	pt->setStartLiftTime(1.0f);
 	pt->setStartVelocity(Vector2f(-30,-30),Vector2f(30,30));
 	pt->setEnableScale(true);
 	pt->setStartSize(1,1);
@@ -34,14 +34,20 @@ void PSNode::onAnimationEnd(float time){
 	ps()->stopEmit();
 	ConnectionEffect::instance()->returnPSNode(this);
 }
-void PSNode::StartMove(const Vector2f& from,const Vector2f& to){
+void PSNode::StartMove( std::list<Vector2f>& path){
 	AnimationCurve curvX;
 	AnimationCurve curvY;
-	curvX.addKey(0,from.x);
-	curvX.addKey(1,to.x);
-	curvY.addKey(0,from.y);
-	curvY.addKey(1,to.y);
-	TranslateAnimation* trans=TranslateAnimation::alloc(curvX,curvY,1);
+	curvX.setWrapMode(CurveWrapClamp);
+	curvY.setWrapMode(CurveWrapClamp);
+	std::list<Vector2f>::iterator it;
+	float t=0;
+	float step=1.0f/path.size();
+	for(it=path.begin();it!=path.end();it++){
+		curvX.addKey(t,(*it).x);
+		curvY.addKey(t,(*it).y);
+		t+=step;
+	}
+	TranslateAnimation* trans=TranslateAnimation::alloc(curvX,curvY,1.0f);
 	trans->registerAnimationEndEvent(this,animationEventSelector(PSNode::onAnimationEnd));
 	ps()->emit();
 	animation()->play(
@@ -81,7 +87,7 @@ void ConnectionEffect::returnPSNode(PSNode* node){
 }
 
 
-void ConnectionEffect::generateConnection(const Vector2f& from,const Vector2f& to){
+void ConnectionEffect::generateConnection( std::list<Vector2f>& path){
 	PSNode* node=0;
 	if(_freeList.size()==0){
 		node=PSNode::alloc();
@@ -93,5 +99,5 @@ void ConnectionEffect::generateConnection(const Vector2f& from,const Vector2f& t
 		_freeList.pop_back();
 	}
 	_busyList.push_back(node);
-	node->StartMove(from,to);
+	node->StartMove(path);
 }

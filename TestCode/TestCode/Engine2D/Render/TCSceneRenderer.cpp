@@ -81,6 +81,7 @@ void TCSceneRenderer::render(const int& textureID,Vector2f* vertex,
 	}else if(!_lastPaint.isBatchable(paint)){
 		flush();
 		_lastPaint=paint;
+		_lastTextureID=textureID;
 	}
 	
 	Color color=paint.color();
