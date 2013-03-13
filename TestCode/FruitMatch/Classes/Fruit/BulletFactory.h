@@ -6,6 +6,7 @@
 USING_NS_TC;
 class BulletFactory:public TCSingleton<BulletFactory>{
 	friend class TCSingleton<BulletFactory>;
+public:
 	typedef std::list<Bullet*> BulletList;
 private:
 	BulletList _freeList;
@@ -16,5 +17,9 @@ private:
 public:
 	Bullet* createBullet(BulletType type);
 	void recollectUnusedBullet();
+
+	inline const BulletList& bulletList(){
+		return _busyList;
+	}
 };
 #endif

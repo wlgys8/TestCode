@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\Enemy\Enemy.cpp" />
+    <ClCompile Include="..\Classes\Enemy\EnemyManager.cpp" />
     <ClCompile Include="..\Classes\Fruit\Bullet.cpp" />
     <ClCompile Include="..\Classes\Fruit\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\Fruit\Fruit.cpp" />
@@ -102,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\Enemy\Enemy.h" />
+    <ClInclude Include="..\Classes\Enemy\EnemyManager.h" />
     <ClInclude Include="..\Classes\Fruit\Bullet.h" />
     <ClInclude Include="..\Classes\Fruit\BulletFactory.h" />
     <ClInclude Include="..\Classes\Fruit\Fruit.h" />

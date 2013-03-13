@@ -10,13 +10,17 @@ enum EnemyType{
 };
 class Enemy:public Sprite{
 
+private:
+	float _hp;
+	Sprite* _greenBar;
+	void initBloodBar();
 protected:
 
 	Enemy(EnemyType type);
 	~Enemy();
 
 public:
-
+	void hurt();
 	static Enemy* alloc(EnemyType type);
 
 };

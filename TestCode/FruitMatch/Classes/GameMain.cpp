@@ -6,6 +6,7 @@
 #include "Enemy/Enemy.h"
 #include "ParticleSystem/TCParticleSystem.h"
 #include "Map/ConnectionEffect.h"
+#include "Enemy/EnemyManager.h"
 void GameMain::initGame(){
 	_role=Role::alloc(Role_Xigua)->retain<Role>();
 	Sprite* bg=Sprite::alloc("bg.png");
@@ -14,9 +15,9 @@ void GameMain::initGame(){
 	_role->sprite()->setLocalPosition(Vector2f(-170,270));
 	bg->addChild(_role->sprite());
 	_role->sprite()->scale(Vector2f(1,1));
-	Enemy* snake=Enemy::alloc(Enemy_Snake);
+	Enemy* snake=EnemyManager::instance()->createEnemy(Enemy_Snake);
 	bg->addChild(snake);
-	snake->setLocalPosition(Vector2f(170,180));
+	snake->setLocalPosition(Vector2f(170,285));
 
 	ConnectionEffect::instance()->setSpaceNode(bg);
 	TCSceneManager::instance()->addChild(bg);

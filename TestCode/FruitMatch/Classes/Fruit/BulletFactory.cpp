@@ -40,12 +40,10 @@ void BulletFactory::recollectUnusedBullet(){
 
 BulletFactory::~BulletFactory(){
 	BulletList::iterator it;
-	DebugLog("%d,%d",_busyList.size(),_freeList.size());
 	for(it=_freeList.begin();it!=_freeList.end();it++){
 		(*it)->release();
 	}
 	_freeList.clear();
-
 	for(it=_busyList.begin();it!=_busyList.end();it++){
 		(*it)->release();
 	}
