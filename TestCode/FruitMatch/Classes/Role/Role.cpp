@@ -3,7 +3,6 @@
 Role::Role(RoleType type):_type(type){
 	if(type==Role_Xigua){
 		init("role_xigua.png");
-	//	init("white_point.png");
 	}
 }
 void Role::init(const std::string& imageName){

@@ -74,6 +74,9 @@
     <ClCompile Include="..\Classes\Map\ConnectionEffect.cpp">
       <Filter>Classes\Map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Enemy\EnemyManager.cpp">
+      <Filter>Classes\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FruitMatch.h">
@@ -120,6 +123,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Map\ConnectionEffect.h">
       <Filter>Classes\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemy\EnemyManager.h">
+      <Filter>Classes\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

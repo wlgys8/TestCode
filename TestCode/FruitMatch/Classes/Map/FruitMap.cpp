@@ -66,13 +66,19 @@ Vector2f FruitMap::ij2xy(Vector2 ij){
 int FruitMap::select(Vector2 ij){
 	if(selectedOne.x<0){
 		selectedOne=ij;
-		return 3;
+		return 2;
 	}
 	else{
-		if(match(selectedOne.x,selectedOne.y,ij.x,ij.y)){
-			DebugLog("match");
+		std::list<Vector2> path;
+
+		if(match(selectedOne.x,selectedOne.y,ij.x,ij.y,&path)){
+			std::list<Vector2f> fpath;
+			std::list<Vector2>::iterator it;
+			for(it=path.begin();it!=path.end();it++){
+				fpath.push_back(ij2xy((*it)));
+			}
 			ConnectionEffect::instance()->generateConnection(
-				ij2xy(selectedOne),ij2xy(ij)
+				fpath
 				);
 			_fruitMap[selectedOne.x][selectedOne.y]->sprite()->removeSelf();
 			_fruitMap[selectedOne.x][selectedOne.y]->release();
@@ -87,9 +93,7 @@ int FruitMap::select(Vector2 ij){
 			GameMain::instance()->role()->attack();
 			return 0;
 		}
-		DebugLog("unmatch");
-		selectedOne.x=-1;
-		selectedOne.y=-1;
+		selectedOne=ij;
 		return 1;
 	}
 }
@@ -147,21 +151,33 @@ bool FruitMap::isConnectedDirectly(Vector2 v1,Vector2 v2){
 	return false;
 }
 
-bool FruitMap::isConnectedByOneCross(Vector2 v1,Vector2 v2){
+bool FruitMap::isConnectedByOneCross(Vector2 v1,Vector2 v2,std::list<Vector2>* path){
 	Vector2 c1=Vector2(v1.x,v2.y);
 	Vector2 c2=Vector2(v2.x,v1.y);
-	return (!_fruitMap[c1.x][c1.y]&&isConnectedDirectly(v1,c1)&&isConnectedDirectly(v2,c1))||
-		(!_fruitMap[c2.x][c2.y]&&isConnectedDirectly(v1,c2)&&isConnectedDirectly(v2,c2));
+	if(!_fruitMap[c1.x][c1.y]&&isConnectedDirectly(v1,c1)&&isConnectedDirectly(v2,c1)){
+		path->push_back(v1);
+		path->push_back(c1);
+		path->push_back(v2);
+		return true;
+	}else if(!_fruitMap[c2.x][c2.y]&&isConnectedDirectly(v1,c2)&&isConnectedDirectly(v2,c2)){
+		path->push_back(v1);
+		path->push_back(c2);
+		path->push_back(v2);
+		return true;
+	}
+	return false;
 }
 
-bool FruitMap::isConnectedByTwoCross(Vector2 v1,Vector2 v2){
+bool FruitMap::isConnectedByTwoCross(Vector2 v1,Vector2 v2,std::list<Vector2>* path){
 	int row=xsize;
 	int col=ysize;
 	for(int i=v1.x-1;i>=0;i--){
 		if(_fruitMap[i][v1.y]){
 			break;
 		}
-		if(isConnectedByOneCross(Vector2(i,v1.y),v2)){
+
+		if(isConnectedByOneCross(Vector2(i,v1.y),v2,path)){
+			path->push_front(v1);
 			return true;
 		}
 	}
@@ -169,7 +185,8 @@ bool FruitMap::isConnectedByTwoCross(Vector2 v1,Vector2 v2){
 		if(_fruitMap[i][v1.y]){
 			break;
 		}
-		if(isConnectedByOneCross(Vector2(i,v1.y),v2)){
+		if(isConnectedByOneCross(Vector2(i,v1.y),v2,path)){
+			path->push_front(v1);
 			return true;
 		}
 	}
@@ -177,7 +194,8 @@ bool FruitMap::isConnectedByTwoCross(Vector2 v1,Vector2 v2){
 		if(_fruitMap[v1.x][j]){
 			break;
 		}
-		if(isConnectedByOneCross(Vector2(v1.x,j),v2)){
+		if(isConnectedByOneCross(Vector2(v1.x,j),v2,path)){
+			path->push_front(v1);
 			return true;
 		}
 	}
@@ -185,13 +203,14 @@ bool FruitMap::isConnectedByTwoCross(Vector2 v1,Vector2 v2){
 		if(_fruitMap[v1.x][j]){
 			break;
 		}
-		if(isConnectedByOneCross(Vector2(v1.x,j),v2)){
+		if(isConnectedByOneCross(Vector2(v1.x,j),v2,path)){
+			path->push_front(v1);
 			return true;
 		}
 	}
 	return false;
 }
-bool FruitMap::match(const int& i1,const int& j1,const int& i2,const int& j2){
+bool FruitMap::match(const int& i1,const int& j1,const int& i2,const int& j2,std::list<Vector2>* path){
 	ptr_fruit f1=_fruitMap[i1][j1];
 	ptr_fruit f2=_fruitMap[i2][j2];
 	if(!f1||!f1){
@@ -203,12 +222,14 @@ bool FruitMap::match(const int& i1,const int& j1,const int& i2,const int& j2){
 	Vector2 v1=Vector2(i1,j1);
 	Vector2 v2=Vector2(i2,j2);
 	if(isConnectedDirectly(v1,v2)){
+		path->push_back(v1);
+		path->push_back(v2);
 		return true;
 	}
-	if(isConnectedByOneCross(v1,v2)){
+	if(isConnectedByOneCross(v1,v2,path)){
 		return true;
 	}
-	if(isConnectedByTwoCross(v1,v2)){
+	if(isConnectedByTwoCross(v1,v2,path)){
 		return true;
 	}
 	return false;

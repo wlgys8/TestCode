@@ -7,6 +7,7 @@
 #include "TCResources.h"
 #include "GameMain.h"
 #include "Fruit/BulletFactory.h"
+#include "Enemy/EnemyManager.h"
 USING_NS_TC;
 
 bool TestAppDelegate::onDown(const TCTouchEvent& event){
@@ -34,6 +35,15 @@ void TestAppDelegate::onCreateGame(){
 	TCSceneManager::instance()->addChild(lateUpdateNode);
 }
 void TestAppDelegate::lateUpdate(){
+	BulletFactory::BulletList btlist=BulletFactory::instance()->bulletList();
+	BulletFactory::BulletList::iterator it;
+//	DebugLog("ref:%d",btlist.size());
+	for(it=btlist.begin();it!=btlist.end();it++){
+		if(EnemyManager::instance()->checkWithBullet(*it)){
+			(*it)->removeSelf();
+			break;
+		}
+	}
 	BulletFactory::instance()->recollectUnusedBullet();
 }
 void TestAppDelegate::onResume(){

@@ -27,21 +27,32 @@ void Fruit::init(const std::string& key){
 	_sprite=Sprite::alloc(key)->retain<Sprite>();
 	TCTouchComponent* tc= TCTouchComponent::alloc();
 	tc->bindDelegateTarget(this);
-	tc->registerDownEvent(touchSelector(Fruit::onClick));
+	tc->registerDownEvent(touchSelector(Fruit::onDown));
 	_sprite->addComponent(tc);
-//	Paint p=Paint();
-///	p.setBlendMode(BLEND_SRC_ALPHA,BLEND_ONE);
-//	_sprite->drawer()->setPaint(p);
-	//_sprite->registerUpdate(this,updateSelector( Fruit::onUpdate));
+}
+Fruit* Fruit:: _pickedFruit=0;
+
+bool Fruit::onDown(const TCTouchEvent& evt){
+	_sprite->setLocalScale(Vector2f(1.2f,1.2f));
+	Vector2 v=FruitMap::instance()->xy2ij(evt.position());
+	int ret=FruitMap::instance()->select(v);
+	if(ret!=0){//match failed
+		if(_pickedFruit){
+			_pickedFruit->sprite()->setLocalScale(Vector2f(1,1));
+			_pickedFruit=0;
+		}
+		if(!_pickedFruit){
+			_pickedFruit=this;
+		}
+	}else{
+		_pickedFruit=0;
+	}
+
+	return true;
 }
 
-bool Fruit::onClick(const TCTouchEvent* evt){
-	_sprite->rotate(45);
-	Vector2 v=FruitMap::instance()->xy2ij(evt->position());
-	int ret=FruitMap::instance()->select(v);
-	if(ret==0){
-		DebugLog("match");
-	}
+bool Fruit::onClick(const TCTouchEvent& evt){
+
 	return true;
 }
 

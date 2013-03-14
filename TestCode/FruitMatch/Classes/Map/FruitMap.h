@@ -4,6 +4,7 @@
 #include "Fruit/Fruit.h"
 #include <set>
 #include "TCTouchComponent.h"
+#include <list>
 USING_NS_TC;
 
 class FruitMap:public TCSingleton<FruitMap>{
@@ -13,7 +14,7 @@ public:
 	inline BaseNode* node(){
 		return _node;
 	}
-	bool match(const int& i1,const int& j1,const int& i2,const int& j2);
+	bool match(const int& i1,const int& j1,const int& i2,const int& j2,std::list<Vector2>* path);
 	Vector2 selectedOne;
 	Vector2 selectedTwo;
 
@@ -30,9 +31,9 @@ private:
 	
 	bool isConnectedDirectly(Vector2 v1,Vector2 v2); 
 
-	bool isConnectedByOneCross(Vector2 v1,Vector2 v2);
+	bool isConnectedByOneCross(Vector2 v1,Vector2 v2,std::list<Vector2>* path);
 
-	bool isConnectedByTwoCross(Vector2 v1,Vector2 v2);
+	bool isConnectedByTwoCross(Vector2 v1,Vector2 v2,std::list<Vector2>* path);
 
 };
 #endif

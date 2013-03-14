@@ -5,6 +5,7 @@
 #include <vector>
 #include "TCSingleton.h"
 #include "ParticleSystem/TCParticleSystem.h"
+#include <list>
 USING_NS_TC;
 
 class PSNode:public BaseNode{
@@ -16,7 +17,7 @@ protected:
 
 	~PSNode();
 public:
-	void StartMove(const Vector2f& from,const Vector2f& to);
+	void StartMove( std::list<Vector2f>& path);
 	ParticleSystem* ps();
 
 	static PSNode* alloc(){
@@ -46,7 +47,7 @@ public:
 	}
 	void returnPSNode(PSNode* node);
 
-	void generateConnection(const Vector2f& from,const Vector2f& to);
+	void generateConnection( std::list<Vector2f>& path);
 
 
 };

@@ -21,9 +21,9 @@ class Fruit:public AutoReleaseObject{
 private:
 	Sprite* _sprite;
 	FruitType _type;
-
-	bool onClick(const TCTouchEvent* evt);
-
+	bool onDown(const TCTouchEvent& evt);
+	bool onClick(const TCTouchEvent& evt);
+	static Fruit* _pickedFruit;
 protected:
 	Fruit(FruitType type);
 	~Fruit();
