@@ -6,6 +6,7 @@ LOCAL_MODULE := testcode_static
 LOCAL_MODULE_FILENAME := libtestcode
 
 LOCAL_SRC_FILES := \
+Audio/AudioManager.cpp \
 Support/zip_support/ioapi.c \
 Support/zip_support/unzip.c \
 Commons/TCCommon.cpp \

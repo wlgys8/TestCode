@@ -4,10 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class FruitMatchActivity extends Activity {
+	static {
+		System.loadLibrary("fruitmatch");
+		
+	}
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        play();
     }
+    
+    private native int play();
 }

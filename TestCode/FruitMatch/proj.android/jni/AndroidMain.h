@@ -1,6 +1,6 @@
 #ifndef _TC_ANDROIDMAIN_H__
 #define _TC_ANDROIDMAIN_H__
-
+#include<jni.h>
 
 #ifdef __cplusplus
 	extern "C" {
@@ -8,7 +8,7 @@
 	JNIEXPORT
 	jint
 	JNICALL																	  
-	Java_com_zilch_testcode_TestCodeActivity_nativeCreate( JNIEnv* env,
+	Java_com_testcode_fruitmatch_FruitMatchActivity_play( JNIEnv* env,
 	jobject thiz );
 
 #ifdef __cplusplus
