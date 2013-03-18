@@ -55,6 +55,12 @@
     <Filter Include="Engine2D\ParticleSystem">
       <UniqueIdentifier>{ab10e041-af99-4739-8a74-edb5ca62c011}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Support\openal">
+      <UniqueIdentifier>{9834995e-7d71-4450-b888-2abeb2dd0f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{5a51d233-f763-49bb-81cc-cc9531125a8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Commons\TCCommon.cpp">
@@ -179,6 +185,12 @@
     </ClCompile>
     <ClCompile Include="..\Core\Math\TCAnimationCurve.cpp">
       <Filter>Core\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Audio\AudioManager.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Audio\TCAudioSource.cpp">
+      <Filter>Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +374,18 @@
     </ClInclude>
     <ClInclude Include="..\Core\Math\TCColorCurve.h">
       <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\libopenal\al.h">
+      <Filter>Support\openal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\libopenal\alc.h">
+      <Filter>Support\openal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Audio\AudioManager.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Audio\TCAudioSource.h">
+      <Filter>Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
