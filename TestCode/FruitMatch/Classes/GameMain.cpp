@@ -7,6 +7,7 @@
 #include "ParticleSystem/TCParticleSystem.h"
 #include "Map/ConnectionEffect.h"
 #include "Enemy/EnemyManager.h"
+#include "Audio/AudioManager.h"
 void GameMain::initGame(){
 	_role=Role::alloc(Role_Xigua)->retain<Role>();
 	Sprite* bg=Sprite::alloc("bg.png");
@@ -21,6 +22,9 @@ void GameMain::initGame(){
 
 	ConnectionEffect::instance()->setSpaceNode(bg);
 	TCSceneManager::instance()->addChild(bg);
+
+	AudioManager::instance()->load("helloworld.wav");
+	AudioManager::instance()->play("helloworld.wav");
 
 }
 

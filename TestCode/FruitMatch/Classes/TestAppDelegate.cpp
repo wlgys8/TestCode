@@ -26,12 +26,10 @@ bool TestAppDelegate::onClick(const TCTouchEvent& event){
 	return true;
 }
 void TestAppDelegate::onCreateGame(){
-	DebugLog("onCreatehhhh");
 	TCResources::loadTextureRegions("fruit.png","fruit.txt",RGBA_8888);
 	GameMain::instance()->initGame();
 	BaseNode* lateUpdateNode=BaseNode::alloc();
 	lateUpdateNode->registerUpdate(this,updateSelector(TestAppDelegate::lateUpdate));
-	
 	TCSceneManager::instance()->addChild(lateUpdateNode);
 }
 void TestAppDelegate::lateUpdate(){

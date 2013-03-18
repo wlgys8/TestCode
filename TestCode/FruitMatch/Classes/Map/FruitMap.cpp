@@ -4,6 +4,7 @@
 #include "GameMain.h"
 #include "TCRandom.h"
 #include "Map/ConnectionEffect.h"
+#include "Audio/AudioManager.h"
 static int xsize=9;
 static int ysize=10;
 static int xoffset=-200;
@@ -91,6 +92,7 @@ int FruitMap::select(Vector2 ij){
 			selectedOne.x=-1;
 			selectedOne.y=-1;
 			GameMain::instance()->role()->attack();
+			AudioManager::instance()->play("helloworld.wav");
 			return 0;
 		}
 		selectedOne=ij;
