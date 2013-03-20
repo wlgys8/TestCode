@@ -2,12 +2,14 @@ package com.testcode.fruitmatch;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 public class FruitMatchActivity extends Activity {
 	static {
+		System.loadLibrary("testcode");
 		System.loadLibrary("fruitmatch");
 		
-	}
+	} 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -16,5 +18,8 @@ public class FruitMatchActivity extends Activity {
         play();
     }
     
+    public static void test(){
+    	Log.e("asd", "test");
+    }
     private native int play();
 }

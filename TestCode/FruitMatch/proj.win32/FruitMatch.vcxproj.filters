@@ -23,6 +23,9 @@
     <Filter Include="Classes\Enemy">
       <UniqueIdentifier>{31c0bd72-addd-44f1-a25e-436a36cf54bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="android">
+      <UniqueIdentifier>{02e30ecf-e563-4cf7-91b9-1d7c7d3f7a13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -77,6 +80,9 @@
     <ClCompile Include="..\Classes\Enemy\EnemyManager.cpp">
       <Filter>Classes\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="..\proj.android\jni\AndroidMain.cpp">
+      <Filter>android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FruitMatch.h">
@@ -126,6 +132,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Enemy\EnemyManager.h">
       <Filter>Classes\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\proj.android\jni\AndroidMain.h">
+      <Filter>android</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
