@@ -37,6 +37,7 @@
     <ClCompile Include="..\OpenGL\TCEGLView.cpp" />
     <ClCompile Include="..\OpenGL\TCRender.cpp" />
     <ClCompile Include="..\Platform\jniMethod.cpp" />
+    <ClCompile Include="..\Platform\JNI\JNIHelper.cpp" />
     <ClCompile Include="..\Platform\TCApplication.cpp" />
     <ClCompile Include="..\Platform\TCApplication_android.cpp" />
     <ClCompile Include="..\Platform\TCApplication_win32.cpp" />

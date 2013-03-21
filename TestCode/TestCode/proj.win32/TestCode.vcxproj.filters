@@ -192,6 +192,9 @@
     <ClCompile Include="..\Audio\TCAudioSource.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
+    <ClCompile Include="..\Platform\JNI\JNIHelper.cpp">
+      <Filter>Platform\JNI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Commons\TCCommon.h">
