@@ -138,7 +138,7 @@ void JNIHelper::callStaticVoidMethod(jclass clazz,const char* methodName,T1 p1,T
 	JNI_SIGNATURE<T1,T2,T3,T4>(&signature,p1,p2,p3,p4);
 	signature="("+signature+")V";
 	jmethodID methodID=JNIHelper::getStaticMethod(clazz,methodName,signature.c_str());
-	;
+
 	JNIHelper::getEnv()->CallStaticVoidMethod(clazz,methodID,
 		JNI_VALUE<T1>::c2j(p1),
 		JNI_VALUE<T2>::c2j(p2),

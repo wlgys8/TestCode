@@ -3,7 +3,6 @@
 #include <map>
 #include <vector>
 #include "AutoReleaseObject.h"
-#include "BaseComponent.h"
 #include "TCVector2f.h"
 #include "TCMatrix3x3.h"
 

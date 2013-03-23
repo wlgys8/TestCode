@@ -4,6 +4,7 @@
 
 NS_TC_BEGIN
 class BaseNode;
+
 class BaseComponent:public AutoReleaseObject{
 	friend class BaseNode;
 private:

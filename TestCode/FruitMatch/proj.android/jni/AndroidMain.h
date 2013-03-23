@@ -17,6 +17,18 @@
 	Java_com_testcode_fruitmatch_FruitMatchActivity_play( JNIEnv* env,
 	jobject thiz );
 
+	JNIEXPORT
+		void
+		JNICALL																	  
+		Java_com_testcode_library_TCRender_nativeInit( JNIEnv* env,
+		jobject thiz,int width,int height );
+
+	JNIEXPORT
+		void
+		JNICALL																	  
+		Java_com_testcode_library_TCRender_nativeRender( JNIEnv* env,
+		jobject thiz );
+
 	void test();
 	jint JNI_OnLoad(JavaVM *vm, void *reserved);
 

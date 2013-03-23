@@ -3,7 +3,6 @@
 
 #include "TCCommon.h"
 #include "tcgles.h"
-#include "AutoReleaseObject.h"
 #include "TCSingleton.h"
 
 NS_TC_BEGIN

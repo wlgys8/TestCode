@@ -1,10 +1,7 @@
 #include "TCRender.h"
-#include "TCFileUtils.h"
 #include "AutoReleasePool.h"
-#include "BaseNode.h"
 #include "TCSceneRenderer.h"
 #include "TCSceneManager.h"
-#include "TCTime.h"
 #include "TCScreen.h"
 NS_TC_BEGIN
 TCRender::TCRender(){
@@ -15,10 +12,10 @@ TCRender::~TCRender(){
 
 
 void  TCRender::onResize(long width,long height){
-//	TCFileUtils::setRootPath("assets/testcode.zip");
 	DebugLog("StartResize,width:%d,height,%d",width,height);
+	Screen::resize(width,height);
 	glViewport(0,0,width,height);
-	glClearColor(0,0,0,1);
+	glClearColor(1,0,0,1);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrthof(-Screen::width()/2,Screen::width()/2,-Screen::height()/2,Screen::height()/2,-100,100);
@@ -37,8 +34,6 @@ void  TCRender::onResize(long width,long height){
 	
 }
 
-static int x=0;
-static int direction=1;
 void  TCRender::onRender(){
 	TCSceneManager::instance()->loopUpdate();
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);

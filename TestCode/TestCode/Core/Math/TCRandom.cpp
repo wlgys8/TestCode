@@ -4,14 +4,32 @@
 #include <iostream>
 
 
+#if defined(__ANDROID__)
+#define rand __rand
+#define srand __srand
+#include <stdlib.h>
+#undef rand
+#undef srand
+
+extern int rand(void)
+{
+	return __rand();
+}
+extern void srand(int s)
+{
+	return __srand(s);
+}
+#endif
+
 NS_TC_BEGIN
 
 bool Random::_hasSetSeed=false;
 
-void Random::setSeed(int seed){
+
+ void Random::setSeed(int seed){
 	srand(seed);
 }
-float Random::value(){
+ float Random::value(){
 	if(!_hasSetSeed){
 		setSeed(time(NULL));
 		_hasSetSeed=true;

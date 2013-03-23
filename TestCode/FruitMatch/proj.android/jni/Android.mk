@@ -6,12 +6,27 @@ LOCAL_MODULE    := fruit_match
 LOCAL_MODULE_FILENAME := libfruitmatch
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
+$(LOCAL_PATH)/../../Classes/ \
+$(LOCAL_PATH)/../../Classes/Enemy \
+$(LOCAL_PATH)/../../Classes/Fruit \
+$(LOCAL_PATH)/../../Classes/Map \
+$(LOCAL_PATH)/../../Classes/Role \
+
 
 LOCAL_SRC_FILES := AndroidMain.cpp \
+../../Classes/Enemy/Enemy.cpp \
+../../Classes/Enemy/EnemyManager.cpp \
+../../Classes/Fruit/Bullet.cpp \
+../../Classes/Fruit/BulletFactory.cpp \
+../../Classes/Fruit/Fruit.cpp \
+../../Classes/Map/ConnectionEffect.cpp \
+../../Classes/Map/FruitMap.cpp \
+../../Classes/Role/Role.cpp \
+../../Classes/GameMain.cpp \
+../../Classes/TestAppDelegate.cpp \
 		
 LOCAL_SHARED_LIBRARIES := testcode_shared	
 
-#LOCAL_WHOLE_STATIC_LIBRARIES  := testcode_static
 
 include $(BUILD_SHARED_LIBRARY)
 

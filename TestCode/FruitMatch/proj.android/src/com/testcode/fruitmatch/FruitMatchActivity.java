@@ -1,8 +1,11 @@
 package com.testcode.fruitmatch;
 
 import android.app.Activity;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.testcode.library.TCRender;
 
 public class FruitMatchActivity extends Activity {
 	static {
@@ -14,8 +17,9 @@ public class FruitMatchActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        play(); 
+        GLSurfaceView view=new GLSurfaceView(this);
+        view.setRenderer(new TCRender());
+        setContentView(view);
     }
     
     public static int test(int p1,float p2,boolean p3,double p4){
