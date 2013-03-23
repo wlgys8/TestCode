@@ -15,11 +15,12 @@ public class FruitMatchActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        play();
+        play(); 
     }
     
-    public static void test(){
-    	Log.e("asd", "test");
+    public static int test(int p1,float p2,boolean p3,double p4){
+    	Log.e("asd", "test:"+p1+":"+p2+":"+p3+":"+p4);
+    	return 2;
     }
     private native int play();
 }

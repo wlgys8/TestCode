@@ -18,6 +18,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ \
                            $(LOCAL_PATH)/zlib \
                            $(LOCAL_PATH)/Support/zip_support \
                            $(LOCAL_PATH)/Platform \
+						   $(LOCAL_PATH)/Platform/Android/ \
 						   $(LOCAL_PATH)/Platform/JNI/ \
 
 LOCAL_EXPORT_LDLIBS := -llog\
@@ -30,6 +31,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/zlib \
                     $(LOCAL_PATH)/Support/zip_support \
                     $(LOCAL_PATH)/Platform \
+					$(LOCAL_PATH)/Platform/Android/ \
 					$(LOCAL_PATH)/Platform/JNI/ \
 
 LOCAL_LDLIBS := -lGLESv1_CM \
@@ -66,6 +68,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ \
                            $(LOCAL_PATH)/zlib \
                            $(LOCAL_PATH)/Support/zip_support \
                            $(LOCAL_PATH)/Platform \
+						   $(LOCAL_PATH)/Platform/Android/ \
                            $(LOCAL_PATH)/Platform/JNI/ \
 
 LOCAL_EXPORT_LDLIBS := -llog\
@@ -78,6 +81,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/zlib \
                     $(LOCAL_PATH)/Support/zip_support \
                     $(LOCAL_PATH)/Platform \
+					$(LOCAL_PATH)/Platform/Android/ \
                     $(LOCAL_PATH)/Platform/JNI/ \
 
 LOCAL_LDLIBS := -lGLESv1_CM \

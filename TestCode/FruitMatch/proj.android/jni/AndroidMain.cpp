@@ -2,6 +2,9 @@
 #include "Audio/AudioManager.h"
 #include "TCMacros.h"
 #include "JNIHelper.h"
+#include <typeinfo>
+#include "Android/TCAndroidObject.h"
+#include <string>
 #if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
 
 USING_NS_TC;
@@ -18,12 +21,11 @@ JNIEXPORT
 
 extern "C"{
 	void test(){
-		jclass clazz=JNIHelper::getStaticClass("com/testcode/fruitmatch/FruitMatchActivity");
-		jmethodID method= JNIHelper::getStaticMethod(clazz,"test","()V");
-		JNIEnv* env= JNIHelper::getEnv();
-		env->CallStaticVoidMethod(clazz,method);
+		int ret=JNIHelper::callStaticMethod<int,int,float,bool,double>("com/testcode/fruitmatch/FruitMatchActivity","test","I",1,1,true,2);
+		DebugLog("from java:%d",ret);
 	}
 	jint JNI_OnLoad(JavaVM *vm, void *reserved){
+		std::string str;
 		JNIHelper::setJavaVM(vm);
 		return JNI_VERSION_1_4;
 	}
