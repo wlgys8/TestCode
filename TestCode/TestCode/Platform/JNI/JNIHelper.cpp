@@ -2,67 +2,52 @@
 
 USING_NS_TC;
 
+#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
+
 #define JAVAVM testCode::JNIHelper::getJavaVM()
 
 JavaVM* JNIHelper::_javavm=0;
 
 extern "C"{
-static bool getEnv_(JNIEnv **env)
-{
-	bool bRet = false;
 
-	do 
+static JNIEnv* getEnv_(){
+	JNIEnv* pRet=0;
+	if (JAVAVM->GetEnv((void**)&pRet, JNI_VERSION_1_4) != JNI_OK)
 	{
-		if (JAVAVM->GetEnv((void**)env, JNI_VERSION_1_4) != JNI_OK)
-		{
-			DebugLog("Failed to get the environment using GetEnv()");
-			break;
-		}
+		DebugLog("Failed to get the environment using GetEnv()");
+		return 0;
+	}
 
-		if (JAVAVM->AttachCurrentThread(env, 0) < 0)
-		{
-			DebugLog("Failed to get the environment using AttachCurrentThread()");
-			break;
-		}
+	if (JAVAVM->AttachCurrentThread(&pRet, 0) < 0)
+	{
+		DebugLog("Failed to get the environment using AttachCurrentThread()");
+		return 0;
+	}
+	return pRet;
 
-		bRet = true;
-	} while (0);		
-
-	return bRet;
 }
 
 static jclass getClassID_(const char *className)
 {
-	JNIEnv *pEnv = 0;
-	jclass ret = 0;
-
-	do 
-	{
-		if (! pEnv)
-		{
-			if (! getEnv_(&pEnv))
-			{
-				break;
-			}
-		}
-
-		ret = pEnv->FindClass(className);
-		if (! ret)
-		{
-			DebugLog("Failed to find class of %s", className);
-			break;
-		}
-	} while (0);
-
-	return ret;
-}
-
-static jmethodID getStaticMethodID_(jclass clazz,const char* methodName,const char* paramCode){
-	JNIEnv *pEnv = 0;
-	jmethodID ret=0;
-	if(!getEnv_(&pEnv)){
+	JNIEnv *pEnv = getEnv_();
+	if(!pEnv){
 		return 0;
 	}
+	jclass clazz = 0;
+	clazz = pEnv->FindClass(className);
+	if(!clazz){
+		DebugLog("Failed to find class of %s", className);
+		return 0;
+	}
+	return clazz;
+}
+
+static jmethodID getStaticMethodIDByClazz_(jclass clazz,const char* methodName,const char* paramCode){
+	JNIEnv *pEnv = getEnv_();
+	if(!pEnv){
+		return 0;
+	}
+	jmethodID ret=0;
 	ret = pEnv->GetStaticMethodID(clazz, methodName, paramCode);
 	if(!ret){
 		DebugLog("Failed to find static method id of %s", methodName);
@@ -71,7 +56,28 @@ static jmethodID getStaticMethodID_(jclass clazz,const char* methodName,const ch
 	return ret;
 }
 
+static jmethodID getStaticMethodIDByName_(const char* className,const char* methodName,const char* paramCode){
+	JNIEnv *pEnv = getEnv_();
+	if(!pEnv){
+		return 0;
+	}
+	jclass clazz=0;
+	
+	clazz = pEnv->FindClass(className);
+	if(!clazz){
+		DebugLog("Failed to find class of %s", className);
+		return 0;
+	}
+	jmethodID methodID= pEnv->GetStaticMethodID(clazz, methodName, paramCode);
+	if(!methodID){
+		DebugLog("Failed to find static method id of %s", methodName);
+		return 0;
+	}
+	return methodID;
 }
+
+}
+
 NS_TC_BEGIN
 
 void JNIHelper::setJavaVM(JavaVM* javaVM){
@@ -87,14 +93,23 @@ jclass JNIHelper::getStaticClass(const char *className){
 }
 
 jmethodID JNIHelper::getStaticMethod(jclass clazz,const char* methodName,const char* paramCode){
-	getStaticMethodID_(clazz,methodName,paramCode);
+	getStaticMethodIDByClazz_(clazz,methodName,paramCode);
 }
+
 JNIEnv* JNIHelper::getEnv(){
-	JNIEnv *pEnv = 0;
-	if(!getEnv_(&pEnv)){
-		return 0;
-	}
-	return pEnv;
+	return getEnv_();
 }
+jmethodID JNIHelper::getStaticMethod(const char* className,const char* methodName,const char* paramCode){
+	return getStaticMethodIDByName_(className,methodName,paramCode);
+}
+void JNIHelper::callStaticVoidMethod(const char* className,const char* methodName){
+	jclass clazz=getStaticClass(className);
+	jmethodID methodID=getStaticMethod(clazz,methodName,"()V");
+	getEnv()->CallStaticVoidMethod(clazz,methodID);
+}
+
+
+
+#endif//#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
 
 NS_TC_END

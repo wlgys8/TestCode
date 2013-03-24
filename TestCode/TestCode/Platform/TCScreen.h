@@ -1,7 +1,7 @@
 #ifndef __TC_SCREEN_H__
 #define __TC_SCREEN_H__
-#include "TCMacros.h"
-#ifdef TC_PLATFORM_WIN32
+#include "TCCommon.h"
+#if TC_TARGET_PLATFORM==TC_PLATFORM_WIN32
 	#include "TCEGLView.h"
 #endif	
 NS_TC_BEGIN
@@ -11,11 +11,11 @@ enum ScreenOritation{
 	LandScape,
 };
 class Screen{
-#ifdef TC_PLATFORM_WIN32
+#if TC_TARGET_PLATFORM==TC_PLATFORM_WIN32
 friend class TCEGLView;
 #endif
 
-private:
+public:
 	static void resize(int width,int height){
 		_width=width;
 		_height=height;

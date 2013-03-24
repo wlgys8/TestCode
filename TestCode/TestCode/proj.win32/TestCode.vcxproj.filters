@@ -61,6 +61,9 @@
     <Filter Include="Audio">
       <UniqueIdentifier>{5a51d233-f763-49bb-81cc-cc9531125a8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\Android">
+      <UniqueIdentifier>{b7f14e91-975d-476a-9a7a-59b33584be38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Commons\TCCommon.cpp">
@@ -194,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="..\Platform\JNI\JNIHelper.cpp">
       <Filter>Platform\JNI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Platform\Android\TCAndroidClass.cpp">
+      <Filter>Platform\Android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -389,6 +395,15 @@
     </ClInclude>
     <ClInclude Include="..\Audio\TCAudioSource.h">
       <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\Android\TCAndroidClass.h">
+      <Filter>Platform\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\Android\TCAndroidMacros.h">
+      <Filter>Platform\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\Android\TCAndroidObject.h">
+      <Filter>Platform\Android</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

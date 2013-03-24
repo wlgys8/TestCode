@@ -8,7 +8,7 @@ NS_TC_BEGIN
 class AppDelegate:public AutoReleaseObject{
 #if TC_TARGET_PLATFORM==TC_PLATFORM_WIN32
 	friend class TCApplication_win32;
-#else if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
+#elif TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
 	friend class TCApplication_android;
 #endif
 

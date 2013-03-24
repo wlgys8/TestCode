@@ -152,7 +152,7 @@ void AudioManager::play(const std::string& filename){
 void AudioManager::unload(const std::string& filePath){
 	SourceMap::iterator it=_sourceMap.find(filePath);
 	if(it==_sourceMap.end()){
-		DebugLog("Can't find audio:%s",filePath);
+		DebugLog("Can't find audio:%s",filePath.c_str());
 		return;
 	}
 	alDeleteSources(1,&(it->second._source));
