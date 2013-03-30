@@ -104,4 +104,9 @@ void TCSceneRenderer::render(const int& textureID,Vector2f* vertex,
 	_size++;
 	
 }
+
+TCSceneRenderer* TCSceneRenderer::instance(){
+	static TCSceneRenderer _instance;
+	return &_instance;
+}
 NS_TC_END

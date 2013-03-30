@@ -42,10 +42,14 @@ private:
 	TextureMap _textureMap;
 	TCResources();
 	~TCResources();
+	static std::string _rootPath;
 public:
 	//object
 	TCTexture* findTexture(const string& texturePath) ;
 
+	static inline void setRootPath(const std::string& rootPath){
+		_rootPath=rootPath;
+	}
 	//static
 	static TCTexture* loadTexture(const std::string &path,BitmapFormat format);
 	static inline TCTexture* loadTexture(const std::string &path){

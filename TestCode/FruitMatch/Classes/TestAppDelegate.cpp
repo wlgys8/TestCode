@@ -8,6 +8,7 @@
 #include "GameMain.h"
 #include "Fruit/BulletFactory.h"
 #include "Enemy/EnemyManager.h"
+#include "TCRender.h"
 USING_NS_TC;
 
 bool TestAppDelegate::onDown(const TCTouchEvent& event){
@@ -25,17 +26,22 @@ bool TestAppDelegate::onClick(const TCTouchEvent& event){
 	DebugLog("click");
 	return true;
 }
+static void test(){
+	TCSceneManager::instance()->loopUpdate();
+}
 void TestAppDelegate::onCreateGame(){
 	TCResources::loadTextureRegions("fruit.png","fruit.txt",RGBA_8888);
 	GameMain::instance()->initGame();
 	BaseNode* lateUpdateNode=BaseNode::alloc();
 	lateUpdateNode->registerUpdate(this,updateSelector(TestAppDelegate::lateUpdate));
 	TCSceneManager::instance()->addChild(lateUpdateNode);
+	DebugLog("end update");
+	test();
+	DebugLog("end test");
 }
 void TestAppDelegate::lateUpdate(){
 	BulletFactory::BulletList btlist=BulletFactory::instance()->bulletList();
 	BulletFactory::BulletList::iterator it;
-//	DebugLog("ref:%d",btlist.size());
 	for(it=btlist.begin();it!=btlist.end();it++){
 		if(EnemyManager::instance()->checkWithBullet(*it)){
 			(*it)->removeSelf();

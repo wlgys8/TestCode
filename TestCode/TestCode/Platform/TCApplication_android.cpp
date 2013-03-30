@@ -1,6 +1,7 @@
 #include "TCApplication_android.h"
 #include "TCRender.h"
 #include "TCFileUtils.h"
+
 #if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
 
 NS_TC_BEGIN

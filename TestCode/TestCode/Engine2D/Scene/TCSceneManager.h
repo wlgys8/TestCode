@@ -5,21 +5,22 @@
 #include "BaseNode.h"
 #include "TCTouchEvent.h"
 NS_TC_BEGIN
-class TCSceneManager:public TCSingleton<TCSceneManager>{
-	friend class TCSingleton<TCSceneManager>;
-
+class TCSceneManager{
+//	friend class TCSingleton<TCSceneManager>;
 private:
 	BaseNode* _rootNode;
 private:
+
 	TCSceneManager();
 	~TCSceneManager();
-
 	void drawNode(BaseNode* node,const TCMatrix3x3& parentToWorldMatrix);
 
 	void touchNode(BaseNode* node, TCTouchEvent& touchEvent,const TCMatrix3x3& worldToParentMatrix);
 
-
 public:
+
+	static TCSceneManager* instance();
+
 	void addChild(BaseNode* childNode);
 
 	void dispatchTouch(TCTouchEvent& event);

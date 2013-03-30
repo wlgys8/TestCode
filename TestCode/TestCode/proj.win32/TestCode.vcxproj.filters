@@ -201,6 +201,9 @@
     <ClCompile Include="..\Platform\Android\TCAndroidClass.cpp">
       <Filter>Platform\Android</Filter>
     </ClCompile>
+    <ClCompile Include="..\Platform\Android\TCAndroidSystemInfo.cpp">
+      <Filter>Platform\Android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Commons\TCCommon.h">
@@ -403,6 +406,9 @@
       <Filter>Platform\Android</Filter>
     </ClInclude>
     <ClInclude Include="..\Platform\Android\TCAndroidObject.h">
+      <Filter>Platform\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\Android\TCAndroidSystemInfo.h">
       <Filter>Platform\Android</Filter>
     </ClInclude>
   </ItemGroup>

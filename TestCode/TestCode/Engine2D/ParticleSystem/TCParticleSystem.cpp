@@ -29,7 +29,9 @@ ParticleSystem::~ParticleSystem(){
 	}
 	_busyList.clear();
 }
-
+void ParticleSystem::setImageName(const std::string& name){
+	_imageName=name;
+}
 void ParticleSystem::initParticle(Particle& pt){
 	pt.age=0;
 	pt.velocity=_minStartVelocity+(_maxStartVelocity-_minStartVelocity)*(Random::value());
@@ -95,5 +97,11 @@ void ParticleSystem::invokeUpdate(){
 		}
 	}
 	
+}
+
+ParticleSystem* ParticleSystem::alloc(){
+	ParticleSystem* ret=new ParticleSystem();
+	ret->autoRelease();
+	return ret;
 }
 NS_TC_END

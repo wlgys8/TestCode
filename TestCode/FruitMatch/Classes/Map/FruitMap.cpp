@@ -78,9 +78,11 @@ int FruitMap::select(Vector2 ij){
 			for(it=path.begin();it!=path.end();it++){
 				fpath.push_back(ij2xy((*it)));
 			}
+			
 			ConnectionEffect::instance()->generateConnection(
 				fpath
 				);
+			
 			_fruitMap[selectedOne.x][selectedOne.y]->sprite()->removeSelf();
 			_fruitMap[selectedOne.x][selectedOne.y]->release();
 			_fruitMap[selectedOne.x][selectedOne.y]=0;

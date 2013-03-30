@@ -37,6 +37,7 @@
     <ClCompile Include="..\OpenGL\TCEGLView.cpp" />
     <ClCompile Include="..\OpenGL\TCRender.cpp" />
     <ClCompile Include="..\Platform\Android\TCAndroidClass.cpp" />
+    <ClCompile Include="..\Platform\Android\TCAndroidSystemInfo.cpp" />
     <ClCompile Include="..\Platform\jniMethod.cpp" />
     <ClCompile Include="..\Platform\JNI\JNIHelper.cpp" />
     <ClCompile Include="..\Platform\TCApplication.cpp" />
@@ -96,6 +97,7 @@
     <ClInclude Include="..\Platform\Android\TCAndroidMacros.h" />
     <ClInclude Include="..\Platform\Android\TCAndroidClass.h" />
     <ClInclude Include="..\Platform\Android\TCAndroidObject.h" />
+    <ClInclude Include="..\Platform\Android\TCAndroidSystemInfo.h" />
     <ClInclude Include="..\Platform\jniMethod.h" />
     <ClInclude Include="..\Platform\JNI\JNIHelper.h" />
     <ClInclude Include="..\Platform\TCScreen.h" />

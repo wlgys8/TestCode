@@ -2,6 +2,9 @@
 #include "TCTextureRegionManager.h"
 #include "TextureRegion.h"
 NS_TC_BEGIN
+
+std::string TCResources::_rootPath="assets/";
+
 TCResources::TCResources(){
 	_textureMap=TextureMap();
 }
@@ -27,7 +30,7 @@ TCTexture* TCResources::loadTexture(const std::string &path,BitmapFormat format)
 		DebugLog("texture has existed,path=%s",path.c_str());
 		return ret;
 	}
-	TCBitmap* bitmap=TCBitmap::decodeBitmap("assets/"+path,format);
+	TCBitmap* bitmap=TCBitmap::decodeBitmap(_rootPath+path,format);
 	if(!bitmap){
 		return NULL;
 	}
@@ -41,7 +44,7 @@ TCTexture* TCResources::loadTexture(const std::string &path,BitmapFormat format)
 }
 
 void TCResources::loadTexturePacker(const std::string path, TexturePacker& outputPacker){
-	TCTexturePackerUtil::loadJsonFile("assets/"+path,outputPacker);
+	TCTexturePackerUtil::loadJsonFile(_rootPath+path,outputPacker);
 	DebugLog(outputPacker.meta.image.c_str());
 }
 

@@ -1,8 +1,18 @@
 #include "TCTexturePackerUtil.h"
+#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
+#include "TCAndroidSystemInfo.h"
+#endif
 NS_TC_BEGIN
 bool TCTexturePackerUtil::loadJsonFile(std::string path,TexturePacker& packerOutput){
 	unsigned long size;
-	unsigned char* buffer= TCFileUtils::getFileData(path.c_str(),&size);
+	unsigned char* buffer= 0;
+#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
+	buffer= TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(), path.c_str(),&size);
+#else
+	buffer= TCFileUtils::getFileData(path.c_str(),&size);
+#endif
+	
+
 	bool ret=false;
 	if(buffer){
 		do{

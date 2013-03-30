@@ -6,8 +6,7 @@
 #include "TCSingleton.h"
 
 NS_TC_BEGIN
-class TCRender:public TCSingleton<TCRender>{
-	friend class TCSingleton<TCRender>;
+class TCRender{
 private:
 	TCRender();
 	~TCRender();
@@ -15,6 +14,7 @@ public:
 	void onResize(long width,long height);
 	void onRender();
 
+	static TCRender* instance();
 };
 
 NS_TC_END

@@ -4,8 +4,7 @@
 #include "TCVector2f.h"
 #include "TCPaint.h"
 NS_TC_BEGIN
-class TCSceneRenderer:public TCSingleton<TCSceneRenderer>{
-	friend class TCSingleton<TCSceneRenderer>;
+class TCSceneRenderer{
 private:
 	float* _vertexBuffer;
 	float* _uvBuffer;
@@ -25,6 +24,8 @@ public:
 	void render(const int& textureID,Vector2f* vertex,Vector2f* uv, const Paint& paint);
 
 	void flush();
+
+	static TCSceneRenderer* instance();
 };
 NS_TC_END
 #endif

@@ -1,9 +1,7 @@
 #ifndef __CONNECTION_EFFECT_H__
 #define __CONNECTION_EFFECT_H__
-#include "TCSingleton.h"
 #include "BaseNode.h"
 #include <vector>
-#include "TCSingleton.h"
 #include "ParticleSystem/TCParticleSystem.h"
 #include <list>
 USING_NS_TC;
@@ -20,15 +18,10 @@ public:
 	void StartMove( std::list<Vector2f>& path);
 	ParticleSystem* ps();
 
-	static PSNode* alloc(){
-		PSNode* ret=new PSNode();
-		ret->autoRelease();
-		return ret;
-	}
+	static PSNode* alloc();
 };
 
-class ConnectionEffect:public TCSingleton<ConnectionEffect>{
-	friend class TCSingleton<ConnectionEffect>;
+class ConnectionEffect{
 	typedef vector<PSNode*> PSList;
 private:
 	BaseNode* _spaceNode;
@@ -49,6 +42,7 @@ public:
 
 	void generateConnection( std::list<Vector2f>& path);
 
+	static ConnectionEffect* instance();
 
 };
 #endif

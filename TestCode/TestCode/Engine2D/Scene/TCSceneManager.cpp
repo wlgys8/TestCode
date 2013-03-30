@@ -2,13 +2,16 @@
 #include "TCDrawer.h"
 #include "TCTouchComponent.h"
 NS_TC_BEGIN
+
 TCSceneManager::TCSceneManager(){
 	_rootNode=BaseNode::alloc()->retain<BaseNode>();
+	DebugLog("new scene manager");
 }
 
 TCSceneManager::~TCSceneManager(){
 	_rootNode->release();
 	_rootNode=NULL;
+	DebugLog("delete scene manager");
 }
 
 void TCSceneManager::addChild(BaseNode* child){
@@ -54,7 +57,6 @@ static void updateNode(BaseNode* node){
 void TCSceneManager::loopUpdate(){
 	
 	updateNode(_rootNode);
-
 }
 void TCSceneManager::loopDraw(){
 	drawNode(_rootNode,TCMatrix3x3());
@@ -64,5 +66,9 @@ void TCSceneManager::dispatchTouch( TCTouchEvent& event){
 	touchNode(_rootNode,event,TCMatrix3x3());
 }
 
+TCSceneManager* TCSceneManager::instance(){
+	static TCSceneManager _instance;
+	return &_instance;
+}
 
 NS_TC_END
