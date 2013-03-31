@@ -1,6 +1,12 @@
 #include "TCResources.h"
 #include "TCTextureRegionManager.h"
 #include "TextureRegion.h"
+#include "Audio/TCAudioBuffer.h"
+#include "Audio/AudioManager.h"
+
+#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
+#include "Android/TCAndroidSystemInfo.h"
+#endif
 NS_TC_BEGIN
 
 std::string TCResources::_rootPath="assets/";
@@ -63,6 +69,32 @@ void TCResources::loadTextureRegions(const std::string& texPath,const std::strin
 		TextureRegionManager::instance()->alloc(it->first,tex,left,1-top-height,width,height);
 	}
 
+}
+
+AudioBuffer* TCResources::loadAudioInAssets(const std::string& srcPath){
+	AudioBuffer* ret=AudioManager::instance()->find(srcPath);
+	if(ret){
+		return ret;
+	}
+#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
+
+	unsigned long size;
+	unsigned char* fileStream=TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(),(_rootPath+srcPath).c_str(),&size);
+	if(!fileStream){
+		DebugLog("load %s failed.",srcPath.c_str());
+		return 0;
+	}
+	return AudioManager::instance()->load(srcPath,fileStream,size);
+#else
+	unsigned long size;
+	unsigned char* fileStream=TCFileUtils::getFileData((_rootPath+srcPath).c_str(),&size);
+	if(!fileStream){
+		DebugLog("load %s failed.",srcPath.c_str());
+		return 0;
+	}
+	return AudioManager::instance()->load(srcPath,fileStream,size);	
+#endif
+	
 }
 
 NS_TC_END

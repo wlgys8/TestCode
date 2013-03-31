@@ -57,6 +57,7 @@ LOCAL_MODULE_FILENAME := libtestcode
 
 LOCAL_SRC_FILES := \
 Audio/AudioManager.cpp \
+Audio/TCAudioBuffer.cpp \
 Commons/TCCommon.cpp \
 Core/Math/TCAnimationCurve.cpp \
 Core/Math/TCHermiteInterpolation3.cpp \

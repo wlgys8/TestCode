@@ -9,6 +9,7 @@
 #include "Enemy/EnemyManager.h"
 #include "Audio/AudioManager.h"
 void GameMain::initGame(){
+	TCResources::loadAudioInAssets("helloworld.wav");
 	_role=Role::alloc(Role_Xigua)->retain<Role>();
 	Sprite* bg=Sprite::alloc("bg.png");
 	bg->addChild(FruitMap::instance()->node());
@@ -23,8 +24,7 @@ void GameMain::initGame(){
 	ConnectionEffect::instance()->setSpaceNode(bg);
 	TCSceneManager::instance()->addChild(bg);
 
-	AudioManager::instance()->load("helloworld.wav");
-	AudioManager::instance()->play("helloworld.wav");
+	
 
 }
 
@@ -32,4 +32,5 @@ GameMain::~GameMain(){
 	if(_role){
 		_role->release();
 	}
+	
 }

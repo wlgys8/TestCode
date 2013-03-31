@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Audio\AudioManager.cpp" />
-    <ClCompile Include="..\Audio\TCAudioSource.cpp" />
+    <ClCompile Include="..\Audio\TCAudioBuffer.cpp" />
     <ClCompile Include="..\Commons\TCCommon.cpp" />
     <ClCompile Include="..\Core\AutoReleaseObject.cpp" />
     <ClCompile Include="..\Core\AutoReleasePool.cpp" />
@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Audio\AudioManager.h" />
-    <ClInclude Include="..\Audio\TCAudioSource.h" />
+    <ClInclude Include="..\Audio\TCAudioBuffer.h" />
     <ClInclude Include="..\Commons\TCCommon.h" />
     <ClInclude Include="..\Commons\TCMacros.h" />
     <ClInclude Include="..\Commons\tooold.h" />

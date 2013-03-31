@@ -26,18 +26,13 @@ bool TestAppDelegate::onClick(const TCTouchEvent& event){
 	DebugLog("click");
 	return true;
 }
-static void test(){
-	TCSceneManager::instance()->loopUpdate();
-}
+
 void TestAppDelegate::onCreateGame(){
 	TCResources::loadTextureRegions("fruit.png","fruit.txt",RGBA_8888);
 	GameMain::instance()->initGame();
 	BaseNode* lateUpdateNode=BaseNode::alloc();
 	lateUpdateNode->registerUpdate(this,updateSelector(TestAppDelegate::lateUpdate));
 	TCSceneManager::instance()->addChild(lateUpdateNode);
-	DebugLog("end update");
-	test();
-	DebugLog("end test");
 }
 void TestAppDelegate::lateUpdate(){
 	BulletFactory::BulletList btlist=BulletFactory::instance()->bulletList();

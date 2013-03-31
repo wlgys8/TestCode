@@ -9,6 +9,8 @@
 #include "TCBitmap.h"
 
 #include "TCTexturePackerUtil.h"
+
+
 using namespace std;
 NS_TC_BEGIN
 
@@ -35,6 +37,8 @@ DECLARE_RESOURCES_TYPE(TCBitmap,RES_TYPE_BITMAP)
 
 #undef DECLARE_RESOURCES_TYPE
 
+class AudioBuffer;
+
 class TCResources:public TCSingleton<TCResources>{
 	typedef map<string,TCTexture*> TextureMap;
 	friend class TCSingleton<TCResources>; 
@@ -59,6 +63,8 @@ public:
 	static void loadTexturePacker(const std::string path,TexturePacker& outputPacker);
 
 	static void loadTextureRegions(const std::string& texPath,const std::string jsonFilePath,BitmapFormat format);
+
+	static AudioBuffer* loadAudioInAssets(const std::string& srcPath);
 
 private:
 

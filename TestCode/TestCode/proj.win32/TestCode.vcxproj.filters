@@ -192,9 +192,6 @@
     <ClCompile Include="..\Audio\AudioManager.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="..\Audio\TCAudioSource.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
     <ClCompile Include="..\Platform\JNI\JNIHelper.cpp">
       <Filter>Platform\JNI</Filter>
     </ClCompile>
@@ -203,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="..\Platform\Android\TCAndroidSystemInfo.cpp">
       <Filter>Platform\Android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Audio\TCAudioBuffer.cpp">
+      <Filter>Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -396,9 +396,6 @@
     <ClInclude Include="..\Audio\AudioManager.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\Audio\TCAudioSource.h">
-      <Filter>Audio</Filter>
-    </ClInclude>
     <ClInclude Include="..\Platform\Android\TCAndroidClass.h">
       <Filter>Platform\Android</Filter>
     </ClInclude>
@@ -410,6 +407,9 @@
     </ClInclude>
     <ClInclude Include="..\Platform\Android\TCAndroidSystemInfo.h">
       <Filter>Platform\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Audio\TCAudioBuffer.h">
+      <Filter>Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

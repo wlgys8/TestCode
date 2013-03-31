@@ -20,9 +20,6 @@ JNIEXPORT
 	JNICALL																	  
 	Java_com_testcode_fruitmatch_FruitMatchActivity_play( JNIEnv* env,
 	jobject thiz ){
-		AudioManager::instance()->load("/sdcard/helloworld.wav");
-		AudioManager::instance()->play("/sdcard/helloworld.wav");
-		test();
 		return 0;
 }
 

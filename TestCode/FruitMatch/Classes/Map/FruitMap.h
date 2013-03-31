@@ -5,6 +5,7 @@
 #include <set>
 #include "TCTouchComponent.h"
 #include <list>
+#include "Audio/AudioManager.h"
 USING_NS_TC;
 
 class FruitMap:public TCSingleton<FruitMap>{
@@ -27,6 +28,8 @@ protected:
 private:
 	ptr_fruit** _fruitMap;//null represent empty
 	BaseNode* _node;
+	AudioSource* _matchSound;
+
 	~FruitMap();
 	
 	bool isConnectedDirectly(Vector2 v1,Vector2 v2); 
