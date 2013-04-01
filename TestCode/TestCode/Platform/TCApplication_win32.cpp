@@ -96,9 +96,9 @@ int TCApplication_win32::run(){
 			}
 			if(hasTouch){
 				TCTouchEvent evt=TCTouchEvent();
-				float x=(float)LOWORD( msg.lParam)-Screen::width()/2;
-				float y=(float)HIWORD(msg.lParam)-Screen::height()/2;
-				evt.set(type,Vector2f(x,-y));
+				float x=(float)LOWORD( msg.lParam);
+				float y=(float)HIWORD(msg.lParam);
+				evt.set(type,Vector2f(x,Screen::height()-y));
 				TCSceneManager::instance()->dispatchTouch(evt);
 			}
 		}		

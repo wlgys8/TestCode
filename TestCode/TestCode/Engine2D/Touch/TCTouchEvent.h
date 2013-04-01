@@ -16,6 +16,7 @@ private:
 	TouchEventType _type;
 	Vector2f _position;
 	Vector2f _localPosition;
+	Vector2f _screenPosition;
 public:
 	inline TouchEventType type()const {
 		return _type;
@@ -24,16 +25,25 @@ public:
 		return _position;
 	}
 
+	inline Vector2f screenPosition() const{
+		return _screenPosition;
+	}
 	inline void setLocalPosition(Vector2f localPosition){
 		_localPosition=localPosition;
 	}
+
+	inline void setPosition(Vector2f position){
+		_position=position;
+	}
+
+	
 	
 	inline Vector2f localPosition() const{
 		return _localPosition;
 	}
 	inline void set(TouchEventType type,Vector2f vect){
 		_type=type;
-		_position=vect;
+		_screenPosition=vect;
 	}
 };
 

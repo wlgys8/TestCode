@@ -8,6 +8,7 @@
 #include "Map/ConnectionEffect.h"
 #include "Enemy/EnemyManager.h"
 #include "Audio/AudioManager.h"
+#include "Camera/TCCamera.h"
 void GameMain::initGame(){
 	TCResources::loadAudioInAssets("helloworld.wav");
 	_role=Role::alloc(Role_Xigua)->retain<Role>();
@@ -22,9 +23,9 @@ void GameMain::initGame(){
 	snake->setLocalPosition(Vector2f(170,285));
 
 	ConnectionEffect::instance()->setSpaceNode(bg);
-	TCSceneManager::instance()->addChild(bg);
 
-	
+	Camera* ca= TCSceneManager::instance()->findCamera("main");
+	ca->rootNode()->addChild(bg);
 
 }
 

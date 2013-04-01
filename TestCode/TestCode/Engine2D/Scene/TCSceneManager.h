@@ -4,24 +4,23 @@
 #include "TCSingleton.h"
 #include "BaseNode.h"
 #include "TCTouchEvent.h"
+#include <map>
+
 NS_TC_BEGIN
+	class Camera;
 class TCSceneManager{
-//	friend class TCSingleton<TCSceneManager>;
+	typedef std::map<std::string,Camera*> CameraMap;
 private:
-	BaseNode* _rootNode;
+	CameraMap _cameraMap;
+	
 private:
 
 	TCSceneManager();
 	~TCSceneManager();
-	void drawNode(BaseNode* node,const TCMatrix3x3& parentToWorldMatrix);
-
-	void touchNode(BaseNode* node, TCTouchEvent& touchEvent,const TCMatrix3x3& worldToParentMatrix);
 
 public:
 
 	static TCSceneManager* instance();
-
-	void addChild(BaseNode* childNode);
 
 	void dispatchTouch(TCTouchEvent& event);
 
@@ -29,6 +28,9 @@ public:
 
 	void loopDraw();
 	
+	Camera* findCamera(const std::string& name);
+	Camera* createCamera(const std::string& name="main");
+
 };
 NS_TC_END
 #endif
