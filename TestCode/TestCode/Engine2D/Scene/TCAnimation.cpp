@@ -35,7 +35,6 @@ bool ScaleAnimation::invokeUpdate(BaseNode* target,float ctime){
 	}
 	float x=_xCurve.evaluate(ctime);
 	float y=_yCurve.evaluate(ctime);
-	DebugLog("%f",x);
 	target->setLocalScale(Vector2f(x,y));
 	return ret;
 }

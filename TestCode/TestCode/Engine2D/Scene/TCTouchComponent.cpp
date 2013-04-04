@@ -1,5 +1,6 @@
 #include "TCTouchComponent.h"
 #include "TCDrawer.h"
+#include "RenderElements/TCRenderElement.h"
 NS_TC_BEGIN
 
 TCTouchComponent::TCTouchComponent():_delegateDown(0),_delegateMove(0),_delegateUp(0),_delegateTarget(0),_delegateClick(0),
@@ -18,7 +19,11 @@ void TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
 	if(!drawer){
 		return;
 	}
-	Vector2f size= drawer->size();
+	RenderElement* re=drawer->renderElement();
+	if(!re){
+		return;
+	}
+	Vector2f size= re->rawSize();
 	Rect bounds=Rect(-size.x/2,-size.y/2,size.x,size.y);
 	bool isContains=bounds.contains(touchEvent.localPosition());
 	switch(touchEvent.type()){

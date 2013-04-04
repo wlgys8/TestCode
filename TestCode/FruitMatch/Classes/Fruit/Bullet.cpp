@@ -5,7 +5,7 @@ Bullet::Bullet(BulletType type){
 	if(type==Bullet_Juzi){
 		Sprite::initWithImageName("bullet_jz.png");
 	}else{
-		Sprite::init();
+		Sprite::initWithImageName("");
 	}
 }
 void Bullet::reset(float x,float y,BulletType type){

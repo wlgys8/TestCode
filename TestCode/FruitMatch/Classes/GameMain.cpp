@@ -9,6 +9,7 @@
 #include "Enemy/EnemyManager.h"
 #include "Audio/AudioManager.h"
 #include "Camera/TCCamera.h"
+#include "TCRectangleRGBA.h"
 void GameMain::initGame(){
 	TCResources::loadAudioInAssets("helloworld.wav");
 	Sprite* bg=Sprite::alloc("bg.png");
@@ -18,6 +19,7 @@ void GameMain::initGame(){
 
 	Camera* ca= TCSceneManager::instance()->findCamera("main");
 	ca->rootNode()->addChild(bg);
+
 
 }
 

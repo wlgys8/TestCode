@@ -21,6 +21,14 @@ GameOverDialog::GameOverDialog(){
 	ScaleAnimation* anim=ScaleAnimation::alloc(curvX,curvY,0.4f);
 	_background->animation()->bind(anim);
 	_background->setLocalScale(Vector2f(0.1f,0.1f));
+
+	_blackMask=RectangleRGBA::alloc();
+	_blackMask->setSize(Vector2f(1000,1000));
+	_blackMask->drawer()->paint().setColor(Color(0,0,0,0.5f));
+	_blackMask->retain();
+
+	_blackMask->addChild(_background);
+
 }
 
 GameOverDialog::~GameOverDialog(){
@@ -28,18 +36,21 @@ GameOverDialog::~GameOverDialog(){
 		_background->release();
 		_background=0;
 	}
+	if(_blackMask){
+		_blackMask->release();
+		_blackMask=0;
+	}
 
 }
 
 void GameOverDialog::show(){
 	Camera* ca= TCSceneManager::instance()->findCamera("main");
-	
-	ca->rootNode()->addChild(_background);
+	ca->rootNode()->addChild(_blackMask);
 	_background->animation()->play();
 }
 
 void GameOverDialog::hide(){
-	_background->removeSelf();
+	_blackMask->removeSelf();
 }
 
 

@@ -67,6 +67,9 @@
     <Filter Include="Engine2D\Camera">
       <UniqueIdentifier>{0b182325-e8ac-4bcf-a27c-03946bc071e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine2D\Scene\RenderElements">
+      <UniqueIdentifier>{d108c173-4d17-4924-95cd-edc660b51479}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Commons\TCCommon.cpp">
@@ -212,6 +215,15 @@
     </ClCompile>
     <ClCompile Include="..\Core\TCObject.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\RenderElements\TCSpriteRenderElement.cpp">
+      <Filter>Engine2D\Scene\RenderElements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\RenderElements\TCRectRenderElement.cpp">
+      <Filter>Engine2D\Scene\RenderElements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\TCRectangleRGBA.cpp">
+      <Filter>Engine2D\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -425,6 +437,21 @@
     </ClInclude>
     <ClInclude Include="..\Core\TCObject.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="TCPrimitiveDrawer.h">
+      <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\RenderElements\TCRenderElement.h">
+      <Filter>Engine2D\Scene\RenderElements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\RenderElements\TCSpriteRenderElement.h">
+      <Filter>Engine2D\Scene\RenderElements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\RenderElements\TCRectRenderElement.h">
+      <Filter>Engine2D\Scene\RenderElements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\TCRectangleRGBA.h">
+      <Filter>Engine2D\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
