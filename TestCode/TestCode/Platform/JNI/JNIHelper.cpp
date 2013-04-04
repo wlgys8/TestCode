@@ -1,5 +1,6 @@
 #include "jni/JNIHelper.h"
 
+
 USING_NS_TC;
 
 #if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
@@ -108,8 +109,7 @@ void JNIHelper::callStaticVoidMethod(const char* className,const char* methodNam
 	getEnv()->CallStaticVoidMethod(clazz,methodID);
 }
 
-
+NS_TC_END
 
 #endif//#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
 
-NS_TC_END

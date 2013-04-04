@@ -8,34 +8,23 @@
 #include "GameMain.h"
 #include "Fruit/BulletFactory.h"
 #include "Enemy/EnemyManager.h"
+#include "TCRender.h"
+#include "Camera/TCCamera.h"
 USING_NS_TC;
 
-bool TestAppDelegate::onDown(const TCTouchEvent& event){
-	TCDrawer* drawer=(TCDrawer*) pingguo->getComponment(ComponentDrawer);
-	drawer->setTextureRegion(TextureRegionManager::instance()->get("juzi.png"));
-	return true;
-}
-bool TestAppDelegate::onUp(const TCTouchEvent& event){
-	TCDrawer* drawer=(TCDrawer*) pingguo->getComponment(ComponentDrawer);
-	drawer->setTextureRegion(TextureRegionManager::instance()->get("pingguo.png"));
-	return  true;
-}
 
-bool TestAppDelegate::onClick(const TCTouchEvent& event){
-	DebugLog("click");
-	return true;
-}
 void TestAppDelegate::onCreateGame(){
 	TCResources::loadTextureRegions("fruit.png","fruit.txt",RGBA_8888);
+	Camera* ca= TCSceneManager::instance()->createCamera();
 	GameMain::instance()->initGame();
 	BaseNode* lateUpdateNode=BaseNode::alloc();
 	lateUpdateNode->registerUpdate(this,updateSelector(TestAppDelegate::lateUpdate));
-	TCSceneManager::instance()->addChild(lateUpdateNode);
+	ca->rootNode()->addChild(lateUpdateNode);
+	ca->setOrthof(480,800);
 }
 void TestAppDelegate::lateUpdate(){
 	BulletFactory::BulletList btlist=BulletFactory::instance()->bulletList();
 	BulletFactory::BulletList::iterator it;
-//	DebugLog("ref:%d",btlist.size());
 	for(it=btlist.begin();it!=btlist.end();it++){
 		if(EnemyManager::instance()->checkWithBullet(*it)){
 			(*it)->removeSelf();

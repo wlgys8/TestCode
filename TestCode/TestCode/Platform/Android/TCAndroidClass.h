@@ -1,7 +1,7 @@
 #ifndef __TC_ANDROIDCLASS_H__
 #define __TC_ANDROIDCLASS_H__
 
-#include "TCAndroidMacros.h"
+#include "TCCommon.h"
 #include <string>
 #if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
 

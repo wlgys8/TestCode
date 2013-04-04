@@ -12,7 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Audio\AudioManager.cpp" />
-    <ClCompile Include="..\Audio\TCAudioSource.cpp" />
+    <ClCompile Include="..\Audio\TCAudioBuffer.cpp" />
+    <ClCompile Include="..\Camera\TCCamera.cpp" />
     <ClCompile Include="..\Commons\TCCommon.cpp" />
     <ClCompile Include="..\Core\AutoReleaseObject.cpp" />
     <ClCompile Include="..\Core\AutoReleasePool.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="..\OpenGL\TCEGLView.cpp" />
     <ClCompile Include="..\OpenGL\TCRender.cpp" />
     <ClCompile Include="..\Platform\Android\TCAndroidClass.cpp" />
+    <ClCompile Include="..\Platform\Android\TCAndroidSystemInfo.cpp" />
     <ClCompile Include="..\Platform\jniMethod.cpp" />
     <ClCompile Include="..\Platform\JNI\JNIHelper.cpp" />
     <ClCompile Include="..\Platform\TCApplication.cpp" />
@@ -59,7 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Audio\AudioManager.h" />
-    <ClInclude Include="..\Audio\TCAudioSource.h" />
+    <ClInclude Include="..\Audio\TCAudioBuffer.h" />
+    <ClInclude Include="..\Camera\TCCamera.h" />
     <ClInclude Include="..\Commons\TCCommon.h" />
     <ClInclude Include="..\Commons\TCMacros.h" />
     <ClInclude Include="..\Commons\tooold.h" />
@@ -96,6 +99,7 @@
     <ClInclude Include="..\Platform\Android\TCAndroidMacros.h" />
     <ClInclude Include="..\Platform\Android\TCAndroidClass.h" />
     <ClInclude Include="..\Platform\Android\TCAndroidObject.h" />
+    <ClInclude Include="..\Platform\Android\TCAndroidSystemInfo.h" />
     <ClInclude Include="..\Platform\jniMethod.h" />
     <ClInclude Include="..\Platform\JNI\JNIHelper.h" />
     <ClInclude Include="..\Platform\TCScreen.h" />
@@ -170,7 +174,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NEWCODE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..;$(SolutionDir)\TestCode;$(SolutionDir)\TestCode\Commons;$(SolutionDir)\TestCode\Core;$(SolutionDir)\TestCode\Core\Math;$(SolutionDir)\TestCode\Engine2D;$(SolutionDir)\TestCode\Engine2D\Render;$(SolutionDir)\TestCode\Engine2D\Scene;$(SolutionDir)\TestCode\Engine2D\Texture;$(SolutionDir)\TestCode\Engine2D\Touch;$(SolutionDir)\TestCode\GameApp;$(SolutionDir)\TestCode\OpenGL;$(SolutionDir)\TestCode\Platform;$(SolutionDir)\TestCode\Platform\JNI;$(SolutionDir)\TestCode\Resources;$(SolutionDir)\TestCode\Support;$(SolutionDir)\TestCode\Support\json\include;$(SolutionDir)\TestCode\Support\zip_support;$(SolutionDir)\TestCode\third_part\win32\libpng;$(SolutionDir)\TestCode\third_part\win32\OGLES;$(SolutionDir)\TestCode\zlib;$(SolutionDir)\TestCode\third_part\libopenal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(SolutionDir)\TestCode;$(SolutionDir)\TestCode\Commons;$(SolutionDir)\TestCode\Core;$(SolutionDir)\TestCode\Core\Math;$(SolutionDir)\TestCode\Engine2D;$(SolutionDir)\TestCode\Engine2D\Render;$(SolutionDir)\TestCode\Engine2D\Scene;$(SolutionDir)\TestCode\Engine2D\Texture;$(SolutionDir)\TestCode\Engine2D\Camera;$(SolutionDir)\TestCode\Engine2D\Touch;$(SolutionDir)\TestCode\GameApp;$(SolutionDir)\TestCode\OpenGL;$(SolutionDir)\TestCode\Platform;$(SolutionDir)\TestCode\Platform\JNI;$(SolutionDir)\TestCode\Resources;$(SolutionDir)\TestCode\Support;$(SolutionDir)\TestCode\Support\json\include;$(SolutionDir)\TestCode\Support\zip_support;$(SolutionDir)\TestCode\third_part\win32\libpng;$(SolutionDir)\TestCode\third_part\win32\OGLES;$(SolutionDir)\TestCode\zlib;$(SolutionDir)\TestCode\third_part\libopenal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>
       </DisableSpecificWarnings>
     </ClCompile>

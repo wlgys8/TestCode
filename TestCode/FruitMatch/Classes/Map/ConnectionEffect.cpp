@@ -5,13 +5,12 @@
 
 static ParticleSystem* createPS(){
 	ParticleSystem* pt=ParticleSystem::alloc();
-	pt->setImageName("wp.png");
 	pt->setFireRate(20);
 	pt->setStartLiftTime(1.0f);
 	pt->setStartVelocity(Vector2f(-30,-30),Vector2f(30,30));
 	pt->setEnableScale(true);
 	pt->setStartSize(1,1);
-
+	pt->setImageName("wp.png");
 	AnimationCurve sizeCurve=AnimationCurve();
 	sizeCurve.addKey(0,1);
 	sizeCurve.addKey(1,0);
@@ -19,6 +18,11 @@ static ParticleSystem* createPS(){
 	return pt;
 }
 
+PSNode* PSNode::alloc(){
+	PSNode* ret=new PSNode();
+	ret->autoRelease();
+	return ret;
+}
 
 PSNode::PSNode(){
 	ParticleSystem* ps=createPS();
@@ -100,4 +104,9 @@ void ConnectionEffect::generateConnection( std::list<Vector2f>& path){
 	}
 	_busyList.push_back(node);
 	node->StartMove(path);
+}
+
+ConnectionEffect* ConnectionEffect::instance(){
+	static ConnectionEffect _instance;
+	return &_instance;
 }

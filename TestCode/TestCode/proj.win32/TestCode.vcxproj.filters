@@ -64,6 +64,9 @@
     <Filter Include="Platform\Android">
       <UniqueIdentifier>{b7f14e91-975d-476a-9a7a-59b33584be38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine2D\Camera">
+      <UniqueIdentifier>{fbf69bb2-6baa-4aa6-b9bb-b96d0f3445ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Commons\TCCommon.cpp">
@@ -192,14 +195,20 @@
     <ClCompile Include="..\Audio\AudioManager.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="..\Audio\TCAudioSource.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
     <ClCompile Include="..\Platform\JNI\JNIHelper.cpp">
       <Filter>Platform\JNI</Filter>
     </ClCompile>
     <ClCompile Include="..\Platform\Android\TCAndroidClass.cpp">
       <Filter>Platform\Android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Platform\Android\TCAndroidSystemInfo.cpp">
+      <Filter>Platform\Android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Audio\TCAudioBuffer.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Camera\TCCamera.cpp">
+      <Filter>Engine2D\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -393,9 +402,6 @@
     <ClInclude Include="..\Audio\AudioManager.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\Audio\TCAudioSource.h">
-      <Filter>Audio</Filter>
-    </ClInclude>
     <ClInclude Include="..\Platform\Android\TCAndroidClass.h">
       <Filter>Platform\Android</Filter>
     </ClInclude>
@@ -404,6 +410,15 @@
     </ClInclude>
     <ClInclude Include="..\Platform\Android\TCAndroidObject.h">
       <Filter>Platform\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Platform\Android\TCAndroidSystemInfo.h">
+      <Filter>Platform\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Audio\TCAudioBuffer.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Camera\TCCamera.h">
+      <Filter>Engine2D\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,68 +1,62 @@
 #include "TCSceneManager.h"
 #include "TCDrawer.h"
 #include "TCTouchComponent.h"
+#include "Camera/TCCamera.h"
 NS_TC_BEGIN
+
 TCSceneManager::TCSceneManager(){
-	_rootNode=BaseNode::alloc()->retain<BaseNode>();
+
 }
 
 TCSceneManager::~TCSceneManager(){
-	_rootNode->release();
-	_rootNode=NULL;
+	CameraMap::iterator it;
+	for(it=_cameraMap.begin();it!=_cameraMap.end();it++){
+		it->second->release();
+	}
+	_cameraMap.clear();
 }
 
-void TCSceneManager::addChild(BaseNode* child){
-	_rootNode->addChild(child);
-}
-
-void TCSceneManager::drawNode(BaseNode* node,const TCMatrix3x3& parentToWorldMatrix){
-	TCDrawer* drawer= (TCDrawer*)(node->getComponment(ComponentDrawer));
-	TCMatrix3x3 localToWorldMatrix=TCMatrix3x3(parentToWorldMatrix);
-	localToWorldMatrix.mul(node->localToParentMatrix());
-	if(drawer){
-		drawer->draw(localToWorldMatrix);
-	}
-	for (int i=0;i<node-> size();i++)
-	{
-		drawNode(node->getChild(i),localToWorldMatrix);
-	}	
-}
-
-void TCSceneManager::touchNode(BaseNode* node,TCTouchEvent& touchEvent,const TCMatrix3x3& worldToParentMatrix){
-	TCMatrix3x3 worldToLocal=TCMatrix3x3(node->parentToLocalMatrix());
-	worldToLocal.mul(worldToParentMatrix);
-	touchEvent.setLocalPosition(worldToLocal.mulWithPoint(touchEvent.position()));
-	vector<BaseNode*> list= node->childList();//a list copy
-	vector<BaseNode*>::reverse_iterator rv_it;
-	for(rv_it=list.rbegin();rv_it!=list.rend();rv_it++){
-		touchNode(*rv_it,touchEvent,worldToLocal);
-	}
-	TCTouchComponent* tc=(TCTouchComponent*)node->getComponment(ComponentTouch);
-	if(tc){
-		tc->onDispatchTouch(touchEvent);
-	}
-}
-
-static void updateNode(BaseNode* node){
-	node->invokeUpdate();
-	vector<BaseNode*> list= node->childList();//a list copy
-	vector<BaseNode*>::iterator it;
-	for(it=list.begin();it!=list.end();it++){
-		updateNode(*it);
-	}
-}
 void TCSceneManager::loopUpdate(){
-	
-	updateNode(_rootNode);
-
+	CameraMap::iterator it;
+	for(it=_cameraMap.begin();it!=_cameraMap.end();it++){
+		it->second->update();
+	}
 }
 void TCSceneManager::loopDraw(){
-	drawNode(_rootNode,TCMatrix3x3());
+	CameraMap::iterator it;
+	for(it=_cameraMap.begin();it!=_cameraMap.end();it++){
+		it->second->render();
+	}
 }
 
 void TCSceneManager::dispatchTouch( TCTouchEvent& event){
-	touchNode(_rootNode,event,TCMatrix3x3());
+	CameraMap::iterator it;
+	for(it=_cameraMap.begin();it!=_cameraMap.end();it++){
+		it->second->dispatchTouch(event);
+	}
 }
 
+Camera* TCSceneManager::createCamera(const std::string& name){
+	Camera* ret=findCamera(name);
+	if(ret){
+		DebugLog("Camera named by %s has existed.",name.c_str());
+		return ret;
+	}
+	ret=new Camera(name);
+	_cameraMap[name]=ret;
+	return ret;
+}
+
+Camera* TCSceneManager::findCamera(const std::string& name){
+	CameraMap::iterator it=_cameraMap.find(name);
+	if(it!=_cameraMap.end()){
+		return it->second;
+	}
+	return 0;
+}
+TCSceneManager* TCSceneManager::instance(){
+	static TCSceneManager _instance;
+	return &_instance;
+}
 
 NS_TC_END

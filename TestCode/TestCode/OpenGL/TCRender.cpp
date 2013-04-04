@@ -31,7 +31,6 @@ void  TCRender::onResize(long width,long height){
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_DEPTH_TEST);
 	DebugLog("EndResize,width:%d,height,%d",width,height);
-	
 }
 
 void  TCRender::onRender(){
@@ -42,4 +41,8 @@ void  TCRender::onRender(){
 	AutoReleasePool::instance()->releaseAll();
 }
 
+TCRender* TCRender:: instance(){
+	static TCRender _instance;
+	return &_instance;
+}
 NS_TC_END

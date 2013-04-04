@@ -57,6 +57,7 @@ LOCAL_MODULE_FILENAME := libtestcode
 
 LOCAL_SRC_FILES := \
 Audio/AudioManager.cpp \
+Audio/TCAudioBuffer.cpp \
 Commons/TCCommon.cpp \
 Core/Math/TCAnimationCurve.cpp \
 Core/Math/TCHermiteInterpolation3.cpp \
@@ -82,6 +83,7 @@ OpenGL/TCRender.cpp \
 Platform/JNI/JNIHelper.cpp \
 Platform/TCScreen.cpp \
 Platform/TCApplication_android.cpp \
+Platform/Android/TCAndroidSystemInfo.cpp \
 Resources/TCBitmap.cpp \
 Resources/TCFileUtils.cpp \
 Resources/TCPngUtils.cpp \
@@ -130,6 +132,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ \
 LOCAL_EXPORT_LDLIBS := -llog\
                        -lz \
                        -lGLESv1_CM
+					   
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
                            $(LOCAL_PATH)/Audio \
                            $(LOCAL_PATH)/Commons \

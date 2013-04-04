@@ -1,6 +1,9 @@
 #include "TCBitmap.h"
 #include "TCFileUtils.h"
 #include "TCPngUtils.h"
+#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
+#include "TCAndroidSystemInfo.h"
+#endif
 NS_TC_BEGIN
 
 TCBitmap::TCBitmap(const char* filename,png_byte* pixelData,int width,int height,BitmapFormat format){
@@ -19,7 +22,7 @@ TCBitmap* TCBitmap::decodeBitmap(std::string filePath,BitmapFormat format){
 
 	TCBitmap* ret=NULL;
 #if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID//!android的apk是一个zip文件，必须从apk里读取图片
-	ret =TCPngUtils::decodePngByFileNameInZip(TCFileUtils::apkPath(),fullPath.c_str());
+	ret =TCPngUtils::decodePngByFileNameInZip(AndroidSystemInfo::sourceDir().c_str(),fullPath.c_str());
 #else
 	ret=TCPngUtils::decodePngByFileName(fullPath.c_str());
 #endif

@@ -15,11 +15,6 @@ protected:
 
 	void virtual onDestroyGame();
 
-	bool onDown(const TCTouchEvent& event);
-
-	bool onUp(const TCTouchEvent& event);
-
-	bool onClick(const TCTouchEvent& event);
 
 	void lateUpdate();
 

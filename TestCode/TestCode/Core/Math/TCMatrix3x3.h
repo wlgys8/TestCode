@@ -22,6 +22,9 @@ public:
 
 	Vector2f mulWithVector(const Vector2f& vector)const;
 
+	inline const float* array() const{
+		return _matrix;
+	}
 	static TCMatrix3x3 matrixWithTranslate(float x,float y);
 
 	static TCMatrix3x3 matrixWithRotation(float rot);

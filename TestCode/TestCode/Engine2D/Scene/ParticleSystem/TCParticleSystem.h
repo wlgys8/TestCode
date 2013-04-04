@@ -66,9 +66,7 @@ public:
 		return ComponentParticleSystem;
 	}
 
-	inline void setImageName(const std::string& name){
-		_imageName=name;
-	}
+	void setImageName(const std::string& name);
 
 	inline void setParticleSpace(BaseNode* spaceNode){
 		_spaceNode=spaceNode;//weak ref
@@ -126,11 +124,7 @@ public:
 	}
 	void invokeUpdate();
 
-	static ParticleSystem* alloc(){
-		ParticleSystem* ret=new ParticleSystem();
-		ret->autoRelease();
-		return ret;
-	}
+	static ParticleSystem* alloc();
 };
 NS_TC_END
 #endif

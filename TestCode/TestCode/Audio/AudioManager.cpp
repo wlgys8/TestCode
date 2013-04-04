@@ -1,20 +1,21 @@
 #include "AudioManager.h"
 #include "alc.h"
 #include "Audio/TCAudioSource.h"
+#include "TCFileUtils.h"
 NS_TC_BEGIN
 
-	AudioSource::AudioSource(const BasicWAVEHeader& header,const ALuint& buffer,const ALuint& source){
-		_header=header;
-		_buffer=buffer;
-		_source=source;
+AudioSource::AudioSource(const ALuint& source){
+	_source=source;
 }
 
-AudioSource::AudioSource(){
-	_buffer=0;
-	_source=0;
-}
 AudioSource::~AudioSource(){
-
+	if(_source){
+		alDeleteSources(1,&_source);
+		_source=0;
+	}
+}
+void AudioSource::play(){
+	alSourcePlay(_source);
 }
 AudioManager::AudioManager(){
 	_device = 0;
@@ -32,82 +33,100 @@ AudioManager::AudioManager(){
 }
 
 AudioManager::~AudioManager(){
-	SourceMap::iterator it=_sourceMap.begin();
-	for(it=_sourceMap.begin();it!=_sourceMap.end();it++){
-		alDeleteSources(1,&(it->second._source));
+	BufferMap::iterator it=_bufferMap.begin();
+	for(it=_bufferMap.begin();it!=_bufferMap.end();it++){
+		it->second->release();
 	}
-	_sourceMap.clear();
-
+	_bufferMap.clear();
 	alcMakeContextCurrent(0);
 	alcDestroyContext(_context);
 	alcCloseDevice(_device);
 }
 
-void AudioManager::load(const std::string& path){
-
-	SourceMap::iterator it=_sourceMap.find(path);
-	if(it!=_sourceMap.end()){
-		DebugLog("audio has loaded:%s",path.c_str());
-		return;
+AudioBuffer* AudioManager::find(const std::string& filePath){
+	BufferMap::iterator it=_bufferMap.find(filePath);
+	if(it!=_bufferMap.end()){
+		return it->second;
 	}
-	char* fileBuffer=0;
+	return 0;
+}
+
+AudioBuffer* AudioManager::load(const std::string& filePath,unsigned char* fileStream,const unsigned long& size){
+	AudioBuffer* ret=find(filePath);
+	if(ret!=0){
+		return ret;
+	}
+	unsigned char* wavBuffer=0;
 	do{
 		BasicWAVEHeader header;
-		fileBuffer=loadwav(path.c_str(),&header);
-		if(!fileBuffer){
-			DebugLog("Load audio failed:%s",path.c_str());
+		wavBuffer=loadwav(fileStream,size,&header);
+		if(!wavBuffer){
+			DebugLog("Load audio failed:%s",filePath.c_str());
 			break;
 		}
-		
-		ALuint buffer= createBufferFromWave(fileBuffer,header);
+
+		ALuint buffer= createBufferFromWave(wavBuffer,header);
 		if(!buffer){
 			DebugLog("Create Buffer From Wave Failed");
 			break;
 		}
-		ALuint source = 0;
-		alGenSources(1, &source );
-		if(!source){
-			DebugLog("alGenSources Failed");
-			break;
-		}
-		alSourcei(source, AL_BUFFER, buffer);
-		AudioSource src=AudioSource(header,buffer,source);
-		std::string key=path;
-		_sourceMap[key]=src;
+		ret=new AudioBuffer(buffer,filePath);
+		_bufferMap[filePath]=ret;
+		DebugLog("load %s success!",filePath.c_str());
 	}while(0);
-	TC_DELETE_ARRAY(fileBuffer);
+	TC_DELETE_ARRAY(wavBuffer);
+	return ret;
 }
 
-char* AudioManager::loadwav(const char*  filename,BasicWAVEHeader* header){
-	char* buffer = 0;
-	FILE* file = fopen(filename,"rb");
-	if (!file) {
+AudioSource* AudioManager::createSource(const AudioBuffer* buffer){
+	ALuint source = 0;
+	alGenSources(1, &source );
+	if(!source){
+		DebugLog("alGenSources Failed");
 		return 0;
 	}
+	alSourcei(source, AL_BUFFER, buffer->bufferId());
+	AudioSource* ret=new AudioSource(source);
+	ret->autoRelease();
+	return ret;
+}
 
-	if (fread(header,sizeof(BasicWAVEHeader),1,file)){
+AudioSource* AudioManager::createSource(const std::string& filePath){
+	AudioBuffer* buf= find(filePath);
+	if(!buf){
+		DebugLog("%s should be load first",filePath.c_str());
+		return 0;
+	}
+	return createSource(buf);
+}
+unsigned char* AudioManager::loadwav(unsigned char* fileStream,const unsigned long& size,BasicWAVEHeader* header){
+	size_t headerSize=sizeof(BasicWAVEHeader);
+	unsigned char* buffer=0;
+	do{
+		if(size<headerSize){
+			break;
+		}
+		memcpy(header,fileStream,headerSize);
 		if (!(//these things *must* be valid with this basic header
 			memcmp("RIFF",header->riff,4) ||
 			memcmp("WAVE",header->wave,4) ||
 			memcmp("fmt ",header->fmt,4)  ||
 			memcmp("data",header->data,4)
 			)){
-
-				buffer = (char*)malloc(header->dataSize);
-				if (buffer){
-					if (fread(buffer,header->dataSize,1,file)){
-						fclose(file);
-						return buffer;
-					}
-					free(buffer);
+				buffer=(unsigned char*)malloc(header->dataSize);
+				if(!buffer){
+					break;
 				}
+				memcpy(buffer,fileStream,header->dataSize);
 		}
-	}
-	fclose(file);
-	return 0;
+	}while(0);
+
+	TC_DELETE_ARRAY(fileStream);
+
+	return buffer;
 }
 
-ALuint AudioManager::createBufferFromWave(char* data,BasicWAVEHeader header){
+ALuint AudioManager::createBufferFromWave(unsigned char* data,BasicWAVEHeader header){
 	ALuint buffer = 0;
 	ALuint format = 0;
 	switch (header.bitsPerSample){
@@ -127,36 +146,22 @@ ALuint AudioManager::createBufferFromWave(char* data,BasicWAVEHeader header){
 }
 
 
-
-void AudioManager::play(const std::string& filename){
-	SourceMap::iterator it= _sourceMap.find(filename);
-	if(it==_sourceMap.end()){
-		DebugLog("sound not existed:%s",filename.c_str());
-		return;
-	}
-	AudioSource src=it->second;
-
-	// Play source
-	alSourcePlay(src._source);
-
-	int        sourceState = AL_PLAYING;
-//	do {
-//		alGetSourcei(source, AL_SOURCE_STATE, &sourceState);
-	//} while(sourceState == AL_PLAYING);
-
-	// Release source
-//	alDeleteSources(1, &source);
-
-}
-
 void AudioManager::unload(const std::string& filePath){
-	SourceMap::iterator it=_sourceMap.find(filePath);
-	if(it==_sourceMap.end()){
+	BufferMap::iterator it=_bufferMap.find(filePath);
+	if(it==_bufferMap.end()){
 		DebugLog("Can't find audio:%s",filePath.c_str());
 		return;
 	}
-	alDeleteSources(1,&(it->second._source));
-	_sourceMap.erase(it);
+	if(it->second->referCount()!=1){
+		DebugLog("%s not really unloaded",filePath.c_str());
+	}
+	it->second->release();
+	_bufferMap.erase(it);
+}
+
+AudioManager* AudioManager::instance(){
+	static AudioManager _instance;
+	return &_instance;
 }
 
 NS_TC_END

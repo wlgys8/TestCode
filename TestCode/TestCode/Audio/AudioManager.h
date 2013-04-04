@@ -8,6 +8,7 @@
 #include "al.h"
 #include "TCMacros.h"
 #include "TCSingleton.h"
+#include "Audio/TCAudioBuffer.h"
 NS_TC_BEGIN
 typedef struct {
 	char  riff[4];//'RIFF'
@@ -26,38 +27,41 @@ typedef struct {
 }BasicWAVEHeader;
 
 
-class AudioSource{
+class AudioSource:public AutoReleaseObject{
 	friend class AudioManager;
 private:
-	BasicWAVEHeader _header;
-	ALuint _buffer;
 	ALuint _source;
-
-public:
-	AudioSource();
-	AudioSource(const BasicWAVEHeader& header,const ALuint& buffer,const ALuint& source);
+	AudioSource(const ALuint& source);
 	~AudioSource();
+public:
+	
+	void play();
 
 };
 
 
-class AudioManager:public TCSingleton<AudioManager>{
-	friend class TCSingleton<AudioManager>;
-	typedef std::map<std::string,AudioSource>  SourceMap;
+class AudioManager{
+	typedef std::map<std::string,AudioBuffer*>  BufferMap;
 private:
 	AudioManager();
 	~AudioManager();
 	ALCdevice* _device;
 	ALCcontext* _context;
-	SourceMap _sourceMap;
-	char* loadwav(const char*  filename,BasicWAVEHeader* header);
-	ALuint createBufferFromWave(char* data,BasicWAVEHeader header);
+	BufferMap _bufferMap;
+	unsigned char* loadwav(unsigned char*  fileStream,const unsigned long& size,BasicWAVEHeader* header);
+	unsigned char* loadwav(const char* filename,BasicWAVEHeader* header);
 
+	ALuint createBufferFromWave(unsigned char* data,BasicWAVEHeader header);
 
 public:
-	void load(const  std::string& filePath);
-	void play(const std::string& filePath);
+	AudioBuffer* load(const std::string& filePath,unsigned char* fileStream,const unsigned long& size);
+	AudioSource* createSource(const AudioBuffer* buffer);
+	AudioSource* createSource(const std::string& filePath);
 	void unload(const std::string& filePath);
+
+	AudioBuffer* find(const std::string& filePath);
+
+	static AudioManager* instance();
 };
 
 NS_TC_END

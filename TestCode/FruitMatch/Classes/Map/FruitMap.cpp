@@ -5,6 +5,7 @@
 #include "TCRandom.h"
 #include "Map/ConnectionEffect.h"
 #include "Audio/AudioManager.h"
+
 static int xsize=9;
 static int ysize=10;
 static int xoffset=-200;
@@ -54,6 +55,8 @@ FruitMap::FruitMap(){
 	}
 
 	delete[] fruitT;
+	_matchSound=AudioManager::instance()->createSource("helloworld.wav");
+	_matchSound->retain();
 }
 
 Vector2 FruitMap::xy2ij(Vector2f xy){
@@ -78,9 +81,11 @@ int FruitMap::select(Vector2 ij){
 			for(it=path.begin();it!=path.end();it++){
 				fpath.push_back(ij2xy((*it)));
 			}
+			
 			ConnectionEffect::instance()->generateConnection(
 				fpath
 				);
+			
 			_fruitMap[selectedOne.x][selectedOne.y]->sprite()->removeSelf();
 			_fruitMap[selectedOne.x][selectedOne.y]->release();
 			_fruitMap[selectedOne.x][selectedOne.y]=0;
@@ -92,7 +97,8 @@ int FruitMap::select(Vector2 ij){
 			selectedOne.x=-1;
 			selectedOne.y=-1;
 			GameMain::instance()->role()->attack();
-			AudioManager::instance()->play("helloworld.wav");
+		//	AudioManager::instance()->play("helloworld.wav");
+			_matchSound->play();
 			return 0;
 		}
 		selectedOne=ij;
@@ -251,4 +257,10 @@ FruitMap::~FruitMap(){
 	_fruitMap=NULL;
 	_node->release();
 	_node=0;
+
+	if(_matchSound){
+		_matchSound->release();
+		_matchSound=0;
+	}
+
 }
