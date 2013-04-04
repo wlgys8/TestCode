@@ -16,6 +16,9 @@ public:
 	inline TCDrawer* drawer(){
 		return (TCDrawer*) getComponment(ComponentDrawer);
 	}
+
+	Vector2f size();
+
 	void setImage(const std::string& imageName);
 	static Sprite* alloc(const std::string& key);
 };

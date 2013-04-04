@@ -6,8 +6,6 @@
 #include "TCVector2f.h"
 #include "TCMatrix3x3.h"
 
-
-
 using namespace std;
 NS_TC_BEGIN
 
@@ -18,7 +16,7 @@ enum ComponentType{
 	ComponentParticleSystem=3,
 };
 
-typedef bool (AutoReleaseObject::*delegateUpdate)();
+typedef void (TCObject::*delegateUpdate)();
 #define updateSelector(_SELECTOR) (delegateUpdate)(&_SELECTOR)
 
 class BaseComponent;
@@ -37,7 +35,7 @@ private:
 	Vector2f _position;
 	float _rotation;
 	Vector2f _scale;
-	AutoReleaseObject* _updateTarget;//weak ref
+	TCObject* _updateTarget;//weak ref
 	delegateUpdate _delegateUpdate;
 protected:
 	~BaseNode();
@@ -109,12 +107,19 @@ public:
 		return _scale;
 	}
 
+	inline const Vector2f worldScale(){
+		if(_parent){
+			return _parent->worldScale()*_scale;
+		}
+		return _scale;
+	}
+
 	TCMatrix3x3 localToParentMatrix() const;
 
 	TCMatrix3x3 parentToLocalMatrix() const;
 
 
-	inline void registerUpdate(AutoReleaseObject* target,delegateUpdate updateAction){
+	inline void registerUpdate(TCObject* target,delegateUpdate updateAction){
 		_updateTarget=target;//weak ref
 		_delegateUpdate=updateAction;
 	}

@@ -18,7 +18,13 @@ void Sprite::setImage(const std::string& imageName){
 	TextureRegion* region=TextureRegionManager::instance()->get(imageName);
 	drawer()->setTextureRegion(region);
 }
+
+
+Vector2f Sprite::size(){
+	return drawer()->size()*worldScale();
+}
 Sprite::~Sprite(){
+
 }
 
 Sprite* Sprite::alloc(const std::string& key){

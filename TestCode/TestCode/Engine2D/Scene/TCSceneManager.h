@@ -5,7 +5,7 @@
 #include "BaseNode.h"
 #include "TCTouchEvent.h"
 #include <map>
-
+#include <string>
 NS_TC_BEGIN
 	class Camera;
 class TCSceneManager{

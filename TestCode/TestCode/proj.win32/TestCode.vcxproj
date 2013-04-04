@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClCompile Include="..\Audio\AudioManager.cpp" />
     <ClCompile Include="..\Audio\TCAudioBuffer.cpp" />
-    <ClCompile Include="..\Camera\TCCamera.cpp" />
     <ClCompile Include="..\Commons\TCCommon.cpp" />
     <ClCompile Include="..\Core\AutoReleaseObject.cpp" />
     <ClCompile Include="..\Core\AutoReleasePool.cpp" />
@@ -21,7 +20,9 @@
     <ClCompile Include="..\Core\Math\TCRandom.cpp" />
     <ClCompile Include="..\Core\Math\TCHermiteInterpolation3.cpp" />
     <ClCompile Include="..\Core\Math\TCMatrix3x3.cpp" />
+    <ClCompile Include="..\Core\TCObject.cpp" />
     <ClCompile Include="..\Core\TCTime.cpp" />
+    <ClCompile Include="..\Engine2D\Camera\TCCamera.cpp" />
     <ClCompile Include="..\Engine2D\ParticleSystem\TCParticleSystem.cpp" />
     <ClCompile Include="..\Engine2D\Render\TCPaint.cpp" />
     <ClCompile Include="..\Engine2D\Render\TCSceneRenderer.cpp" />
@@ -62,7 +63,6 @@
   <ItemGroup>
     <ClInclude Include="..\Audio\AudioManager.h" />
     <ClInclude Include="..\Audio\TCAudioBuffer.h" />
-    <ClInclude Include="..\Camera\TCCamera.h" />
     <ClInclude Include="..\Commons\TCCommon.h" />
     <ClInclude Include="..\Commons\TCMacros.h" />
     <ClInclude Include="..\Commons\tooold.h" />
@@ -77,7 +77,9 @@
     <ClInclude Include="..\Core\Math\TCMatrix3x3.h" />
     <ClInclude Include="..\Core\Math\TCVector2f.h" />
     <ClInclude Include="..\Core\TCArrayList.h" />
+    <ClInclude Include="..\Core\TCObject.h" />
     <ClInclude Include="..\Core\TCTime.h" />
+    <ClInclude Include="..\Engine2D\Camera\TCCamera.h" />
     <ClInclude Include="..\Engine2D\Render\TCPaint.h" />
     <ClInclude Include="..\Engine2D\Render\TCBatchUtil.h" />
     <ClInclude Include="..\Engine2D\Render\TCSceneRenderer.h" />

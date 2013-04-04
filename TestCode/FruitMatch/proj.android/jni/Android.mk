@@ -11,7 +11,7 @@ $(LOCAL_PATH)/../../Classes/Enemy \
 $(LOCAL_PATH)/../../Classes/Fruit \
 $(LOCAL_PATH)/../../Classes/Map \
 $(LOCAL_PATH)/../../Classes/Role \
-
+$(LOCAL_PATH)/../../Classes/UI \
 
 LOCAL_SRC_FILES := AndroidMain.cpp \
 ../../Classes/Enemy/Enemy.cpp \
@@ -22,6 +22,7 @@ LOCAL_SRC_FILES := AndroidMain.cpp \
 ../../Classes/Map/ConnectionEffect.cpp \
 ../../Classes/Map/FruitMap.cpp \
 ../../Classes/Role/Role.cpp \
+../../Classes/UI/GameOverDialog.cpp \
 ../../Classes/GameMain.cpp \
 ../../Classes/TestAppDelegate.cpp \
 		

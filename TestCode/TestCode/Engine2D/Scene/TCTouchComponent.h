@@ -4,7 +4,7 @@
 #include "TCTouchEvent.h"
 #include "AutoReleaseObject.h"
 NS_TC_BEGIN
-typedef bool (AutoReleaseObject::*delegateTouch)(const TCTouchEvent& evt);
+typedef bool (TCObject::*delegateTouch)(const TCTouchEvent& evt);
 #define touchSelector(_SELECTOR) (delegateTouch)(&_SELECTOR)
 class TCTouchComponent:public BaseComponent{
 	
@@ -16,13 +16,13 @@ private:
 	~TCTouchComponent();
 	TCTouchComponent();
 private:
-	AutoReleaseObject* _delegateTarget;//weak ref
+	TCObject* _delegateTarget;//weak ref
 	bool _isPressed;
 public:
 
 	void onDispatchTouch(const TCTouchEvent& touchEvent);
 
-	inline void bindDelegateTarget(AutoReleaseObject* target){
+	inline void bindDelegateTarget(TCObject* target){
 		_delegateTarget=target;
 	}
 	void registerDownEvent(delegateTouch evt);

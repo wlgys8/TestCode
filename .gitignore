@@ -43,7 +43,6 @@ gen/
 # Compiled Static libraries
 *.lai
 *.la
-*.a
 
 #################
 ## Visual Studio

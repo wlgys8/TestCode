@@ -29,7 +29,7 @@ private:
 	ptr_fruit** _fruitMap;//null represent empty
 	BaseNode* _node;
 	AudioSource* _matchSound;
-
+	int _restFruitCount;
 	~FruitMap();
 	
 	bool isConnectedDirectly(Vector2 v1,Vector2 v2); 

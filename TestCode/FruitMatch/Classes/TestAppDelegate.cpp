@@ -12,26 +12,18 @@
 #include "Camera/TCCamera.h"
 USING_NS_TC;
 
-
 void TestAppDelegate::onCreateGame(){
 	TCResources::loadTextureRegions("fruit.png","fruit.txt",RGBA_8888);
 	Camera* ca= TCSceneManager::instance()->createCamera();
 	GameMain::instance()->initGame();
-	BaseNode* lateUpdateNode=BaseNode::alloc();
-	lateUpdateNode->registerUpdate(this,updateSelector(TestAppDelegate::lateUpdate));
-	ca->rootNode()->addChild(lateUpdateNode);
-	ca->setOrthof(480,800);
+	ca->setOrthof(480,854);
+
+	BaseNode* n=BaseNode::alloc();
+	n->registerUpdate(this,updateSelector(TestAppDelegate::lateUpdate));
+	ca->rootNode()->addChild(n);
 }
 void TestAppDelegate::lateUpdate(){
-	BulletFactory::BulletList btlist=BulletFactory::instance()->bulletList();
-	BulletFactory::BulletList::iterator it;
-	for(it=btlist.begin();it!=btlist.end();it++){
-		if(EnemyManager::instance()->checkWithBullet(*it)){
-			(*it)->removeSelf();
-			break;
-		}
-	}
-	BulletFactory::instance()->recollectUnusedBullet();
+	
 }
 void TestAppDelegate::onResume(){
 

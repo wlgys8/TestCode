@@ -11,16 +11,8 @@
 #include "Camera/TCCamera.h"
 void GameMain::initGame(){
 	TCResources::loadAudioInAssets("helloworld.wav");
-	_role=Role::alloc(Role_Xigua)->retain<Role>();
 	Sprite* bg=Sprite::alloc("bg.png");
 	bg->addChild(FruitMap::instance()->node());
-	_role=Role::alloc(Role_Xigua)->retain<Role>();
-	_role->sprite()->setLocalPosition(Vector2f(-170,270));
-	bg->addChild(_role->sprite());
-	_role->sprite()->scale(Vector2f(1,1));
-	Enemy* snake=EnemyManager::instance()->createEnemy(Enemy_Snake);
-	bg->addChild(snake);
-	snake->setLocalPosition(Vector2f(170,285));
 
 	ConnectionEffect::instance()->setSpaceNode(bg);
 
@@ -30,8 +22,5 @@ void GameMain::initGame(){
 }
 
 GameMain::~GameMain(){
-	if(_role){
-		_role->release();
-	}
 	
 }

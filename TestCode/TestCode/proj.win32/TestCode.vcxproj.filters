@@ -65,7 +65,7 @@
       <UniqueIdentifier>{b7f14e91-975d-476a-9a7a-59b33584be38}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine2D\Camera">
-      <UniqueIdentifier>{fbf69bb2-6baa-4aa6-b9bb-b96d0f3445ad}</UniqueIdentifier>
+      <UniqueIdentifier>{0b182325-e8ac-4bcf-a27c-03946bc071e9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -207,8 +207,11 @@
     <ClCompile Include="..\Audio\TCAudioBuffer.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="..\Camera\TCCamera.cpp">
+    <ClCompile Include="..\Engine2D\Camera\TCCamera.cpp">
       <Filter>Engine2D\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\TCObject.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -417,8 +420,11 @@
     <ClInclude Include="..\Audio\TCAudioBuffer.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\Camera\TCCamera.h">
+    <ClInclude Include="..\Engine2D\Camera\TCCamera.h">
       <Filter>Engine2D\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\TCObject.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

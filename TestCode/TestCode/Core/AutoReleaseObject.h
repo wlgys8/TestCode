@@ -2,10 +2,11 @@
 #define __AUTO_RELEASE_OBJECT_H__
 #include "TCCommon.h"
 #include "AutoReleasePool.h"
+#include "TCObject.h"
 NS_TC_BEGIN
 class AutoReleasePool;
 
-class AutoReleaseObject{
+class AutoReleaseObject:public TCObject{
 private:
 	int _referCount;
 protected:

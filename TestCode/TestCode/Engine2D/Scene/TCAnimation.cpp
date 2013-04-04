@@ -24,6 +24,29 @@ TranslateAnimation* TranslateAnimation::alloc(const AnimationCurve& x,const Anim
 	return ret;
 }
 
+bool ScaleAnimation::invokeUpdate(BaseNode* target,float ctime){
+	bool ret=false;
+	if(_time!=0&&ctime>=_time){
+		ctime=_time;
+		ret=true;
+		if(_target&&_evt){
+			(_target->*_evt)(ctime);
+		}
+	}
+	float x=_xCurve.evaluate(ctime);
+	float y=_yCurve.evaluate(ctime);
+	DebugLog("%f",x);
+	target->setLocalScale(Vector2f(x,y));
+	return ret;
+}
+void ScaleAnimation::reset(){
+}
+ScaleAnimation* ScaleAnimation::alloc(const AnimationCurve& x,const AnimationCurve& y,float time){
+	ScaleAnimation* ret=new ScaleAnimation(x,y,time);
+	ret->autoRelease();
+	return ret;
+}
+
 AnimationContainer::AnimationContainer():_animation(0),
 _isPlaying(false),_currentTime(0)
 {
@@ -38,9 +61,18 @@ void AnimationContainer::invokeUpdate(BaseNode* target){
 	}
 }
 
+void AnimationContainer::bind(Animation* anim){
+	if(_animation){
+		_animation->autoRelease();
+	}
+	_animation=anim;
+	_animation->retain();
+	_animation->reset();
+}
+
 void AnimationContainer::play(Animation* animation){
 	if(_animation){
-		_animation->release();
+		_animation->autoRelease();
 	}
 	_animation=animation;
 	_animation->retain();
@@ -50,6 +82,8 @@ void AnimationContainer::play(Animation* animation){
 }
 
 void AnimationContainer::play(){
+	_animation->reset();
+	_currentTime=0;
 	_isPlaying=true;
 }
 

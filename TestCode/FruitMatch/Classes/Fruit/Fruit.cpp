@@ -2,6 +2,7 @@
 #include "TCTime.h"
 #include "Map/FruitMap.h"
 Fruit::Fruit(FruitType type){
+	_sprite=0;
 	if(type==FRUIT_APPLE){
 		init("pingguo.png");
 	}else if(type==FRUIT_ORANGE){
@@ -23,22 +24,28 @@ Fruit::Fruit(FruitType type){
 	}
 	_type=type;
 }
+
 void Fruit::init(const std::string& key){
 	_sprite=Sprite::alloc(key)->retain<Sprite>();
 	TCTouchComponent* tc= TCTouchComponent::alloc();
 	tc->bindDelegateTarget(this);
 	tc->registerDownEvent(touchSelector(Fruit::onDown));
+	_sprite->scale(Vector2f(1.1f,1.1f));
 	_sprite->addComponent(tc);
 }
 Fruit* Fruit:: _pickedFruit=0;
 
 bool Fruit::onDown(const TCTouchEvent& evt){
+	DebugLog("down");
+	if(_sprite==0){
+		DebugLog("is null");
+	}
 	_sprite->setLocalScale(Vector2f(1.2f,1.2f));
 	Vector2 v=FruitMap::instance()->xy2ij(evt.position());
 	int ret=FruitMap::instance()->select(v);
 	if(ret!=0){//match failed
 		if(_pickedFruit){
-			_pickedFruit->sprite()->setLocalScale(Vector2f(1,1));
+			_pickedFruit->sprite()->setLocalScale(Vector2f(1.1f,1.1f));
 			_pickedFruit=0;
 		}
 		if(!_pickedFruit){

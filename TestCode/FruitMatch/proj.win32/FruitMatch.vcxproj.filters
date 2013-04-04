@@ -26,6 +26,9 @@
     <Filter Include="android">
       <UniqueIdentifier>{02e30ecf-e563-4cf7-91b9-1d7c7d3f7a13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\UI">
+      <UniqueIdentifier>{f76f0f2c-da8d-4e35-a21f-af20ed6c8c22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -83,6 +86,9 @@
     <ClCompile Include="..\proj.android\jni\AndroidMain.cpp">
       <Filter>android</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\UI\GameOverDialog.cpp">
+      <Filter>Classes\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FruitMatch.h">
@@ -135,6 +141,9 @@
     </ClInclude>
     <ClInclude Include="..\proj.android\jni\AndroidMain.h">
       <Filter>android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\GameOverDialog.h">
+      <Filter>Classes\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

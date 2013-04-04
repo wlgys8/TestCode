@@ -52,6 +52,9 @@ public:
 	const Vector2f operator-(const Vector2f& v2) const{
 		return Vector2f(x-v2.x,y-v2.y);
 	}
+	const Vector2f operator*(const Vector2f& v2) const {
+		return Vector2f(x*v2.x,y*v2.y);
+	}
 	const Vector2f operator*(const float& cons) const{
 		return Vector2f(x*cons,y*cons);
 	}
