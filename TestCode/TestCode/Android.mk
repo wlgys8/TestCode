@@ -79,6 +79,7 @@ Engine2D/Scene/TCTouchComponent.cpp \
 Engine2D/Scene/TCTransform.cpp \
 Engine2D/Texture/TCTexture.cpp \
 Engine2D/Texture/TextureRegion.cpp \
+Engine2D/Camera/TCCamera.cpp \
 OpenGL/TCRender.cpp \
 Platform/JNI/JNIHelper.cpp \
 Platform/TCScreen.cpp \
@@ -122,6 +123,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ \
 						   $(LOCAL_PATH)/Engine2D/ParticleSystem \
 						   $(LOCAL_PATH)/Engine2D/Texture \
 						   $(LOCAL_PATH)/Engine2D/Touch \
+						   $(LOCAL_PATH)/Engine2D/Camera \
 						   $(LOCAL_PATH)/Resources \
 						   $(LOCAL_PATH)/Support \
 						   $(LOCAL_PATH)/Support/json/include \
@@ -151,6 +153,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
 						   $(LOCAL_PATH)/Engine2D/ParticleSystem \
 						   $(LOCAL_PATH)/Engine2D/Texture \
 						   $(LOCAL_PATH)/Engine2D/Touch \
+						   $(LOCAL_PATH)/Engine2D/Camera \
 						   $(LOCAL_PATH)/Resources \
 						   $(LOCAL_PATH)/Support \
 						   $(LOCAL_PATH)/Support/json/include \

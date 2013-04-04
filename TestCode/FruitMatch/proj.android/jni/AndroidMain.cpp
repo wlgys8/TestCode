@@ -60,8 +60,6 @@ JNIEXPORT
 	JNICALL																	  
 	Java_com_testcode_library_TCGLSurfaceView_nativeDispatchEvent( JNIEnv* env,
 	jobject thiz ,jint action,jfloat x,jfloat y){
-		x=x-Screen::width()/2;
-		y=y-Screen::height()/2;
 		TouchEventType type;
 		switch (action)
 		{
@@ -76,7 +74,7 @@ JNIEXPORT
 			break;;
 		}
 		
-		evt.set(type,Vector2f(x,-y));
+		evt.set(type,Vector2f(x,Screen::height()-y));
 		touched=true;
 		
 

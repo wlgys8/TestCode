@@ -47,6 +47,38 @@ public:
 	static TranslateAnimation* alloc(const AnimationCurve& x,const AnimationCurve& y,float time);
 
 };
+
+class ScaleAnimation:public Animation{
+private:
+	AnimationCurve _xCurve;
+	AnimationCurve _yCurve;
+	float _time;
+
+	AutoReleaseObject* _target;
+	delegateAnimationEvent _evt;
+
+public:
+	ScaleAnimation(const AnimationCurve& x,const AnimationCurve& y,float time){
+		_xCurve=x;
+		_yCurve=y;
+		_time=time;
+		_evt=0;
+		_target=0;
+	}
+
+	inline void registerAnimationEndEvent(AutoReleaseObject* target,delegateAnimationEvent evt){
+		_target=target;//weak ref
+		_evt=evt;
+	}
+
+	bool invokeUpdate(BaseNode* target,float time);
+
+	void reset();
+
+	static ScaleAnimation* alloc(const AnimationCurve& x,const AnimationCurve& y,float time);
+
+
+};
 class AnimationContainer:public BaseComponent{
 	friend class BaseNode;
 private:
@@ -62,6 +94,9 @@ public:
 	inline enum ComponentType type(){
 		return ComponentAnimation;
 	}
+
+	void bind(Animation* anim);
+
 	void play(Animation* anim);
 
 	void play();

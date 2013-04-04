@@ -8,16 +8,8 @@ class GameMain:public TCSingleton<GameMain>{
 	friend class  TCSingleton<GameMain>;
 private:
 
-	Role* _role;
-
 	~GameMain();
 public:
 	void initGame();
-
-	inline Role* role(){
-		return _role;
-	}
-
-
 };
 #endif

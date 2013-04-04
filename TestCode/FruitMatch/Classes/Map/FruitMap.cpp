@@ -5,11 +5,15 @@
 #include "TCRandom.h"
 #include "Map/ConnectionEffect.h"
 #include "Audio/AudioManager.h"
+#include "ui/GameOverDialog.h"
 
 static int xsize=9;
-static int ysize=10;
-static int xoffset=-200;
-static int yoffset=-300;
+static int ysize=13;
+static int xoffset=-240;
+static int yoffset=-370;
+static const int tileWidth=60;
+static const int tileHeight=60;
+
 FruitMap::FruitMap(){
 	selectedOne=Vector2(-1,-1);
 	selectedTwo=Vector2(-1,-1);
@@ -42,9 +46,10 @@ FruitMap::FruitMap(){
 				_fruitMap[i][j]=fruit;
 				fruit->retain();
 				_node->addChild(fruit->sprite());
-				fruit->sprite()->setLocalPosition(Vector2f(xoffset+50*i,yoffset+50*j));
-
+				
+				fruit->sprite()->setLocalPosition(Vector2f(xoffset+tileWidth*i,yoffset+tileHeight*j));
 				index++;
+				_restFruitCount++;
 				if(index >= halfSize){
 					index = 0;
 				}
@@ -60,12 +65,12 @@ FruitMap::FruitMap(){
 }
 
 Vector2 FruitMap::xy2ij(Vector2f xy){
-	int i=(int)((xy.x-xoffset+25)/50);
-	int j=(int)((xy.y-yoffset+25)/50);
+	int i=(int)((xy.x-xoffset+tileWidth/2)/tileWidth);
+	int j=(int)((xy.y-yoffset+tileHeight/2)/tileHeight);
 	return Vector2(i,j);
 }
 Vector2f FruitMap::ij2xy(Vector2 ij){
-	return Vector2f(xoffset+50*ij.x,yoffset+50*ij.y);
+	return Vector2f(xoffset+tileWidth*ij.x,yoffset+tileHeight*ij.y);
 }
 int FruitMap::select(Vector2 ij){
 	if(selectedOne.x<0){
@@ -96,9 +101,12 @@ int FruitMap::select(Vector2 ij){
 
 			selectedOne.x=-1;
 			selectedOne.y=-1;
-			GameMain::instance()->role()->attack();
 		//	AudioManager::instance()->play("helloworld.wav");
 			_matchSound->play();
+			_restFruitCount-=2;
+		//	if(_restFruitCount<2){
+				GameOverDialog::instance()->show();
+		//	}
 			return 0;
 		}
 		selectedOne=ij;

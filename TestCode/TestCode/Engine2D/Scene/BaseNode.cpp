@@ -89,7 +89,7 @@ TCMatrix3x3 BaseNode::localToParentMatrix() const{
 		TCMatrix3x3 rotMat=TCMatrix3x3::matrixWithRotation(_rotation);
 		translateMat.mul(rotMat);
 	}
-	if(_scale!=Vector2f::zero()){
+	if(_scale!=Vector2f::one()){
 		TCMatrix3x3 scaleMat=TCMatrix3x3::matrixWithScale(_scale.x,_scale.y);
 		translateMat.mul(scaleMat);
 	}
