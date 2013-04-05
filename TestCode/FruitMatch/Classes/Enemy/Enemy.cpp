@@ -15,11 +15,11 @@ void Enemy::initBloodBar(){
 	red->setLocalPosition(Vector2f(-10,50));
 	green->setLocalPosition(Vector2f(-10,50));
 	_greenBar=green->retain<Sprite>();
-	_greenBar->drawer()->setPart(Rect(0,0,1,1));
+	_greenBar->setPart(Rect(0,0,1,1));
 }
 void Enemy::hurt(){
 	_hp--;
-	_greenBar->drawer()->setPart(Rect(0,0,_hp/25,1));
+	_greenBar->setPart(Rect(0,0,_hp/25,1));
 }
 Enemy::~Enemy(){
 

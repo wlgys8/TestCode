@@ -28,8 +28,11 @@
     <ClCompile Include="..\Engine2D\Render\TCSceneRenderer.cpp" />
     <ClCompile Include="..\Engine2D\Scene\BaseComponent.cpp" />
     <ClCompile Include="..\Engine2D\Scene\BaseNode.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\RenderElements\TCRectRenderElement.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\RenderElements\TCSpriteRenderElement.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCAnimation.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCDrawer.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\TCRectangleRGBA.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCSceneManager.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCSprite.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCTouchComponent.cpp" />
@@ -85,8 +88,12 @@
     <ClInclude Include="..\Engine2D\Render\TCSceneRenderer.h" />
     <ClInclude Include="..\Engine2D\Scene\BaseNode.h" />
     <ClInclude Include="..\Engine2D\Scene\ParticleSystem\TCParticleSystem.h" />
+    <ClInclude Include="..\Engine2D\Scene\RenderElements\TCRectRenderElement.h" />
+    <ClInclude Include="..\Engine2D\Scene\RenderElements\TCRenderElement.h" />
+    <ClInclude Include="..\Engine2D\Scene\RenderElements\TCSpriteRenderElement.h" />
     <ClInclude Include="..\Engine2D\Scene\TCAnimation.h" />
     <ClInclude Include="..\Engine2D\Scene\TCDrawer.h" />
+    <ClInclude Include="..\Engine2D\Scene\TCRectangleRGBA.h" />
     <ClInclude Include="..\Engine2D\Scene\TCSceneManager.h" />
     <ClInclude Include="..\Engine2D\Scene\TCSprite.h" />
     <ClInclude Include="..\Engine2D\Scene\TCTouchComponent.h" />
@@ -132,6 +139,7 @@
     <ClInclude Include="..\TCSingleton.h" />
     <ClInclude Include="..\third_part\libopenal\al.h" />
     <ClInclude Include="..\third_part\libopenal\alc.h" />
+    <ClInclude Include="TCPrimitiveDrawer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6B9A1E84-2A69-4962-9B71-7479CB3E57CF}</ProjectGuid>

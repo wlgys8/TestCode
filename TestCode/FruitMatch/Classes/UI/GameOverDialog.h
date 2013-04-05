@@ -3,11 +3,13 @@
 
 #include "TCCommon.h"
 #include "TCSprite.h"
+#include "TCRectangleRGBA.h"
 USING_NS_TC;
 
 class GameOverDialog{
 
 private:
+	RectangleRGBA* _blackMask;
 	Sprite* _background;
 private:
 	GameOverDialog();

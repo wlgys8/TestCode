@@ -6,9 +6,9 @@
 #include "Rect.h"
 NS_TC_BEGIN
 class Sprite:public BaseNode{
-private:
 protected:
 	Sprite();
+	Sprite(const std::string& imageName);
 	~Sprite();
 	void initWithImageName(const std::string& imageName);
 	void init();
@@ -16,6 +16,8 @@ public:
 	inline TCDrawer* drawer(){
 		return (TCDrawer*) getComponment(ComponentDrawer);
 	}
+
+	void setPart(const Rect& part);
 
 	Vector2f size();
 

@@ -58,7 +58,7 @@ public:
 
 	void removeAllComponement();
 
-	inline int size(){
+	inline int childCount(){
 		return _childrenList.size();
 	}
 

@@ -12,7 +12,6 @@ private:
 	unsigned short* _indicesBuffer;
 	~TCSceneRenderer();
 	TCSceneRenderer();
-	int _startBatchIndex;
 	int _size;
 	int _lastTextureID;
 	int _capacity;
@@ -22,6 +21,8 @@ private:
 public:
 
 	void render(const int& textureID,Vector2f* vertex,Vector2f* uv, const Paint& paint);
+
+	void renderSolidRect(Vector2f* vertex,const Paint& paint);
 
 	void flush();
 

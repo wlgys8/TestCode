@@ -3,17 +3,21 @@
 #include "TextureRegion.h"
 #include "BaseComponent.h"
 #include "TCPaint.h"
+
+
 NS_TC_BEGIN
+
+class RenderElement;
 
 class TCDrawer:public BaseComponent{
 
 private:
-	TextureRegion* _region;
 	Paint _paint;
-	Rect _part;
+	RenderElement* _renderElement;
+
 private:
 	~TCDrawer();
-	TCDrawer(TextureRegion* region);
+	TCDrawer();
 
 public:
 	inline virtual enum ComponentType type(){
@@ -25,30 +29,17 @@ public:
 	inline Paint& paint() {
 		return _paint;
 	}  
-	inline const Rect& part() const{
-		return _part;
+
+	void setRenderElement(RenderElement* e);
+
+	inline RenderElement* renderElement(){
+		return _renderElement;
 	}
-	inline void setPart(const Rect& part){
-		_part=part;
-	}
+
 	void draw(const TCMatrix3x3& matrix);
 
-	Vector2f size(){
-		if(!_region){
-			return Vector2f();
-		}
-		return Vector2f(_region->width(),_region->height());
-	}
-	inline void setTextureRegion(TextureRegion* region){
-		if(_region){
-			_region->release();
-		}
-		if(region){
-			region->retain();
-		}
-		_region=region;
-	}
-	static TCDrawer* alloc(TextureRegion* region);
+
+	static TCDrawer* alloc();
 };
 
 NS_TC_END

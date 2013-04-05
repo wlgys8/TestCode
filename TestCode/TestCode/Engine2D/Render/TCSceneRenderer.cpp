@@ -6,7 +6,6 @@ NS_TC_BEGIN
 TCSceneRenderer::TCSceneRenderer():
 _size(0),
 _lastTextureID(0),
-_startBatchIndex(0),
 _capacity(100)
 {
 	_vertexBuffer=new float[2*4*_capacity];
@@ -45,29 +44,32 @@ void TCSceneRenderer::checkAndExpand(){
 	}
 }
 void TCSceneRenderer::drawBatch(const Paint& paint){
-	int size=_size-_startBatchIndex;
-	glPushMatrix();
+	int size=_size;
+	if(size==0){
+		return;
+	}
 	glBlendFunc(paint.blendSrc(),paint.blendDst());
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,_lastTextureID);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(2,GL_FLOAT,0,_vertexBuffer+_startBatchIndex*8);
+	glVertexPointer(2,GL_FLOAT,0,_vertexBuffer);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glTexCoordPointer(2,GL_FLOAT,0,_uvBuffer+_startBatchIndex*8);
+	glTexCoordPointer(2,GL_FLOAT,0,_uvBuffer);
 	glEnableClientState(GL_COLOR_ARRAY);
-	glColorPointer(4,GL_UNSIGNED_BYTE,0,_colorBuffer+_startBatchIndex*16);
-	glDrawElements(GL_TRIANGLES,6*size,GL_UNSIGNED_SHORT,_indicesBuffer+_startBatchIndex*6);
-	glPopMatrix();
+	glColorPointer(4,GL_UNSIGNED_BYTE,0,_colorBuffer);
+	glDrawElements(GL_TRIANGLES,6*size,GL_UNSIGNED_SHORT,_indicesBuffer);
 }
 void TCSceneRenderer::flush(){
 	drawBatch(_lastPaint);
-	_startBatchIndex=0;
 	_size=0;
 	_lastTextureID=0;
 }
 void TCSceneRenderer::render(const int& textureID,Vector2f* vertex,
 	Vector2f* uv, const Paint& paint){
-	
+	if(textureID<0){
+		DebugLog("texture id is 0!!");
+		return;
+	}
 	checkAndExpand(); 
 	if(_lastTextureID==0){
 		_lastTextureID=textureID;
@@ -102,7 +104,30 @@ void TCSceneRenderer::render(const int& textureID,Vector2f* vertex,
 	_indicesBuffer[6*_size+4]=4*_size+1;
 	_indicesBuffer[6*_size+5]=4*_size+2;
 	_size++;
-	
+}
+
+static const unsigned short rectIndices[6]={
+	0,1,3,3,1,2
+};
+void TCSceneRenderer::renderSolidRect(Vector2f* vertex,const Paint& paint){
+	flush();
+	Color color= paint.color();
+	for(int i=0;i<4;i++){
+		_vertexBuffer[2*i]=vertex[i].x;
+		_vertexBuffer[2*i+1]=vertex[i].y;
+		_colorBuffer[4*i]=(unsigned char)(color.r()*255);
+		_colorBuffer[4*i+1]=(unsigned char)(color.g()*255);
+		_colorBuffer[4*i+2]=(unsigned char)(color.b()*255);
+		_colorBuffer[4*i+3]=(unsigned char)(color.a()*255);
+	}
+	glBlendFunc(paint.blendSrc(),paint.blendDst());
+	glDisable(GL_TEXTURE_2D);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(2,GL_FLOAT,0,_vertexBuffer);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glColorPointer(4,GL_UNSIGNED_BYTE,0,_colorBuffer);
+	glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,rectIndices);
 }
 
 TCSceneRenderer* TCSceneRenderer::instance(){

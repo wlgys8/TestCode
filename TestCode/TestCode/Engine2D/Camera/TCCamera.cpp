@@ -62,7 +62,7 @@ static void drawNode(BaseNode* node,const TCMatrix3x3& parentToWorldMatrix){
 	if(drawer){
 		drawer->draw(localToWorldMatrix);
 	}
-	for (int i=0;i<node-> size();i++)
+	for (int i=0;i<node-> childCount();i++)
 	{
 		drawNode(node->getChild(i),localToWorldMatrix);
 	}	
