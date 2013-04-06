@@ -23,7 +23,7 @@ static bool touchNode(BaseNode* node,TCTouchEvent& touchEvent,const TCMatrix3x3&
 	TCMatrix3x3 worldToLocal=TCMatrix3x3(node->parentToLocalMatrix());
 	worldToLocal.mul(worldToParentMatrix);
 	touchEvent.setLocalPosition(worldToLocal.mulWithPoint(touchEvent.position()));
-	vector<BaseNode*> list= vector<BaseNode*>(node->childList());//a list copy
+	vector<BaseNode*> list= node->childList();//a list copy
 	vector<BaseNode*>::reverse_iterator rv_it;
 	for(rv_it=list.rbegin();rv_it!=list.rend();rv_it++){
 		if(touchNode(*rv_it,touchEvent,worldToLocal)){

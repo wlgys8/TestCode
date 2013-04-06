@@ -3,38 +3,64 @@
 #include "TCCommon.h"
 NS_TC_BEGIN
 
-
-template<class T>
-class Vector2Template{
+class Vector2{
 public:
-	T x;
-	T y;
-	Vector2Template():x(0),y(0){
+	int x;
+	int y;
+	Vector2():x(0),y(0){
 
 	}
-	Vector2Template(T x,T y){
+	Vector2(int x,int y){
 		this->x=x;
 		this->y=y;
 	}
-
-	const T operator+(const T& v2)const{
-		T ret=T(x+v2.x,y+v2.y);
-		return ret;
+	const Vector2 operator+(const Vector2& v2) const{
+		return Vector2(x+v2.x,y+v2.y);
 	}
-	const T operator-(const T& v2)const{
-		T ret=T(x-v2.x,y-v2.y);
-		return ret;
+	const Vector2 operator-(const Vector2& v2) const{
+		return Vector2(x-v2.x,y-v2.y);
 	}
-	void operator+=(const T& v){
+	const Vector2 operator*(const Vector2& v2) const {
+		return Vector2(x*v2.x,y*v2.y);
+	}
+	const Vector2 operator*(const float& cons) const{
+		return Vector2(x*cons,y*cons);
+	}
+	void operator+=(const Vector2& v){
 		x+=v.x;
 		y+=v.y;
 	}
-	void operator-=(const T& v){
+	void operator-=(const Vector2& v){
 		x-=v.x;
 		y-=v.y;
 	}
+
+	void operator*=(const Vector2& v){
+		x*=v.x;
+		y*=v.y;
+	}
+	void operator*=(const int& cons){
+		x*=cons;
+		y*=cons;
+	}
+	friend bool operator==(const Vector2& v1,const Vector2& v2){
+		return v1.x==v2.x&&v1.y==v2.y;
+	}
+
+	friend bool operator!=(const Vector2& v1,const Vector2& v2){
+		return !(v1==v2);
+	}
+
+public:
+	static Vector2 zero(){
+		return Vector2(0,0);
+	}
+	static Vector2 one(){
+		return Vector2(1,1);
+	}
 };
-typedef Vector2Template<int> Vector2;
+
+
 class Vector2f{
 public:
 	float x;

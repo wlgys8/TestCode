@@ -16,16 +16,9 @@ static const int tileHeight=-60;
 
 FruitMap::FruitMap(){
 	selectedOne=Vector2(-1,-1);
-	selectedTwo=Vector2(-1,-1);
 	_node=BaseNode::alloc();
 	_node->retain<BaseNode>();
-	_fruitMap=new ptr_fruit*[ysize];
-	for(int i=0;i<ysize;i++){
-		_fruitMap[i]=new ptr_fruit[xsize];
-		for(int j=0;j<xsize;j++){
-			_fruitMap[i][j]=0;
-		}
-	}
+
 	_matchSound=AudioManager::instance()->createSource("helloworld.wav");
 	_matchSound->retain();
 	_data=0;
@@ -35,7 +28,45 @@ void FruitMap::resetMap(MapData* data){
 	generateMap(data);
 }
 
+bool FruitMap::findAvaliablePair(std::list<Vector2> *path){
+	if(!_fruitMap){
+		return false;
+	}
+	typedef std::map<FruitType,std::vector<Vector2>> TypeMap;
+	TypeMap typeMap;
+	
+	for (int i=0;i<ysize;i++)
+	{
+		for(int j=0;j<xsize;j++){
+			ptr_fruit fruit= _fruitMap[i][j];
+			if(!fruit){
+				continue;
+			}
+			FruitType type=fruit->type();
+			TypeMap::iterator it= typeMap.find(type);
+			if(it==typeMap.end()){
+				typeMap[type]=std::vector<Vector2>();
+			}
+			std::vector<Vector2>& list=typeMap[type];
+			
+			std::vector<Vector2>::iterator fit;
+
+			for(fit=list.begin();fit!=list.end();fit++){
+				if(match(i,j,(*fit).x,(*fit).y,path)){
+					return true;
+				}
+			}
+			
+			list.push_back(Vector2(i,j));
+		}
+	}
+	return false;
+}
 void FruitMap::generateMap(MapData* data){
+	
+	if(_fruitMap){
+		clearMap();
+	}
 	if(data){
 		if(_data){
 			_data->autoRelease();
@@ -62,7 +93,6 @@ void FruitMap::generateMap(MapData* data){
 		FRUIT_YINXING,
 		FRUIT_SIYECAO,
 	};
-	srand((unsigned)time(NULL));
 	xsize=_data->sizeX();
 	ysize=_data->sizeY();
 	int* fruitT;
@@ -72,7 +102,10 @@ void FruitMap::generateMap(MapData* data){
 		fruitT[i]=(int)(Random::value()*12);
 	}
 	int index = 0;
+
+	_fruitMap=new ptr_fruit*[ysize];
 	for(int i=0;i<ysize;i++){
+		_fruitMap[i]=new ptr_fruit[xsize];
 		for(int j=0;j<xsize;j++){
 			if(_data->getInfo(i,j)=='1'){
 				Fruit* fruit=Fruit::alloc(types[fruitT[index]]);
@@ -90,10 +123,38 @@ void FruitMap::generateMap(MapData* data){
 			}
 		}
 	}
+	if(!findAvaliablePair(&_avaliablePath)){
+		refreshMap();
+	}
 	delete[] fruitT;
 }
 
+void FruitMap::refreshMap(){
+	std::vector<ptr_fruit> list=std::vector<ptr_fruit>();
+	for(int i=0;i<ysize;i++){
+		for(int j=0;j<xsize;j++){
+			if(_fruitMap[i][j]){
+				list.push_back(_fruitMap[i][j]);
+			}
+		}
+	}
+	for(int i=0;i<ysize;i++){
+		for(int j=0;j<xsize;j++){
+			if(_fruitMap[i][j]){
+				int rd=(int)((list.size()-1)*Random::value());
+				_fruitMap[i][j]=list[rd]; 
+				_fruitMap[i][j]->sprite()->setLocalPosition(ij2xy(Vector2(i,j)));
+				list.erase(list.begin()+rd);
+				
+			}
+		}
+	}
+	findAvaliablePair(&_avaliablePath);
+}
 void FruitMap::clearMap(){
+	if(!_fruitMap){
+		return;
+	}
 	for(int i=0;i<ysize;i++){
 		for(int j=0;j<xsize;j++){
 			if(_fruitMap[i][j]){
@@ -102,7 +163,9 @@ void FruitMap::clearMap(){
 				_fruitMap[i][j]=0;
 			}
 		}
+		TC_DELETE_ARRAY(_fruitMap[i]);
 	}
+	TC_DELETE_ARRAY(_fruitMap);
 	_restFruitCount=0;
 }
 
@@ -121,18 +184,15 @@ int FruitMap::select(Vector2 ij){
 	}
 	else{
 		std::list<Vector2> path;
-
 		if(match(selectedOne.x,selectedOne.y,ij.x,ij.y,&path)){
 			std::list<Vector2f> fpath;
 			std::list<Vector2>::iterator it;
 			for(it=path.begin();it!=path.end();it++){
 				fpath.push_back(ij2xy((*it)));
 			}
-			
 			ConnectionEffect::instance()->generateConnection(
 				fpath
 				);
-			
 			_fruitMap[selectedOne.x][selectedOne.y]->sprite()->removeSelf();
 			_fruitMap[selectedOne.x][selectedOne.y]->autoRelease();
 			_fruitMap[selectedOne.x][selectedOne.y]=0;
@@ -143,12 +203,18 @@ int FruitMap::select(Vector2 ij){
 
 			selectedOne.x=-1;
 			selectedOne.y=-1;
-		//	AudioManager::instance()->play("helloworld.wav");
 			_matchSound->play();
 			_restFruitCount-=2;
-		//	if(_restFruitCount<2){
-				GameOverDialog::instance()->show();
-		//	}
+			if(_restFruitCount<2){
+				GameOverDialog::instance()->show();// over
+				return 0;
+			}
+
+			if(_avaliablePath.front()==selectedOne||_avaliablePath.front()==ij||_avaliablePath.back()==selectedOne||_avaliablePath.back()==ij){
+				if(!findAvaliablePair(&_avaliablePath)){
+					refreshMap();
+				}
+			}
 			return 0;
 		}
 		selectedOne=ij;
@@ -292,17 +358,7 @@ bool FruitMap::match(const int& i1,const int& j1,const int& i2,const int& j2,std
 }
 
 FruitMap::~FruitMap(){
-	for(int i=0;i<ysize;i++){
-		for(int j=0;j<xsize;j++){
-			if(_fruitMap[i][j]){
-				_fruitMap[i][j]->release();
-				_fruitMap[i][j]=0;
-			}
-		}
-		TC_DELETE_ARRAY(_fruitMap[i]);
-	}
-	TC_DELETE_ARRAY(_fruitMap);
-	_fruitMap=NULL;
+	clearMap();
 	_node->release();
 	_node=0;
 
