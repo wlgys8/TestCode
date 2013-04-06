@@ -3,6 +3,7 @@
 #include "TCSceneRenderer.h"
 #include "TCSceneManager.h"
 #include "TCScreen.h"
+#include "Debug/TCRenderStatistics.h"
 NS_TC_BEGIN
 TCRender::TCRender(){
 }
@@ -15,7 +16,7 @@ void  TCRender::onResize(long width,long height){
 	DebugLog("StartResize,width:%d,height,%d",width,height);
 	Screen::resize(width,height);
 	glViewport(0,0,width,height);
-	glClearColor(1,0,0,1);
+	glClearColor(0,0,0,1);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrthof(-Screen::width()/2,Screen::width()/2,-Screen::height()/2,Screen::height()/2,-100,100);
@@ -35,6 +36,7 @@ void  TCRender::onResize(long width,long height){
 
 void  TCRender::onRender(){
 	TCSceneManager::instance()->loopUpdate();
+	RenderStatistics::clear();//reset render statistics
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 	TCSceneManager::instance()->loopDraw();
 	TCSceneRenderer::instance()->flush();

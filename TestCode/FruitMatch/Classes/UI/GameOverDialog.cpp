@@ -2,23 +2,20 @@
 #include "Camera/TCCamera.h"
 #include "TCSceneManager.h"
 #include "TCAnimation.h"
-
+#include "TCTouchComponent.h"
+#include "Map/FruitMap.h"
+#include "ui/LevelMenu.h"
+#include "GameMain.h"
 GameOverDialog::GameOverDialog(){
 	_background=Sprite::alloc("gameover_win.png");
 	_background->retain();
 	AnimationCurve curvX;
-	AnimationCurve curvY;
 	curvX.setWrapMode(CurveWrapClamp);
-	curvY.setWrapMode(CurveWrapClamp);
 	curvX.addKey(0,0.0f);
 	curvX.addKey(0.2f,1.2f);
 	curvX.addKey(0.3f,0.9f);
 	curvX.addKey(0.4f,1);
-	curvY.addKey(0,0.0f);
-	curvY.addKey(0.2f,1.2f);
-	curvY.addKey(0.3f,0.9f);
-	curvY.addKey(0.4f,1);
-	ScaleAnimation* anim=ScaleAnimation::alloc(curvX,curvY,0.4f);
+	ScaleAnimation* anim=ScaleAnimation::alloc(curvX,curvX,0.4f);
 	_background->animation()->bind(anim);
 	_background->setLocalScale(Vector2f(0.1f,0.1f));
 
@@ -29,8 +26,39 @@ GameOverDialog::GameOverDialog(){
 
 	_blackMask->addChild(_background);
 
+	_restart=Sprite::alloc("gameover_replay.png");
+	_restart->retain();
+	_background->addChild(_restart);
+	_restart->setLocalPosition(Vector2f(0,-80));
+
+	TCTouchComponent* tc=TCTouchComponent::alloc();
+	_restart->addComponent(tc);
+	tc->bindDelegateTarget(this);
+	tc->registerDownEvent(touchSelector(GameOverDialog::onRestartClick));
+
+	_menu=Sprite::alloc("gameover_back.png");
+	_menu->retain();
+	_background->addChild(_menu);
+	_menu->setLocalPosition(Vector2f(-50,-80));
+
+	TCTouchComponent* tc2=TCTouchComponent::alloc();
+	_menu->addComponent(tc2);
+	tc2->bindDelegateTarget(this);
+	tc2->registerDownEvent(touchSelector(GameOverDialog::onMenuClick));
 }
 
+bool GameOverDialog::onRestartClick(const TCTouchEvent& evt){
+	FruitMap::instance()->resetMap();
+	hide();
+	return true;
+}
+bool GameOverDialog::onMenuClick(const TCTouchEvent& evt){
+	hide();
+	GameMain::instance()->hide();
+	LevelMenu::instance()->show();
+
+	return true;
+}
 GameOverDialog::~GameOverDialog(){
 	if(_background){
 		_background->release();
@@ -39,6 +67,10 @@ GameOverDialog::~GameOverDialog(){
 	if(_blackMask){
 		_blackMask->release();
 		_blackMask=0;
+	}
+	if(_restart){
+		_restart->release();
+		_restart=0;
 	}
 
 }

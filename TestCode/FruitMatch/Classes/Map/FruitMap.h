@@ -23,6 +23,12 @@ public:
 	Vector2f ij2xy(Vector2 ij);
 
 	int select( Vector2 ij);//0:match,1=unmatch,2=wait for next select
+	void clearMap();
+	void resetMap();
+private:
+	void generateMap();
+	
+	
 protected:
 	FruitMap();
 private:

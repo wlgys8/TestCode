@@ -89,6 +89,12 @@
     <ClCompile Include="..\Classes\UI\GameOverDialog.cpp">
       <Filter>Classes\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\UI\LevelMenu.cpp">
+      <Filter>Classes\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\LevelEntryButton.cpp">
+      <Filter>Classes\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FruitMatch.h">
@@ -143,6 +149,12 @@
       <Filter>android</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\UI\GameOverDialog.h">
+      <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\LevelMenu.h">
+      <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\LevelEntryButton.h">
       <Filter>Classes\UI</Filter>
     </ClInclude>
   </ItemGroup>

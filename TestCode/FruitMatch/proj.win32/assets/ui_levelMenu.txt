@@ -1,0 +1,44 @@
+{"frames": {
+
+"level_item.png":
+{
+	"frame": {"x":2,"y":858,"w":76,"h":76},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":14,"w":76,"h":76},
+	"sourceSize": {"w":84,"h":102}
+},
+"level_item_star.png":
+{
+	"frame": {"x":484,"y":2,"w":27,"h":25},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":16,"y":14,"w":27,"h":25},
+	"sourceSize": {"w":63,"h":57}
+},
+"level_lock.png":
+{
+	"frame": {"x":2,"y":936,"w":34,"h":54},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":22,"y":14,"w":34,"h":54},
+	"sourceSize": {"w":84,"h":102}
+},
+"level_menu.png":
+{
+	"frame": {"x":2,"y":2,"w":480,"h":854},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":480,"h":854},
+	"sourceSize": {"w":480,"h":854}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "ui_levelMenu.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:e9dc4e9657e03e90b3db38c9780e90ba$"
+}
+}

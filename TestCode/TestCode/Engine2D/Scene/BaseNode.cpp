@@ -4,6 +4,8 @@
 #include "ParticleSystem/TCParticleSystem.h"
 NS_TC_BEGIN
 
+int BaseNode::_count=0;
+
 BaseNode::BaseNode():_parent(NULL),_rotation(0),_position(Vector2f()),
 _updateTarget(0),
 _delegateUpdate(0),
@@ -11,11 +13,13 @@ _scale(Vector2f(1,1))
 {
 	_childrenList=ArrayList();
 	_componentMap=map<ComponentType,BaseComponent*>();
+	_count++;
 }
 BaseNode::~BaseNode(){
 //	DebugLog("delete a node");
 	removeAllComponement();
 	removeAllChildren();
+	_count--;
 }
 void BaseNode::addChild(BaseNode* child){
 	if(child->_parent){
@@ -130,8 +134,10 @@ void BaseNode::removeSelf(){
 	if(_parent){
 		_parent->removeChild(this);
 	}
+}
 
-
+int BaseNode::count(){
+	return _count;
 }
 
 //static method

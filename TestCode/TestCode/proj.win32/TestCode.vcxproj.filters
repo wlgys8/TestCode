@@ -70,6 +70,18 @@
     <Filter Include="Engine2D\Scene\RenderElements">
       <UniqueIdentifier>{d108c173-4d17-4924-95cd-edc660b51479}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{d8a7c7dd-6839-42ac-b89e-ce575956b3f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Support\mp3">
+      <UniqueIdentifier>{61cfd9a0-c4f9-4342-8801-cc707d1671dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Support\ogg">
+      <UniqueIdentifier>{848cc022-601e-4bb6-8f28-25925a22e8e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine2D\Font">
+      <UniqueIdentifier>{7da365d9-2eb9-452f-b9dc-86c25b498185}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Commons\TCCommon.cpp">
@@ -225,6 +237,27 @@
     <ClCompile Include="..\Engine2D\Scene\TCRectangleRGBA.cpp">
       <Filter>Engine2D\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="..\Debug\TCRenderStatistics.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Debug\TCMemoryStatistics.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Audio\TCAudioLoader.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\TCTextSprite.cpp">
+      <Filter>Engine2D\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Scene\RenderElements\TCImageListRenderElement.cpp">
+      <Filter>Engine2D\Scene\RenderElements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Render\TCRenderUtil.cpp">
+      <Filter>Engine2D\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine2D\Font\TCCustomFont.cpp">
+      <Filter>Engine2D\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Commons\TCCommon.h">
@@ -283,9 +316,6 @@
     </ClInclude>
     <ClInclude Include="..\Engine2D\Scene\TCTransform.h">
       <Filter>Engine2D\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine2D\Render\TCBatchUtil.h">
-      <Filter>Engine2D\Render</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine2D\Render\TCSceneRenderer.h">
       <Filter>Engine2D\Render</Filter>
@@ -452,6 +482,45 @@
     </ClInclude>
     <ClInclude Include="..\Engine2D\Scene\TCRectangleRGBA.h">
       <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Debug\TCRenderStatistics.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Debug\TCMemoryStatistics.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\win32\libmpg123\mpg123.h">
+      <Filter>Support\mp3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Audio\TCAudioLoader.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\win32\libvorbis\codec.h">
+      <Filter>Support\ogg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\win32\libvorbis\vorbisenc.h">
+      <Filter>Support\ogg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\win32\libvorbis\vorbisfile.h">
+      <Filter>Support\ogg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\win32\libvorbis\ogg.h">
+      <Filter>Support\ogg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\win32\libvorbis\os_types.h">
+      <Filter>Support\ogg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\TCTextSprite.h">
+      <Filter>Engine2D\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Scene\RenderElements\TCImageListRenderElement.h">
+      <Filter>Engine2D\Scene\RenderElements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Render\TCRenderUtil.h">
+      <Filter>Engine2D\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine2D\Font\TCCustomFont.h">
+      <Filter>Engine2D\Font</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

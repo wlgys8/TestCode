@@ -15,6 +15,9 @@ enum FruitType{
 	FRUIT_PUTAO,
 	FRUIT_XIGUA,
 	FRUIT_YINTAO,
+	FRUIT_LI,
+	FRUIT_YINXING,
+	FRUIT_SIYECAO,
 };
 class Fruit:public AutoReleaseObject{
 

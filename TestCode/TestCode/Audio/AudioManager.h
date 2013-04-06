@@ -35,7 +35,9 @@ private:
 	~AudioSource();
 public:
 	
-	void play();
+	void play(bool loop=false);
+
+
 
 };
 
@@ -50,7 +52,6 @@ private:
 	BufferMap _bufferMap;
 	unsigned char* loadwav(unsigned char*  fileStream,const unsigned long& size,BasicWAVEHeader* header);
 	unsigned char* loadwav(const char* filename,BasicWAVEHeader* header);
-
 	ALuint createBufferFromWave(unsigned char* data,BasicWAVEHeader header);
 
 public:

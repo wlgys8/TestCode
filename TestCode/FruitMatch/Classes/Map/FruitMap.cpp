@@ -20,6 +20,20 @@ FruitMap::FruitMap(){
 	_node=BaseNode::alloc();
 	_node->retain<BaseNode>();
 	_fruitMap=new ptr_fruit*[xsize];
+	for(int i=0;i<xsize;i++){
+		_fruitMap[i]=new ptr_fruit[ysize];
+		for(int j=0;j<ysize;j++){
+			_fruitMap[i][j]=0;
+		}
+	}
+	_matchSound=AudioManager::instance()->createSource("helloworld.wav");
+	_matchSound->retain();
+}
+void FruitMap::resetMap(){
+	clearMap();
+	generateMap();
+}
+void FruitMap::generateMap(){
 	FruitType types[]={
 		FRUIT_APPLE,
 		FRUIT_BOLO,
@@ -29,24 +43,25 @@ FruitMap::FruitMap(){
 		FRUIT_XIGUA,
 		FRUIT_YINTAO,
 		FRUTT_LANMEI,
+		FRUIT_LI,
+		FRUIT_YINXING,
+		FRUIT_SIYECAO,
 	};
 	srand((unsigned)time(NULL));
 	int* fruitT;
 	int halfSize = (xsize - 2) * (ysize - 2) / 2;
 	fruitT = new int[halfSize];
 	for(int i = 0 ; i < halfSize ; i++){
-		fruitT[i]=(int)(Random::value()*9);
+		fruitT[i]=(int)(Random::value()*12);
 	}
 	int index = 0;
 	for(int i=0;i<xsize;i++){
-		_fruitMap[i]=new ptr_fruit[ysize];
 		for(int j=0;j<ysize;j++){
 			if(i!=0&&i!=xsize-1&&j!=0&&j!=ysize-1){
 				Fruit* fruit=Fruit::alloc(types[fruitT[index]]);
 				_fruitMap[i][j]=fruit;
 				fruit->retain();
 				_node->addChild(fruit->sprite());
-				
 				fruit->sprite()->setLocalPosition(Vector2f(xoffset+tileWidth*i,yoffset+tileHeight*j));
 				index++;
 				_restFruitCount++;
@@ -58,10 +73,20 @@ FruitMap::FruitMap(){
 			}
 		}
 	}
-
 	delete[] fruitT;
-	_matchSound=AudioManager::instance()->createSource("helloworld.wav");
-	_matchSound->retain();
+}
+
+void FruitMap::clearMap(){
+	for(int i=0;i<xsize;i++){
+		for(int j=0;j<ysize;j++){
+			if(_fruitMap[i][j]){
+				_fruitMap[i][j]->sprite()->removeSelf();
+				_fruitMap[i][j]->autoRelease();
+				_fruitMap[i][j]=0;
+			}
+		}
+	}
+	_restFruitCount=0;
 }
 
 Vector2 FruitMap::xy2ij(Vector2f xy){
@@ -92,11 +117,11 @@ int FruitMap::select(Vector2 ij){
 				);
 			
 			_fruitMap[selectedOne.x][selectedOne.y]->sprite()->removeSelf();
-			_fruitMap[selectedOne.x][selectedOne.y]->release();
+			_fruitMap[selectedOne.x][selectedOne.y]->autoRelease();
 			_fruitMap[selectedOne.x][selectedOne.y]=0;
 
 			_fruitMap[ij.x][ij.y]->sprite()->removeSelf();
-			_fruitMap[ij.x][ij.y]->release();
+			_fruitMap[ij.x][ij.y]->autoRelease();
 			_fruitMap[ij.x][ij.y]=0;
 
 			selectedOne.x=-1;
@@ -104,9 +129,9 @@ int FruitMap::select(Vector2 ij){
 		//	AudioManager::instance()->play("helloworld.wav");
 			_matchSound->play();
 			_restFruitCount-=2;
-		//	if(_restFruitCount<2){
+			if(_restFruitCount<2){
 				GameOverDialog::instance()->show();
-		//	}
+			}
 			return 0;
 		}
 		selectedOne=ij;

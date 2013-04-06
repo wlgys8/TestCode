@@ -9,28 +9,29 @@ _isPressed(false)
 
 }
 TCTouchComponent::~TCTouchComponent(){
-
+	_delegateTarget=0;
 }
-void TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
+bool TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
 	if(!_delegateTarget){
-		return;
+		return false;
 	}
 	TCDrawer* drawer=(TCDrawer*) node()->getComponment(ComponentDrawer);
 	if(!drawer){
-		return;
+		return false;
 	}
 	RenderElement* re=drawer->renderElement();
 	if(!re){
-		return;
+		return false;
 	}
 	Vector2f size= re->rawSize();
 	Rect bounds=Rect(-size.x/2,-size.y/2,size.x,size.y);
 	bool isContains=bounds.contains(touchEvent.localPosition());
+	bool ret=false;
 	switch(touchEvent.type()){
 	case LeftMouseDown:
 		if(_delegateDown){
 			if(!_isPressed&&isContains){
-				(_delegateTarget->*_delegateDown)(touchEvent);
+				ret=(_delegateTarget->*_delegateDown)(touchEvent);
 				_isPressed=true;
 			}
 			break;
@@ -39,11 +40,11 @@ void TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
 		break;
 	case LeftMouseUp:
 		if(_delegateUp){
-			(_delegateTarget->*_delegateUp)(touchEvent);
+			ret=(_delegateTarget->*_delegateUp)(touchEvent);
 		}
 		if(_isPressed){
 			if(_delegateClick){
-				(_delegateTarget->*_delegateClick)(touchEvent);
+				ret=(_delegateTarget->*_delegateClick)(touchEvent);
 			}
 			_isPressed=false;
 		}
@@ -52,16 +53,17 @@ void TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
 		break;
 	case Move:
 		if(_delegateMove){
-			(_delegateTarget->*_delegateMove)(touchEvent);
+			ret=(_delegateTarget->*_delegateMove)(touchEvent);
 		}
 		if(_isPressed&&!isContains){
 			if(_delegateUp){
-				(_delegateTarget->*_delegateUp)(touchEvent);
+				ret=(_delegateTarget->*_delegateUp)(touchEvent);
 				_isPressed=false;
 			}
 		}
 		break;
 	}
+	return ret;
 
 }
 

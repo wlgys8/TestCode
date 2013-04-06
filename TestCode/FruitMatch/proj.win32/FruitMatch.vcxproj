@@ -99,6 +99,8 @@
     <ClCompile Include="..\Classes\TestAppDelegate.cpp" />
     <ClCompile Include="..\Classes\TestO.cpp" />
     <ClCompile Include="..\Classes\UI\GameOverDialog.cpp" />
+    <ClCompile Include="..\Classes\UI\LevelEntryButton.cpp" />
+    <ClCompile Include="..\Classes\UI\LevelMenu.cpp" />
     <ClCompile Include="..\proj.android\jni\AndroidMain.cpp" />
     <ClCompile Include="FruitMatch.cpp" />
     <ClCompile Include="stdafx.cpp" />
@@ -117,6 +119,8 @@
     <ClInclude Include="..\Classes\TestAppDelegate.h" />
     <ClInclude Include="..\Classes\TestO.h" />
     <ClInclude Include="..\Classes\UI\GameOverDialog.h" />
+    <ClInclude Include="..\Classes\UI\LevelEntryButton.h" />
+    <ClInclude Include="..\Classes\UI\LevelMenu.h" />
     <ClInclude Include="..\proj.android\jni\AndroidMain.h" />
     <ClInclude Include="FruitMatch.h" />
     <ClInclude Include="Resource.h" />
