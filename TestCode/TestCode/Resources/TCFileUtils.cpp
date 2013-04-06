@@ -20,18 +20,19 @@ unsigned char* TCFileUtils::getFileData(const char* filePath,unsigned long* size
 	if(fp==NULL){
 		 DebugLog("open file failed:%s",filePath);
 		 return NULL;
-	 }
-	 fseek(fp,0,SEEK_END);
-	 *size = ftell(fp);
-	 fseek(fp,0,SEEK_SET);
-	 retBuffer = new unsigned char[*size];
-	 *size = fread(retBuffer,sizeof(unsigned char), *size,fp);
-	 fclose(fp);
-	 if(retBuffer==NULL){
-		 DebugLog("read data from file failed:%s",filePath);
-		 return NULL;
-	 }
-	 return retBuffer;
+	}
+	fseek(fp,0,SEEK_END);
+	*size = ftell(fp);
+	fseek(fp,0,SEEK_SET);
+	retBuffer = new unsigned char[*size+1];
+	*size = fread(retBuffer,sizeof(unsigned char), *size,fp);
+	fclose(fp);
+	if(retBuffer==NULL){
+		DebugLog("read data from file failed:%s",filePath);
+		return NULL;
+	}
+	retBuffer[*size]=0;
+	return retBuffer;
 }
 char* TCFileUtils::_apkPath="";
 unsigned char* TCFileUtils::getFileDataFromZip(const char* pszZipFilePath, const char* pszFileName, unsigned long * pSize){

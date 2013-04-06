@@ -11,6 +11,7 @@
 #include "Camera/TCCamera.h"
 #include "Audio/TCAudioLoader.h"
 #include "TCTextSprite.h"
+#include "Map/MapDataManager.h"
 
 static AudioSource* _src;
 
@@ -32,6 +33,7 @@ void GameMain::init(){
 	_src->retain();
 	_src->play(true);
 
+	DebugLog("loaded");
 //	unsigned long size;
 //	unsigned char* stream=TCFileUtils::getFileData("background.wav",&size);
 //	AudioLoader::loadOgg(stream,size);
@@ -39,7 +41,7 @@ void GameMain::init(){
 }
 
 void GameMain::show(){
-	FruitMap::instance()->resetMap();
+	FruitMap::instance()->resetMap(MapDataManager::instance()->find("test.txt"));
 	Camera* ca= TCSceneManager::instance()->findCamera("main");
 	ca->rootNode()->addChild(_background);
 }

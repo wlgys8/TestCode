@@ -6,6 +6,8 @@
 #include "TCTouchComponent.h"
 #include <list>
 #include "Audio/AudioManager.h"
+#include "Map/MapData.h"
+
 USING_NS_TC;
 
 class FruitMap:public TCSingleton<FruitMap>{
@@ -24,15 +26,14 @@ public:
 
 	int select( Vector2 ij);//0:match,1=unmatch,2=wait for next select
 	void clearMap();
-	void resetMap();
+	void resetMap(MapData* data=0);
 private:
-	void generateMap();
-	
-	
+	void generateMap(MapData* data=0);
 protected:
 	FruitMap();
 private:
 	ptr_fruit** _fruitMap;//null represent empty
+	MapData* _data;
 	BaseNode* _node;
 	AudioSource* _matchSound;
 	int _restFruitCount;

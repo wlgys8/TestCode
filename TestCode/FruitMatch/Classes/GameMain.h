@@ -2,6 +2,7 @@
 #define __GAMEMAIN_H__
 #include "TCSingleton.h"
 #include "Role/Role.h"
+#include "Map/MapData.h"
 USING_NS_TC;
 
 class GameMain:public TCSingleton<GameMain>{

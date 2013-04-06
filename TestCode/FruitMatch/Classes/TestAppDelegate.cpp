@@ -13,6 +13,7 @@
 #include "Debug/TCRenderStatistics.h"
 #include "Debug/TCMemoryStatistics.h"
 #include "ui/LevelMenu.h"
+#include "Map/MapDataManager.h"
 USING_NS_TC;
 
 CustomFont* TestAppDelegate::customFont=0;
@@ -22,6 +23,8 @@ void TestAppDelegate::onCreateGame(){
 	TCResources::loadTextureRegions("ui_levelMenu.png","ui_levelMenu.txt",RGBA_8888);
 	TCResources::loadAudioInAssets("helloworld.wav");
 	TCResources::loadAudioInAssets("background.wav");
+	MapDataManager::instance()->loadAllMapData();
+
 	customFont=CustomFont::alloc();
 	customFont->retain();
 	customFont->registerPair("0","num_0.png");

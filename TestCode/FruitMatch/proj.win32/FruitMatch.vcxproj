@@ -95,6 +95,8 @@
     <ClCompile Include="..\Classes\GameMain.cpp" />
     <ClCompile Include="..\Classes\Map\ConnectionEffect.cpp" />
     <ClCompile Include="..\Classes\Map\FruitMap.cpp" />
+    <ClCompile Include="..\Classes\Map\MapData.cpp" />
+    <ClCompile Include="..\Classes\Map\MapDataManager.cpp" />
     <ClCompile Include="..\Classes\Role\Role.cpp" />
     <ClCompile Include="..\Classes\TestAppDelegate.cpp" />
     <ClCompile Include="..\Classes\TestO.cpp" />
@@ -114,6 +116,8 @@
     <ClInclude Include="..\Classes\GameMain.h" />
     <ClInclude Include="..\Classes\Map\ConnectionEffect.h" />
     <ClInclude Include="..\Classes\Map\FruitMap.h" />
+    <ClInclude Include="..\Classes\Map\MapData.h" />
+    <ClInclude Include="..\Classes\Map\MapDataManager.h" />
     <ClInclude Include="..\Classes\Role\Role.h" />
     <ClInclude Include="..\Classes\Role\RoleXigua.h" />
     <ClInclude Include="..\Classes\TestAppDelegate.h" />
