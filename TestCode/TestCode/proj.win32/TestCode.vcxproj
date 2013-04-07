@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="..\Audio\AudioManager.cpp" />
     <ClCompile Include="..\Audio\TCAudioBuffer.cpp" />
+    <ClCompile Include="..\Audio\TCAudioLoader.cpp" />
     <ClCompile Include="..\Commons\TCCommon.cpp" />
     <ClCompile Include="..\Core\AutoReleaseObject.cpp" />
     <ClCompile Include="..\Core\AutoReleasePool.cpp" />
@@ -22,12 +23,17 @@
     <ClCompile Include="..\Core\Math\TCMatrix3x3.cpp" />
     <ClCompile Include="..\Core\TCObject.cpp" />
     <ClCompile Include="..\Core\TCTime.cpp" />
+    <ClCompile Include="..\Debug\TCMemoryStatistics.cpp" />
+    <ClCompile Include="..\Debug\TCRenderStatistics.cpp" />
     <ClCompile Include="..\Engine2D\Camera\TCCamera.cpp" />
+    <ClCompile Include="..\Engine2D\Font\TCCustomFont.cpp" />
     <ClCompile Include="..\Engine2D\ParticleSystem\TCParticleSystem.cpp" />
     <ClCompile Include="..\Engine2D\Render\TCPaint.cpp" />
+    <ClCompile Include="..\Engine2D\Render\TCRenderUtil.cpp" />
     <ClCompile Include="..\Engine2D\Render\TCSceneRenderer.cpp" />
     <ClCompile Include="..\Engine2D\Scene\BaseComponent.cpp" />
     <ClCompile Include="..\Engine2D\Scene\BaseNode.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\RenderElements\TCImageListRenderElement.cpp" />
     <ClCompile Include="..\Engine2D\Scene\RenderElements\TCRectRenderElement.cpp" />
     <ClCompile Include="..\Engine2D\Scene\RenderElements\TCSpriteRenderElement.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCAnimation.cpp" />
@@ -35,6 +41,7 @@
     <ClCompile Include="..\Engine2D\Scene\TCRectangleRGBA.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCSceneManager.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCSprite.cpp" />
+    <ClCompile Include="..\Engine2D\Scene\TCTextSprite.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCTouchComponent.cpp" />
     <ClCompile Include="..\Engine2D\Scene\TCTransform.cpp" />
     <ClCompile Include="..\Engine2D\Texture\TCTexture.cpp" />
@@ -66,6 +73,7 @@
   <ItemGroup>
     <ClInclude Include="..\Audio\AudioManager.h" />
     <ClInclude Include="..\Audio\TCAudioBuffer.h" />
+    <ClInclude Include="..\Audio\TCAudioLoader.h" />
     <ClInclude Include="..\Commons\TCCommon.h" />
     <ClInclude Include="..\Commons\TCMacros.h" />
     <ClInclude Include="..\Commons\tooold.h" />
@@ -82,20 +90,25 @@
     <ClInclude Include="..\Core\TCArrayList.h" />
     <ClInclude Include="..\Core\TCObject.h" />
     <ClInclude Include="..\Core\TCTime.h" />
+    <ClInclude Include="..\Debug\TCMemoryStatistics.h" />
+    <ClInclude Include="..\Debug\TCRenderStatistics.h" />
     <ClInclude Include="..\Engine2D\Camera\TCCamera.h" />
+    <ClInclude Include="..\Engine2D\Font\TCCustomFont.h" />
     <ClInclude Include="..\Engine2D\Render\TCPaint.h" />
-    <ClInclude Include="..\Engine2D\Render\TCBatchUtil.h" />
+    <ClInclude Include="..\Engine2D\Render\TCRenderUtil.h" />
     <ClInclude Include="..\Engine2D\Render\TCSceneRenderer.h" />
     <ClInclude Include="..\Engine2D\Scene\BaseNode.h" />
     <ClInclude Include="..\Engine2D\Scene\ParticleSystem\TCParticleSystem.h" />
     <ClInclude Include="..\Engine2D\Scene\RenderElements\TCRectRenderElement.h" />
     <ClInclude Include="..\Engine2D\Scene\RenderElements\TCRenderElement.h" />
     <ClInclude Include="..\Engine2D\Scene\RenderElements\TCSpriteRenderElement.h" />
+    <ClInclude Include="..\Engine2D\Scene\RenderElements\TCImageListRenderElement.h" />
     <ClInclude Include="..\Engine2D\Scene\TCAnimation.h" />
     <ClInclude Include="..\Engine2D\Scene\TCDrawer.h" />
     <ClInclude Include="..\Engine2D\Scene\TCRectangleRGBA.h" />
     <ClInclude Include="..\Engine2D\Scene\TCSceneManager.h" />
     <ClInclude Include="..\Engine2D\Scene\TCSprite.h" />
+    <ClInclude Include="..\Engine2D\Scene\TCTextSprite.h" />
     <ClInclude Include="..\Engine2D\Scene\TCTouchComponent.h" />
     <ClInclude Include="..\Engine2D\Scene\TCTransform.h" />
     <ClInclude Include="..\Engine2D\Texture\TCTexture.h" />
@@ -139,6 +152,12 @@
     <ClInclude Include="..\TCSingleton.h" />
     <ClInclude Include="..\third_part\libopenal\al.h" />
     <ClInclude Include="..\third_part\libopenal\alc.h" />
+    <ClInclude Include="..\third_part\win32\libmpg123\mpg123.h" />
+    <ClInclude Include="..\third_part\win32\libvorbis\codec.h" />
+    <ClInclude Include="..\third_part\win32\libvorbis\ogg.h" />
+    <ClInclude Include="..\third_part\win32\libvorbis\os_types.h" />
+    <ClInclude Include="..\third_part\win32\libvorbis\vorbisenc.h" />
+    <ClInclude Include="..\third_part\win32\libvorbis\vorbisfile.h" />
     <ClInclude Include="TCPrimitiveDrawer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -184,7 +203,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NEWCODE_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..;$(SolutionDir)\TestCode;$(SolutionDir)\TestCode\Commons;$(SolutionDir)\TestCode\Core;$(SolutionDir)\TestCode\Core\Math;$(SolutionDir)\TestCode\Engine2D;$(SolutionDir)\TestCode\Engine2D\Render;$(SolutionDir)\TestCode\Engine2D\Scene;$(SolutionDir)\TestCode\Engine2D\Texture;$(SolutionDir)\TestCode\Engine2D\Camera;$(SolutionDir)\TestCode\Engine2D\Touch;$(SolutionDir)\TestCode\GameApp;$(SolutionDir)\TestCode\OpenGL;$(SolutionDir)\TestCode\Platform;$(SolutionDir)\TestCode\Platform\JNI;$(SolutionDir)\TestCode\Resources;$(SolutionDir)\TestCode\Support;$(SolutionDir)\TestCode\Support\json\include;$(SolutionDir)\TestCode\Support\zip_support;$(SolutionDir)\TestCode\third_part\win32\libpng;$(SolutionDir)\TestCode\third_part\win32\OGLES;$(SolutionDir)\TestCode\zlib;$(SolutionDir)\TestCode\third_part\libopenal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(SolutionDir)\TestCode;$(SolutionDir)\TestCode\Commons;$(SolutionDir)\TestCode\Core;$(SolutionDir)\TestCode\Core\Math;$(SolutionDir)\TestCode\Engine2D;$(SolutionDir)\TestCode\Engine2D\Render;$(SolutionDir)\TestCode\Engine2D\Scene;$(SolutionDir)\TestCode\Engine2D\Texture;$(SolutionDir)\TestCode\Engine2D\Camera;$(SolutionDir)\TestCode\Engine2D\Touch;$(SolutionDir)\TestCode\GameApp;$(SolutionDir)\TestCode\OpenGL;$(SolutionDir)\TestCode\Platform;$(SolutionDir)\TestCode\Platform\JNI;$(SolutionDir)\TestCode\Resources;$(SolutionDir)\TestCode\Support;$(SolutionDir)\TestCode\Support\json\include;$(SolutionDir)\TestCode\Support\zip_support;$(SolutionDir)\TestCode\third_part\win32\libpng;$(SolutionDir)\TestCode\third_part\win32\OGLES;$(SolutionDir)\TestCode\zlib;$(SolutionDir)\TestCode\third_part\libopenal;$(SolutionDir)\TestCode\third_part\win32\libvorbis;$(SolutionDir)\TestCode\third_part\win32\libmpg123;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>
       </DisableSpecificWarnings>
     </ClCompile>

@@ -14,7 +14,10 @@ AudioSource::~AudioSource(){
 		_source=0;
 	}
 }
-void AudioSource::play(){
+void AudioSource::play(bool loop){
+	if(loop){
+		alSourcei(_source,AL_LOOPING,AL_TRUE);
+	}
 	alSourcePlay(_source);
 }
 AudioManager::AudioManager(){

@@ -1,6 +1,8 @@
 #include "TCSpriteRenderElement.h"
 #include "TCSceneRenderer.h"
 #include "TextureRegion.h"
+#include "TCRenderUtil.h"
+
 NS_TC_BEGIN
 
 static Vector2f vertex[4];
@@ -33,28 +35,19 @@ void SpriteRenderElement::onRender(const TCMatrix3x3& localToWorldMatrix,const P
 	if(!_region){
 		return;
 	}
-	float width=_region->width();
-	float height=_region->height();
+	float width=_region->width()*_part.width();
+	float height=_region->height()*_part.height();
+	
+	float left=-_region->width()/2+_part.xMin() *_region->width();
+	float bottom=-_region->height()/2+_part.yMin()*_region->height();
+
 	const Rect& rect=_region->region();
-	float left=-width/2+_part.xMin() *width;
-	float right=-width/2+_part.xMax()*width;
-	float bottom=-height/2+_part.yMin()*height;
-	float top=-height/2+_part.yMax()*height;
-	vertex[0]=localToWorldMatrix.mulWithPoint(Vector2f(left,bottom));
-	vertex[1]=localToWorldMatrix.mulWithPoint(Vector2f(right,bottom));
-	vertex[2]=localToWorldMatrix.mulWithPoint(Vector2f(right,top));
-	vertex[3]=localToWorldMatrix.mulWithPoint(Vector2f(left,top));
 
 	float uvLeft=rect.xMin()+_part.xMin()*rect.width();
-	float uvRight=rect.xMin()+_part.xMax()*rect.width();
 	float uvBottom=rect.yMin()+_part.yMin()*rect.height();
-	float uvTop=rect.yMin()+_part.yMax()*rect.height();
-	uvs[0]=Vector2f(uvLeft,uvBottom );
-	uvs[1]=Vector2f(uvRight,uvBottom);
-	uvs[2]=Vector2f(uvRight,uvTop);
-	uvs[3]=Vector2f(uvLeft,uvTop);
-
-	TCSceneRenderer::instance()->render(_region->textureID(),vertex,uvs,paint);
+	float uvWidth=rect.width()*_part.width();
+	float uvHeight=rect.height()*_part.height();
+	RenderUtil::renderImage(_region->textureID(),Rect(left,bottom,width,height),Rect(uvLeft,uvBottom,uvWidth,uvHeight),localToWorldMatrix,paint);
 
 }
 

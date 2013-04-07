@@ -1,0 +1,2 @@
+1、支持各种编码的string封装
+2、dataStream的封装

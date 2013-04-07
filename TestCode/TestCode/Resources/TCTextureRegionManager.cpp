@@ -26,6 +26,7 @@ TextureRegion* TextureRegionManager::get(const std::string& key){
 	if(it!=_regionMap.end()){
 		return it->second;
 	}
+	DebugLog("find %s failed.",key.c_str());
 	return NULL;
 }
 NS_TC_END

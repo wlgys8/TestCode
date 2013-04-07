@@ -1,7 +1,7 @@
 #include <string.h>
 #include "TCSceneRenderer.h"
 #include "GLES/gl.h"
-
+#include "Debug/TCRenderStatistics.h"
 NS_TC_BEGIN
 TCSceneRenderer::TCSceneRenderer():
 _size(0),
@@ -58,6 +58,9 @@ void TCSceneRenderer::drawBatch(const Paint& paint){
 	glEnableClientState(GL_COLOR_ARRAY);
 	glColorPointer(4,GL_UNSIGNED_BYTE,0,_colorBuffer);
 	glDrawElements(GL_TRIANGLES,6*size,GL_UNSIGNED_SHORT,_indicesBuffer);
+
+	RenderStatistics::_drawCalls++;
+	RenderStatistics::_batched+=size-1;
 }
 void TCSceneRenderer::flush(){
 	drawBatch(_lastPaint);
@@ -128,6 +131,7 @@ void TCSceneRenderer::renderSolidRect(Vector2f* vertex,const Paint& paint){
 	glEnableClientState(GL_COLOR_ARRAY);
 	glColorPointer(4,GL_UNSIGNED_BYTE,0,_colorBuffer);
 	glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT,rectIndices);
+	RenderStatistics::_drawCalls++;
 }
 
 TCSceneRenderer* TCSceneRenderer::instance(){

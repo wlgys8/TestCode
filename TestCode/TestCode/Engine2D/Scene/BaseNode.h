@@ -127,6 +127,11 @@ public:
 	void virtual invokeUpdate();
 
 	void removeSelf();
+
+private:
+	static int _count;
+public:
+	static int count();
 };
 
 NS_TC_END

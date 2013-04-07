@@ -66,6 +66,8 @@ public:
 
 	static AudioBuffer* loadAudioInAssets(const std::string& srcPath);
 
+	static unsigned char* loadDataStreamInAssets(const std::string& srcPath,unsigned long* size);
+
 private:
 
 };

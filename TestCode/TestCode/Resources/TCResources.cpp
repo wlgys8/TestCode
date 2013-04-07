@@ -97,4 +97,13 @@ AudioBuffer* TCResources::loadAudioInAssets(const std::string& srcPath){
 	
 }
 
+unsigned char* TCResources::loadDataStreamInAssets(const std::string& srcPath,unsigned long* size){
+#if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
+	return TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(),(_rootPath+srcPath.c_str()),size);
+#else
+	return TCFileUtils::getFileData((_rootPath+srcPath).c_str(),size);
+
+#endif
+}
+
 NS_TC_END

@@ -20,7 +20,7 @@ private:
 	bool _isPressed;
 public:
 
-	void onDispatchTouch(const TCTouchEvent& touchEvent);
+	bool onDispatchTouch(const TCTouchEvent& touchEvent);
 
 	inline void bindDelegateTarget(TCObject* target){
 		_delegateTarget=target;

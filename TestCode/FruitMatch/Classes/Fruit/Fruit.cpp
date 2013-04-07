@@ -21,10 +21,17 @@ Fruit::Fruit(FruitType type){
 		init("xigua.png");
 	}else if(type==FRUIT_YINTAO){
 		init("yingtao.png");
+	}else if(type==FRUIT_YINXING){
+		init("yinxing.png");
+	}else if(type==FRUIT_LI){
+		init("li.png");
+	}else if(type==FRUIT_SIYECAO){
+		init("siyecao.png");
 	}
 	_type=type;
 }
 
+static std::string _key;
 void Fruit::init(const std::string& key){
 	_sprite=Sprite::alloc(key)->retain<Sprite>();
 	TCTouchComponent* tc= TCTouchComponent::alloc();
@@ -32,11 +39,24 @@ void Fruit::init(const std::string& key){
 	tc->registerDownEvent(touchSelector(Fruit::onDown));
 	_sprite->scale(Vector2f(1.1f,1.1f));
 	_sprite->addComponent(tc);
+	_key=key;
 }
 Fruit* Fruit:: _pickedFruit=0;
 
 bool Fruit::onDown(const TCTouchEvent& evt){
-	DebugLog("down");
+	if(_type==FRUIT_SIYECAO){
+		FruitMap::instance()->refreshMap();
+		return true;
+	}
+	std::list<Vector2> path;
+	if(FruitMap::instance()->findAvaliablePair(&path)){
+		FruitMap::instance()->select(path.front());
+		FruitMap::instance()->select(path.back());
+		DebugLog("find");
+		return true;
+	}
+	DebugLog("do not find");
+	return true;
 	if(_sprite==0){
 		DebugLog("is null");
 	}
@@ -46,13 +66,19 @@ bool Fruit::onDown(const TCTouchEvent& evt){
 	if(ret!=0){//match failed
 		if(_pickedFruit){
 			_pickedFruit->sprite()->setLocalScale(Vector2f(1.1f,1.1f));
+			_pickedFruit->release();
 			_pickedFruit=0;
 		}
 		if(!_pickedFruit){
 			_pickedFruit=this;
+			_pickedFruit->retain();
 		}
 	}else{
-		_pickedFruit=0;
+		if(_pickedFruit){
+			_pickedFruit->release();
+			_pickedFruit=0;
+		}
+		
 	}
 
 	return true;

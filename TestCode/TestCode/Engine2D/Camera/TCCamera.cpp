@@ -19,19 +19,22 @@ Camera::~Camera(){
 	}
 }
 
-static void touchNode(BaseNode* node,TCTouchEvent& touchEvent,const TCMatrix3x3& worldToParentMatrix){
+static bool touchNode(BaseNode* node,TCTouchEvent& touchEvent,const TCMatrix3x3& worldToParentMatrix){
 	TCMatrix3x3 worldToLocal=TCMatrix3x3(node->parentToLocalMatrix());
 	worldToLocal.mul(worldToParentMatrix);
 	touchEvent.setLocalPosition(worldToLocal.mulWithPoint(touchEvent.position()));
 	vector<BaseNode*> list= node->childList();//a list copy
 	vector<BaseNode*>::reverse_iterator rv_it;
 	for(rv_it=list.rbegin();rv_it!=list.rend();rv_it++){
-		touchNode(*rv_it,touchEvent,worldToLocal);
+		if(touchNode(*rv_it,touchEvent,worldToLocal)){
+			return true;
+		}
 	}
 	TCTouchComponent* tc=(TCTouchComponent*)node->getComponment(ComponentTouch);
 	if(tc){
-		tc->onDispatchTouch(touchEvent);
+		return tc->onDispatchTouch(touchEvent);
 	}
+	return false;
 }
 
 void Camera::dispatchTouch(TCTouchEvent& event){

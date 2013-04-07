@@ -10,25 +10,55 @@
 #include "Enemy/EnemyManager.h"
 #include "TCRender.h"
 #include "Camera/TCCamera.h"
+#include "Debug/TCRenderStatistics.h"
+#include "Debug/TCMemoryStatistics.h"
+#include "ui/LevelMenu.h"
+#include "Map/MapDataManager.h"
 USING_NS_TC;
+
+CustomFont* TestAppDelegate::customFont=0;
 
 void TestAppDelegate::onCreateGame(){
 	TCResources::loadTextureRegions("fruit.png","fruit.txt",RGBA_8888);
-	Camera* ca= TCSceneManager::instance()->createCamera();
-	GameMain::instance()->initGame();
-	ca->setOrthof(480,854);
+	TCResources::loadTextureRegions("ui_levelMenu.png","ui_levelMenu.txt",RGBA_8888);
+	TCResources::loadAudioInAssets("helloworld.wav");
+	TCResources::loadAudioInAssets("background.wav");
+	MapDataManager::instance()->loadAllMapData();
 
+	customFont=CustomFont::alloc();
+	customFont->retain();
+	customFont->registerPair("0","num_0.png");
+	customFont->registerPair("1","num_1.png");
+	customFont->registerPair("2","num_2.png");
+	customFont->registerPair("3","num_3.png");
+	customFont->registerPair("4","num_4.png");
+	customFont->registerPair("5","num_5.png");
+	customFont->registerPair("6","num_6.png");
+	customFont->registerPair("7","num_7.png");
+	customFont->registerPair("8","num_8.png");
+	customFont->registerPair("9","num_9.png");
+
+	Camera* ca= TCSceneManager::instance()->createCamera();
+	ca->setOrthof(480,854);
+	GameMain::instance()->init();
+	LevelMenu::instance()->init();
+	LevelMenu::instance()->show();
 	BaseNode* n=BaseNode::alloc();
 	n->registerUpdate(this,updateSelector(TestAppDelegate::lateUpdate));
 	ca->rootNode()->addChild(n);
 }
 void TestAppDelegate::lateUpdate(){
-	
+//	DebugLog("batched=%d,drawCalls=%d,objectCount=%d,nodeCount=%d",
+//		RenderStatistics::batched(),
+//		RenderStatistics::drawCalls(),
+//		TCObject::count(),
+//		BaseNode::count()
+//		);
 }
 void TestAppDelegate::onResume(){
 
 }
-
+ 
 void TestAppDelegate::onDestroyGame(){
 
 
