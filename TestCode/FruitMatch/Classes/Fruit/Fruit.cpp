@@ -44,19 +44,6 @@ void Fruit::init(const std::string& key){
 Fruit* Fruit:: _pickedFruit=0;
 
 bool Fruit::onDown(const TCTouchEvent& evt){
-	if(_type==FRUIT_SIYECAO){
-		FruitMap::instance()->refreshMap();
-		return true;
-	}
-	std::list<Vector2> path;
-	if(FruitMap::instance()->findAvaliablePair(&path)){
-		FruitMap::instance()->select(path.front());
-		FruitMap::instance()->select(path.back());
-		DebugLog("find");
-		return true;
-	}
-	DebugLog("do not find");
-	return true;
 	if(_sprite==0){
 		DebugLog("is null");
 	}

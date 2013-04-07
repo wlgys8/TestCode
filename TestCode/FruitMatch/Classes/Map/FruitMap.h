@@ -26,7 +26,8 @@ public:
 
 	int select( Vector2 ij);//0:match,1=unmatch,2=wait for next select
 	void clearMap();
-	void resetMap(MapData* data=0);
+	void loadMap(MapData* data);
+	void resetMap();
 	void refreshMap();
 	bool findAvaliablePair(std::list<Vector2> *path);
 

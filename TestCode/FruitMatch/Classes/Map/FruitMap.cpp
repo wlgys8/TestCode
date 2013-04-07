@@ -19,13 +19,18 @@ FruitMap::FruitMap(){
 	_node=BaseNode::alloc();
 	_node->retain<BaseNode>();
 
-	_matchSound=AudioManager::instance()->createSource("helloworld.wav");
+	_matchSound=AudioManager::instance()->createSource("match.wav");
 	_matchSound->retain();
 	_data=0;
 }
-void FruitMap::resetMap(MapData* data){
+void FruitMap::loadMap(MapData* data){
 	clearMap();
 	generateMap(data);
+}
+
+void FruitMap::resetMap(){
+	clearMap();
+	generateMap(_data);
 }
 
 bool FruitMap::findAvaliablePair(std::list<Vector2> *path){
@@ -67,18 +72,15 @@ void FruitMap::generateMap(MapData* data){
 	if(_fruitMap){
 		clearMap();
 	}
+	if(_data){
+		_data->autoRelease();
+	}
 	if(data){
-		if(_data){
-			_data->autoRelease();
-		}
 		data->retain();
-		_data=data;
-		DebugLog("ref count:%d",_data->referCount());
-	}else{
-		if(!_data){
-			DebugLog("data is null");
-			return;
-		}
+	}
+	_data=data;
+	if(!_data){
+		return;
 	}
 	FruitType types[]={
 		FRUIT_APPLE,

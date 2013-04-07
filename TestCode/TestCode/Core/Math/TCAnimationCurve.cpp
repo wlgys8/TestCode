@@ -98,4 +98,14 @@ float AnimationCurve::evaluate(float time){
 	return 0;
 }
 
+AnimationCurve AnimationCurve::operator *(const Vector2f& scale)const {
+	AnimationCurve ret=*this;
+	KeyList::iterator it;
+	for(it=ret._interpolations.begin();it!=ret._interpolations.end();it++){
+		CurveKey& key= *it;
+		key.set(key.time()*scale.x,key.value()*scale.y);
+	}	
+	return ret;
+}
+
 NS_TC_END

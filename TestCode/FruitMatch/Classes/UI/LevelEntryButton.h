@@ -16,6 +16,7 @@ private:
 	bool onDown(const TCTouchEvent& evt);
 
 	TextSprite* _levelNum;
+	int _level;
 public:
 
 	void updateUI(int level);

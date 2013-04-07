@@ -6,7 +6,7 @@
 #include "TestAppDelegate.h"
 
 LevelEntryButton::LevelEntryButton(){
-	
+	_level=-1;
 }
 
 void LevelEntryButton::init(){
@@ -25,13 +25,14 @@ void LevelEntryButton::init(){
 }
 
 void LevelEntryButton::updateUI(int level){
+	_level=level-1;
 	_levelNum->setText(std::to_string((long double)level));
 	//DebugLog("%s","12"+level);
 }
 
 bool LevelEntryButton::onDown(const TCTouchEvent& evt){
 	LevelMenu::instance()->hide();
-	GameMain::instance()->show();
+	GameMain::instance()->show(_level);
 	return true; 
 //	return false;
 }

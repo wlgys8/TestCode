@@ -14,13 +14,25 @@ class Time{
 #endif
 private:
 	static float _deltaTime;
+	static float _timeScale;
 
 public:
 	static inline void set(float deltaTime){
 		_deltaTime=deltaTime;
 	}
 	static inline float deltaTime(){
+		return _deltaTime*_timeScale;
+	}
+
+	static inline float realDeltaTime(){
 		return _deltaTime;
+	}
+
+	static inline void setTimeScale(float scale){
+		_timeScale=scale;
+	}
+	static inline float timeScale(){
+		return _timeScale;
 	}
 };
 NS_TC_END

@@ -12,12 +12,15 @@
 #include "Audio/TCAudioLoader.h"
 #include "TCTextSprite.h"
 #include "Map/MapDataManager.h"
+#include "TCTime.h"
+#include "ui/PauseDialog.h"
 
 static AudioSource* _src;
 
 GameMain::GameMain(){
 	_background=0;
 	_src=0;
+	_pauseBtn=0;
 }
 void GameMain::init(){
 	if(_background){
@@ -33,15 +36,31 @@ void GameMain::init(){
 	_src->retain();
 	_src->play(true);
 
-	DebugLog("loaded");
-//	unsigned long size;
-//	unsigned char* stream=TCFileUtils::getFileData("background.wav",&size);
-//	AudioLoader::loadOgg(stream,size);
+	_pauseBtn=Sprite::alloc("pause_btn.png");
+	_pauseBtn->retain();
 
+	TCTouchComponent* tc=TCTouchComponent::alloc();
+	tc->bindDelegateTarget(this);
+	tc->registerDownEvent(touchSelector(GameMain::onPauseDown));
+	_pauseBtn->addComponent(tc);
+	_background->addChild(_pauseBtn);
+	_pauseBtn->setLocalPosition(Vector2f(-200,400));
+
+	PauseDialog::instance()->init();
 }
 
-void GameMain::show(){
-	FruitMap::instance()->resetMap(MapDataManager::instance()->find("test.txt"));
+void GameMain::resume(){
+	_background->setTouchIntercept(false);
+	_background->setUpdateIntercept(false);
+}
+bool GameMain::onPauseDown(const TCTouchEvent& evt){
+	_background->setTouchIntercept(true);
+	_background->setUpdateIntercept(true);
+	PauseDialog::instance()->show();
+	return true;
+}
+void GameMain::show(int lv){
+	FruitMap::instance()->loadMap(MapDataManager::instance()->find("level_"+std::to_string((long double)lv)+".txt"));
 	Camera* ca= TCSceneManager::instance()->findCamera("main");
 	ca->rootNode()->addChild(_background);
 }
@@ -59,4 +78,13 @@ GameMain::~GameMain(){
 		_background->release();
 		_background=0;
 	}
+	if(_pauseBtn){
+		_pauseBtn->release();
+		_pauseBtn=0;
+	}
+}
+
+GameMain* GameMain::instance(){
+	static GameMain _ret;
+	return &_ret;
 }

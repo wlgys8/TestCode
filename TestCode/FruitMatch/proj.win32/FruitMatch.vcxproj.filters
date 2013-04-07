@@ -101,6 +101,12 @@
     <ClCompile Include="..\Classes\Map\MapDataManager.cpp">
       <Filter>Classes\Map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\UI\PauseDialog.cpp">
+      <Filter>Classes\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\UI\AnimationData.cpp">
+      <Filter>Classes\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FruitMatch.h">
@@ -168,6 +174,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Map\MapDataManager.h">
       <Filter>Classes\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\PauseDialog.h">
+      <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UI\AnimationData.h">
+      <Filter>Classes\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
