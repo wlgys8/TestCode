@@ -3,6 +3,7 @@
 #include "TCMacros.h"
 #include "TCHermiteInterpolation3.h"
 #include <vector>
+#include "TCVector2f.h"
 NS_TC_BEGIN
 class CurveKey{
 private:
@@ -80,6 +81,8 @@ public:
 	//Smooth tangents are automatically computed for the key
 
 	void addKey(const CurveKey& key);
+
+	AnimationCurve operator* (const Vector2f& scale) const;
 
 	float evaluate(float time);
 

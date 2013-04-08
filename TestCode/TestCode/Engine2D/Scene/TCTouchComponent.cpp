@@ -4,7 +4,8 @@
 NS_TC_BEGIN
 
 TCTouchComponent::TCTouchComponent():_delegateDown(0),_delegateMove(0),_delegateUp(0),_delegateTarget(0),_delegateClick(0),
-_isPressed(false)
+_isPressed(false),
+_isTouchable(true)
 {
 
 }
@@ -30,7 +31,7 @@ bool TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
 	switch(touchEvent.type()){
 	case LeftMouseDown:
 		if(_delegateDown){
-			if(!_isPressed&&isContains){
+			if(isContains){
 				ret=(_delegateTarget->*_delegateDown)(touchEvent);
 				_isPressed=true;
 			}
@@ -40,11 +41,11 @@ bool TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
 		break;
 	case LeftMouseUp:
 		if(_delegateUp){
-			ret=(_delegateTarget->*_delegateUp)(touchEvent);
+			(_delegateTarget->*_delegateUp)(touchEvent);
 		}
 		if(_isPressed){
-			if(_delegateClick){
-				ret=(_delegateTarget->*_delegateClick)(touchEvent);
+			if(_delegateClick&&isContains){
+				(_delegateTarget->*_delegateClick)(touchEvent);
 			}
 			_isPressed=false;
 		}
@@ -57,7 +58,7 @@ bool TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
 		}
 		if(_isPressed&&!isContains){
 			if(_delegateUp){
-				ret=(_delegateTarget->*_delegateUp)(touchEvent);
+				(_delegateTarget->*_delegateUp)(touchEvent);
 				_isPressed=false;
 			}
 		}

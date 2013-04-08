@@ -20,6 +20,9 @@ Camera::~Camera(){
 }
 
 static bool touchNode(BaseNode* node,TCTouchEvent& touchEvent,const TCMatrix3x3& worldToParentMatrix){
+	if(node->isUpdateIntercepted()){
+		return false;
+	}
 	TCMatrix3x3 worldToLocal=TCMatrix3x3(node->parentToLocalMatrix());
 	worldToLocal.mul(worldToParentMatrix);
 	touchEvent.setLocalPosition(worldToLocal.mulWithPoint(touchEvent.position()));
@@ -30,6 +33,7 @@ static bool touchNode(BaseNode* node,TCTouchEvent& touchEvent,const TCMatrix3x3&
 			return true;
 		}
 	}
+	
 	TCTouchComponent* tc=(TCTouchComponent*)node->getComponment(ComponentTouch);
 	if(tc){
 		return tc->onDispatchTouch(touchEvent);
@@ -47,6 +51,9 @@ void Camera::dispatchTouch(TCTouchEvent& event){
 	touchNode(_rootNode,event,TCMatrix3x3());
 }
 static void updateNode(BaseNode* node){
+	if(node->isTouchIntercepted()){
+		return;
+	}
 	node->invokeUpdate();
 	vector<BaseNode*> list= node->childList();//a list copy
 	vector<BaseNode*>::iterator it;

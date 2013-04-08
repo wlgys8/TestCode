@@ -22,6 +22,7 @@ typedef void (TCObject::*delegateUpdate)();
 class BaseComponent;
 class AutoReleaseObject;
 class AnimationContainer;
+class TCTouchComponent;
 
 class BaseNode:public AutoReleaseObjectTemplete<BaseNode>{
 	friend class AutoReleaseObjectTemplete<BaseNode>;
@@ -37,10 +38,40 @@ private:
 	Vector2f _scale;
 	TCObject* _updateTarget;//weak ref
 	delegateUpdate _delegateUpdate;
+	bool _isUpdatable;
+	bool _isUpdateIntercepted;
+	bool _isTouchIntercepted;
 protected:
 	~BaseNode();
 	BaseNode();
 public:
+	//state
+
+	void inline setUpdatable(bool isUpdatable){
+		_isUpdatable=isUpdatable;
+	}
+	void inline setUpdateIntercept(bool isIntercept){
+		_isUpdateIntercepted=isIntercept;
+	}
+
+	void inline setTouchIntercept(bool isTouchIntercept){
+		_isTouchIntercepted=isTouchIntercept;
+	}
+	inline bool isUpdatable(){
+		return _isUpdatable;
+	}
+
+	bool inline isUpdateIntercepted(){
+		return _isUpdateIntercepted;
+	}
+
+	bool inline isTouchIntercepted(){
+		return _isTouchIntercepted;
+	}
+
+
+
+	//
 	void addChild(BaseNode* child);
 
 	BaseNode* getChild(int index);
@@ -55,6 +86,8 @@ public:
 	BaseComponent* getComponment(ComponentType type);
 
 	AnimationContainer* animation();
+
+	TCTouchComponent* ensureTouchObject();
 
 	void removeAllComponement();
 

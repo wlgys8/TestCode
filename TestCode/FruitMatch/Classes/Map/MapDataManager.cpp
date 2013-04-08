@@ -1,8 +1,9 @@
 #include "Map/MapDataManager.h"
 
-const int MAP_COUNT=1;
+const int MAP_COUNT=2;
 static std::string mapNames[MAP_COUNT]={
-	"test.txt"
+	"level_0.txt",
+	"level_1.txt"
 };
 
 MapDataManager::MapDataManager(){
@@ -11,7 +12,7 @@ MapDataManager::MapDataManager(){
 
 void MapDataManager::loadAllMapData(){
 	for(int i=0;i<MAP_COUNT;i++){
-		MapData* data=MapData::readFrom(mapNames[i]);
+		MapData* data=MapData::readFrom("levels/"+mapNames[i]);
 		if(data){
 			_dataMap[mapNames[i]]=data;
 			data->retain();
@@ -24,6 +25,7 @@ void MapDataManager::loadAllMapData(){
 }
 
 MapData* MapDataManager::find(const std::string& name){
+	DebugLog("find map data:%s",name.c_str());
 	DataMap::iterator it=_dataMap.find(name);
 	if(it!=_dataMap.end()){
 		return it->second;

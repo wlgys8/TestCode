@@ -6,16 +6,13 @@
 #include "Map/FruitMap.h"
 #include "ui/LevelMenu.h"
 #include "GameMain.h"
+#include "ui/AnimationData.h"
+
 GameOverDialog::GameOverDialog(){
 	_background=Sprite::alloc("gameover_win.png");
 	_background->retain();
-	AnimationCurve curvX;
-	curvX.setWrapMode(CurveWrapClamp);
-	curvX.addKey(0,0.0f);
-	curvX.addKey(0.2f,1.2f);
-	curvX.addKey(0.3f,0.9f);
-	curvX.addKey(0.4f,1);
-	ScaleAnimation* anim=ScaleAnimation::alloc(curvX,curvX,0.4f);
+	AnimationCurve curv=AnimationData::dialogShow*Vector2f(0.4f,1);
+	ScaleAnimation* anim=ScaleAnimation::alloc(curv,curv,0.4f);
 	_background->animation()->bind(anim);
 	_background->setLocalScale(Vector2f(0.1f,0.1f));
 

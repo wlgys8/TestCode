@@ -2,6 +2,8 @@
 #include "TCDrawer.h"
 #include "TCAnimation.h"
 #include "ParticleSystem/TCParticleSystem.h"
+#include "TCTouchComponent.h"
+
 NS_TC_BEGIN
 
 int BaseNode::_count=0;
@@ -9,7 +11,10 @@ int BaseNode::_count=0;
 BaseNode::BaseNode():_parent(NULL),_rotation(0),_position(Vector2f()),
 _updateTarget(0),
 _delegateUpdate(0),
-_scale(Vector2f(1,1))
+_scale(Vector2f(1,1)),
+_isUpdatable(true),
+_isTouchIntercepted(false),
+_isUpdateIntercepted(false)
 {
 	_childrenList=ArrayList();
 	_componentMap=map<ComponentType,BaseComponent*>();
@@ -80,11 +85,21 @@ BaseComponent* BaseNode::getComponment(ComponentType type){
 testCode::AnimationContainer* BaseNode::animation(){
 	map<ComponentType,BaseComponent*>::iterator it= _componentMap.find(ComponentAnimation);
 	if(it==_componentMap.end()){
-		AnimationContainer* ret=AnimationContainer::alloc()->retain<AnimationContainer>();
-		_componentMap[ComponentAnimation]=ret;
+		AnimationContainer* ret=AnimationContainer::alloc();
+		addComponent(ret);
 		return ret;
 	}
 	return (AnimationContainer*)(it->second);
+}
+
+TCTouchComponent* BaseNode::ensureTouchObject(){
+	map<ComponentType,BaseComponent*>::iterator it= _componentMap.find(ComponentTouch);
+	if(it==_componentMap.end()){
+		TCTouchComponent* ret=TCTouchComponent::alloc();
+		addComponent(ret);
+		return ret;
+	}
+	return (TCTouchComponent*)(it->second);
 }
 
 TCMatrix3x3 BaseNode::localToParentMatrix() const{
@@ -116,6 +131,9 @@ TCMatrix3x3 BaseNode::parentToLocalMatrix() const{
 ;
 }
 void BaseNode::invokeUpdate(){
+	if(!_isUpdatable){
+		return;
+	}
 	if(_updateTarget&&_delegateUpdate){
 		(_updateTarget->*_delegateUpdate)();
 	}

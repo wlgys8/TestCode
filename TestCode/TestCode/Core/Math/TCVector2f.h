@@ -23,7 +23,7 @@ public:
 	const Vector2 operator*(const Vector2& v2) const {
 		return Vector2(x*v2.x,y*v2.y);
 	}
-	const Vector2 operator*(const float& cons) const{
+	const Vector2 operator*(const int& cons) const{
 		return Vector2(x*cons,y*cons);
 	}
 	void operator+=(const Vector2& v){

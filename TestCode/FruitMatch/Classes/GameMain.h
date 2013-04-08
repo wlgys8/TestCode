@@ -3,20 +3,28 @@
 #include "TCSingleton.h"
 #include "Role/Role.h"
 #include "Map/MapData.h"
+#include "TCTouchComponent.h"
 USING_NS_TC;
 
-class GameMain:public TCSingleton<GameMain>{
-	friend class  TCSingleton<GameMain>;
+class GameMain:public TCObject{
 private:
 	~GameMain();
 	GameMain();
 	Sprite* _background;
+	Sprite* _pauseBtn;
+
+	bool onPauseDown(const TCTouchEvent& evt);
+
 public:
 	void init();
 
-	void show();
+	void show(int lv);
 
 	void hide();
+
+	void resume();
+
+	static GameMain* instance();
 
 
 

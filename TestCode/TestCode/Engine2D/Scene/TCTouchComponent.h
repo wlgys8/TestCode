@@ -18,8 +18,15 @@ private:
 private:
 	TCObject* _delegateTarget;//weak ref
 	bool _isPressed;
+	bool _isTouchable;
 public:
 
+	void setTouchable(const bool& isTouchable){
+		_isTouchable=isTouchable;
+	}
+	const bool& isTouchable() const{
+		return _isTouchable;
+	}
 	bool onDispatchTouch(const TCTouchEvent& touchEvent);
 
 	inline void bindDelegateTarget(TCObject* target){

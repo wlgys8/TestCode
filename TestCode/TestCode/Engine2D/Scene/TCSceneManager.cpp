@@ -1,7 +1,6 @@
 #include "TCSceneManager.h"
 #include "TCDrawer.h"
 #include "TCTouchComponent.h"
-#include "Camera/TCCamera.h"
 NS_TC_BEGIN
 
 TCSceneManager::TCSceneManager(){
