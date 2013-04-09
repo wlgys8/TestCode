@@ -57,7 +57,7 @@ gen/
 *.sln.docstates
 
 # Build results
-[Dd]ebug/
+
 [Rr]elease/
 [Dd]ebug.win32/
 [Rr]elease.win32/
