@@ -17,87 +17,10 @@ NS_TC_BEGIN
 	((unsigned)(unsigned char)(va) << 24)
 TCBitmap* TCPngUtils::decodePngByFileName(const char* fileName)
 {
-#if 1==1
-	unsigned long size;
-	unsigned char* buffer=TCFileUtils::getFileData(fileName,&size);
-	return TCPngUtils::decodePngByFileData(fileName,buffer,size);
-#else
-	char png_header[8];
-	png_structp png_ptr;
-	png_infop info_ptr;
-	int width, height, rowBytes;
-	png_byte color_type; 
-    png_byte bit_depth;
-    png_colorp palette; 
-
-    /* open file and test for it being a png */
-    FILE *file = fopen(fileName, "rb");
-	if(file==NULL){
-		 DebugLog("file not exist...:%s",fileName);
-		 return NULL;
-	}
-    fread(png_header, 1, 8, file);
-    if(png_sig_cmp((png_bytep)png_header, 0, 8))
-    {
-        DebugLog("Not a PNG file...");
-        fclose(file);
-		return NULL;
-    }
-    /* initialize structures for reading a png file */
-    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-    info_ptr = png_create_info_struct(png_ptr);
-    if (setjmp(png_jmpbuf(png_ptr)))
-    {
-        png_destroy_read_struct(&png_ptr, &info_ptr, png_infopp_NULL);
-        DebugLog("ReadPngFile: Failed to read the PNG file");
-        fclose(file);
-		return NULL;
-    }
-    //I/O initialisation methods
-    png_init_io(png_ptr, file);
-    png_set_sig_bytes(png_ptr, 8);  //Required!!!
-
-    /* **************************************************
-     * The high-level read interface in libpng (http://www.libpng.org/pub/png/libpng-1.2.5-manual.html)
-     * **************************************************
-     */
-		png_byte channels= png_get_channels(png_ptr,info_ptr);
-		DebugLog("channels:%d",channels);
-       png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_EXPAND, 0);
-       width = info_ptr->width;
-       height = info_ptr->height;
-		color_type = info_ptr->color_type;
-	   bit_depth = info_ptr->bit_depth;
-		DebugLog("%s:\n colorType:%d\nbitDepth:%d",fileName,color_type,bit_depth);
-		DebugLog("channels:%d",channels);
-       unsigned char* rgba = new unsigned char[width * height * 4];  //each pixel(RGBA) has 4 bytes
-       png_bytep* row_pointers = png_get_rows(png_ptr, info_ptr);
-
-       //unlike store the pixel data from top-left corner, store them from bottom-left corner for OGLES Texture drawing...
-       int pos = (width * height * 4) - (4 * width);
-       for(int row = 0; row < height; row++)
-       {
-          for(int col = 0; col < (4 * width); col += 4)
-          {
-              rgba[pos++] = row_pointers[row][col];        // red
-              rgba[pos++] = row_pointers[row][col + 1]; // green
-              rgba[pos++] = row_pointers[row][col + 2]; // blue
-              rgba[pos++] = row_pointers[row][col + 3]; // alpha
-          }
-          pos=(pos - (width * 4)*2); //move the pointer back two rows
-       }
-
-	TCBitmap* bitmap=new TCBitmap();
-
-	bitmap->_pixelData=rgba;
-	bitmap->_imageWidth=width;
-	bitmap->_imageHeight=height;
-
-    //clean up after the read, and free any memory allocated
-    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-    fclose(file);
-    return bitmap;
-#endif
+	DataStream* fileStream=TCFileUtils::getFileData(fileName);
+	TCBitmap* ret= TCPngUtils::decodePngByFileData(fileName,fileStream);
+	fileStream->releaseData();
+	return ret;
 }
 
 
@@ -116,7 +39,7 @@ void pngReaderCallback(png_structp png_ptr, png_bytep data, png_size_t length)
 	}
 }
 
-TCBitmap* TCPngUtils::decodePngByFileData(const char* filename,void * data, unsigned long dataLength)
+TCBitmap* TCPngUtils::decodePngByFileData(const char* filename,DataStream* fileStream)
 {
 	png_byte        header[8]   = {0}; 
 	png_structp     png_ptr     =   0;
@@ -127,6 +50,7 @@ TCBitmap* TCPngUtils::decodePngByFileData(const char* filename,void * data, unsi
 	do 
 	{
 		// png header len is 8 bytes
+		unsigned long dataLength=fileStream->size();
 		DebugLog("file size:%lu",dataLength);
 
 		if(dataLength<8){
@@ -134,7 +58,7 @@ TCBitmap* TCPngUtils::decodePngByFileData(const char* filename,void * data, unsi
 			break;
 		}
 		// check the data is png or not
-		memcpy(header, data, 8);
+		memcpy(header, fileStream->data(), 8);
 		if(png_sig_cmp(header, 0, 8)){
 			DebugLog("not png file");
 			break;
@@ -160,7 +84,7 @@ TCBitmap* TCPngUtils::decodePngByFileData(const char* filename,void * data, unsi
 
 		// set the read call back function
 		ImageSource imageSource;
-		imageSource.data    = (unsigned char*)data;
+		imageSource.data    = (unsigned char*)fileStream->data();
 		imageSource.size    = dataLength;
 		imageSource.offset  = 0;
 		png_set_read_fn(png_ptr, &imageSource, pngReaderCallback);
@@ -245,12 +169,21 @@ TCBitmap* TCPngUtils::decodePngByFileData(const char* filename,void * data, unsi
 
 TCBitmap* TCPngUtils::decodePngByFileNameInZip(const char* zipPath,const char* filename){
 
-	unsigned long filesize;
-	unsigned char* buffer=TCFileUtils::getFileDataFromZip(zipPath,filename,&filesize);
-	TCBitmap* ret=TCPngUtils::decodePngByFileData(filename,buffer,filesize);
-	if(ret==NULL){
-		DebugLog("init width pngData failed");
-		return NULL;
+	DataStream* buffer=0;
+	TCBitmap* ret=0;
+	do{
+		buffer=TCFileUtils::getFileDataFromZip(zipPath,filename);
+		if(!buffer){
+			break;
+		}
+		ret=TCPngUtils::decodePngByFileData(filename,buffer);
+		if(!ret){
+			DebugLog("init width pngData failed");
+			break;
+		}
+	}while(0);
+	if(buffer){
+		buffer->releaseData();
 	}
 	DebugLog("decode png file success!!");
 	return ret;

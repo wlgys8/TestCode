@@ -78,30 +78,28 @@ AudioBuffer* TCResources::loadAudioInAssets(const std::string& srcPath){
 	}
 #if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
 
-	unsigned long size;
-	unsigned char* fileStream=TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(),(_rootPath+srcPath).c_str(),&size);
+	DataStream* fileStream=TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(),(_rootPath+srcPath).c_str());
 	if(!fileStream){
 		DebugLog("load %s failed.",srcPath.c_str());
 		return 0;
 	}
-	return AudioManager::instance()->load(srcPath,fileStream,size);
+	return AudioManager::instance()->load(srcPath,fileStream);
 #else
-	unsigned long size;
-	unsigned char* fileStream=TCFileUtils::getFileData((_rootPath+srcPath).c_str(),&size);
+	DataStream* fileStream=TCFileUtils::getFileData((_rootPath+srcPath).c_str());
 	if(!fileStream){
 		DebugLog("load %s failed.",srcPath.c_str());
 		return 0;
 	}
-	return AudioManager::instance()->load(srcPath,fileStream,size);	
+	return AudioManager::instance()->load(srcPath,fileStream);	
 #endif
 	
 }
 
-unsigned char* TCResources::loadDataStreamInAssets(const std::string& srcPath,unsigned long* size){
+DataStream* TCResources::loadDataStreamInAssets(const std::string& srcPath){
 #if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
-	return TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(),(_rootPath+srcPath.c_str()),size);
+	return TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(),(_rootPath+srcPath).c_str());
 #else
-	return TCFileUtils::getFileData((_rootPath+srcPath).c_str(),size);
+	return TCFileUtils::getFileData((_rootPath+srcPath).c_str());
 
 #endif
 }

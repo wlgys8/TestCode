@@ -22,7 +22,11 @@
 		JNICALL																	  
 		Java_com_testcode_library_TCRender_nativeInit( JNIEnv* env,
 		jobject thiz,int width,int height );
-
+	JNIEXPORT
+		void
+		JNICALL																	  
+		Java_com_testcode_library_TCRender_nativeDestroy( JNIEnv* env,
+		jobject thiz );
 	JNIEXPORT
 		void
 		JNICALL																	  

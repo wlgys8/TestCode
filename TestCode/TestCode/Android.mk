@@ -65,21 +65,32 @@ Core/Math/TCMatrix3x3.cpp \
 Core/Math/TCRandom.cpp \
 Core/AutoReleaseObject.cpp \
 Core/AutoReleasePool.cpp \
+Core/TCObject.cpp \
 Core/TCTime.cpp \
+Debug/TCMemoryStatistics.cpp \
+Debug/TCRenderStatistics.cpp \
+Engine2D/Camera/TCCamera.cpp \
+Engine2D/Font/TCCustomFont.cpp \
 Engine2D/ParticleSystem/TCParticleSystem.cpp \
 Engine2D/Render/TCPaint.cpp \
+Engine2D/Render/TCRenderUtil.cpp \
 Engine2D/Render/TCSceneRenderer.cpp \
+Engine2D/Scene/RenderElements/TCImageListRenderElement.cpp \
+Engine2D/Scene/RenderElements/TCRectRenderElement.cpp \
+Engine2D/Scene/RenderElements/TCSpriteRenderElement.cpp \
 Engine2D/Scene/BaseNode.cpp \
 Engine2D/Scene/BaseComponent.cpp \
 Engine2D/Scene/TCAnimation.cpp \
 Engine2D/Scene/TCDrawer.cpp \
+Engine2D/Scene/TCRectangleRGBA.cpp \
 Engine2D/Scene/TCSceneManager.cpp \
 Engine2D/Scene/TCSprite.cpp \
+Engine2D/Scene/TCTextSprite.cpp \
 Engine2D/Scene/TCTouchComponent.cpp \
 Engine2D/Scene/TCTransform.cpp \
 Engine2D/Texture/TCTexture.cpp \
 Engine2D/Texture/TextureRegion.cpp \
-Engine2D/Camera/TCCamera.cpp \
+IO/DirectoryUtil.cpp \
 OpenGL/TCRender.cpp \
 Platform/JNI/JNIHelper.cpp \
 Platform/TCScreen.cpp \
@@ -91,6 +102,8 @@ Resources/TCPngUtils.cpp \
 Resources/TCResources.cpp \
 Resources/TCTexturePackerUtil.cpp \
 Resources/TCTextureRegionManager.cpp \
+Resources/UserPref.cpp \
+Resources/DataStream.cpp \
 Support/json/lib_json/json_reader.cpp \
 Support/json/lib_json/json_value.cpp \
 Support/json/lib_json/json_writer.cpp \
@@ -119,11 +132,13 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/ \
 						   $(LOCAL_PATH)/Engine2D \
 						   $(LOCAL_PATH)/Engine2D/Render \
 						   $(LOCAL_PATH)/Engine2D/Scene \
+						   $(LOCAL_PATH)/Engine2D/Scene/RenderElements \
 						   $(LOCAL_PATH)/Engine2D/Animation \
 						   $(LOCAL_PATH)/Engine2D/ParticleSystem \
 						   $(LOCAL_PATH)/Engine2D/Texture \
 						   $(LOCAL_PATH)/Engine2D/Touch \
 						   $(LOCAL_PATH)/Engine2D/Camera \
+						   $(LOCAL_PATH)/IO \
 						   $(LOCAL_PATH)/Resources \
 						   $(LOCAL_PATH)/Support \
 						   $(LOCAL_PATH)/Support/json/include \
@@ -149,11 +164,13 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
 						   $(LOCAL_PATH)/Engine2D \
 						   $(LOCAL_PATH)/Engine2D/Render \
 						   $(LOCAL_PATH)/Engine2D/Scene \
+						   $(LOCAL_PATH)/Engine2D/Scene/RenderElements \
 						   $(LOCAL_PATH)/Engine2D/Animation \
 						   $(LOCAL_PATH)/Engine2D/ParticleSystem \
 						   $(LOCAL_PATH)/Engine2D/Texture \
 						   $(LOCAL_PATH)/Engine2D/Touch \
 						   $(LOCAL_PATH)/Engine2D/Camera \
+						   $(LOCAL_PATH)/IO \
 						   $(LOCAL_PATH)/Resources \
 						   $(LOCAL_PATH)/Support \
 						   $(LOCAL_PATH)/Support/json/include \

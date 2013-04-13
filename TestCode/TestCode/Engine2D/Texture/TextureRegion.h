@@ -19,14 +19,14 @@ private:
 		_region=Rect(left,bottom,width,height);
 		_texture->retain();
 		_name=name;
-		DebugLog("new TextureRegion"); 
+	//	DebugLog("new TextureRegion"); 
 	}
 	~TextureRegion(){
 		if(_texture){
 			_texture->release();
 			_texture=0;
 		}
-		DebugLog("delete a TextureRegion");
+//		DebugLog("delete a TextureRegion");
 	}
 public: 
 	inline int textureID() const{

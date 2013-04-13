@@ -6,7 +6,7 @@
 #include "Map/ConnectionEffect.h"
 #include "Audio/AudioManager.h"
 #include "ui/GameOverDialog.h"
-
+#include "data/GameData.h"
 static int xsize=9;
 static int ysize=13;
 static int xoffset=-240;
@@ -37,7 +37,7 @@ bool FruitMap::findAvaliablePair(std::list<Vector2> *path){
 	if(!_fruitMap){
 		return false;
 	}
-	typedef std::map<FruitType,std::vector<Vector2>> TypeMap;
+	typedef std::map<FruitType,std::vector<Vector2> > TypeMap;
 	TypeMap typeMap;
 	
 	for (int i=0;i<ysize;i++)
@@ -209,6 +209,9 @@ int FruitMap::select(Vector2 ij){
 			_restFruitCount-=2;
 			if(_restFruitCount<2){
 				GameOverDialog::instance()->show(true);// over
+				if(GameData::currentLevel==GameData::unlockedLevel){
+					GameData::unlockedLevel++;
+				}
 				return 0;
 			}
 

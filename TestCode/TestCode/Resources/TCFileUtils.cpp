@@ -14,28 +14,28 @@ NS_TC_BEGIN
 	return ret;
 }
 
-unsigned char* TCFileUtils::getFileData(const char* filePath,unsigned long* size){
+DataStream* TCFileUtils::getFileData(const char* filePath){
 	unsigned char * retBuffer = NULL;
 	FILE *fp = fopen(filePath, "rb");
 	if(fp==NULL){
 		 DebugLog("open file failed:%s",filePath);
 		 return NULL;
 	}
+	unsigned long size=0;
 	fseek(fp,0,SEEK_END);
-	*size = ftell(fp);
+	size = ftell(fp);
 	fseek(fp,0,SEEK_SET);
-	retBuffer = new unsigned char[*size+1];
-	*size = fread(retBuffer,sizeof(unsigned char), *size,fp);
+	retBuffer = new unsigned char[size+1];
+	size = fread(retBuffer,sizeof(unsigned char), size,fp);
 	fclose(fp);
 	if(retBuffer==NULL){
 		DebugLog("read data from file failed:%s",filePath);
 		return NULL;
 	}
-	retBuffer[*size]=0;
-	return retBuffer;
+	retBuffer[size]=0;
+	return DataStream::alloc(retBuffer,size);
 }
-char* TCFileUtils::_apkPath="";
-unsigned char* TCFileUtils::getFileDataFromZip(const char* pszZipFilePath, const char* pszFileName, unsigned long * pSize){
+DataStream* TCFileUtils::getFileDataFromZip(const char* pszZipFilePath, const char* pszFileName){
 
 	unsigned char* buffer;
 	if(!check_exist_file(pszZipFilePath)){
@@ -72,17 +72,16 @@ unsigned char* TCFileUtils::getFileDataFromZip(const char* pszZipFilePath, const
 	DebugLog("open current file success!!");
 
 
-	buffer = new unsigned char[FileInfo.uncompressed_size];
+	buffer = new unsigned char[FileInfo.uncompressed_size+1];
 	int nSize = 0;
 	nSize = unzReadCurrentFile(zfile, buffer, FileInfo.uncompressed_size);
 	if(nSize != 0&&nSize != (int)FileInfo.uncompressed_size){
 		DebugLog("the file size is wrong");
 		return NULL;
 	}
-	*pSize = FileInfo.uncompressed_size;
 	unzCloseCurrentFile(zfile);
-
-	return buffer;
+	buffer[FileInfo.uncompressed_size]=0;
+	return DataStream::alloc(buffer,FileInfo.uncompressed_size);
 }
 
 NS_TC_END

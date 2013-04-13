@@ -43,15 +43,6 @@ static char* jstringTostring(JNIEnv* env, jstring jstr)
 			return 0;
 	}
 
-	JNIEXPORT
-		jint
-		JNICALL																	  
-		Java_com_zilch_testcode_TestCodeActivity_nativeSetRootPath( JNIEnv* env,
-		jobject thiz,jstring path){
-			char* pathStr=jstringTostring(env,path);
-			DebugLog(pathStr);
-			TCFileUtils::setApkPath(pathStr);
-	}
 
 NS_TC_END
 
@@ -64,6 +55,9 @@ TCApplication_android::TCApplication_android():_appDelegate(0){
 
 }
 
+void TCApplication_android::onDestroy(){
+	_appDelegate->onDestroyGame();
+}
 TCApplication_android::~TCApplication_android(){
 	_appDelegate->release();
 	_appDelegate=0;

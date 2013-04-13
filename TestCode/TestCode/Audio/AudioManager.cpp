@@ -54,7 +54,7 @@ AudioBuffer* AudioManager::find(const std::string& filePath){
 	return 0;
 }
 
-AudioBuffer* AudioManager::load(const std::string& filePath,unsigned char* fileStream,const unsigned long& size){
+AudioBuffer* AudioManager::load(const std::string& filePath,DataStream* stream){
 	AudioBuffer* ret=find(filePath);
 	if(ret!=0){
 		return ret;
@@ -62,7 +62,7 @@ AudioBuffer* AudioManager::load(const std::string& filePath,unsigned char* fileS
 	unsigned char* wavBuffer=0;
 	do{
 		BasicWAVEHeader header;
-		wavBuffer=loadwav(fileStream,size,&header);
+		wavBuffer=loadwav(stream->data(),stream->size(),&header);
 		if(!wavBuffer){
 			DebugLog("Load audio failed:%s",filePath.c_str());
 			break;
@@ -102,7 +102,7 @@ AudioSource* AudioManager::createSource(const std::string& filePath){
 	}
 	return createSource(buf);
 }
-unsigned char* AudioManager::loadwav(unsigned char* fileStream,const unsigned long& size,BasicWAVEHeader* header){
+unsigned char* AudioManager::loadwav(const unsigned char* fileStream,const unsigned long& size,BasicWAVEHeader* header){
 	size_t headerSize=sizeof(BasicWAVEHeader);
 	unsigned char* buffer=0;
 	do{
@@ -123,8 +123,6 @@ unsigned char* AudioManager::loadwav(unsigned char* fileStream,const unsigned lo
 				memcpy(buffer,fileStream,header->dataSize);
 		}
 	}while(0);
-
-	TC_DELETE_ARRAY(fileStream);
 
 	return buffer;
 }

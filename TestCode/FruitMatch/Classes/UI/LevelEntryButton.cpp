@@ -4,7 +4,7 @@
 #include "GameMain.h"
 #include "Data/GameData.h"
 #include "TestAppDelegate.h"
-
+#include <sstream>
 LevelEntryButton::LevelEntryButton(){
 	_level=-1;
 }
@@ -18,7 +18,7 @@ void LevelEntryButton::init(){
 	tc->registerDownEvent(touchSelector(LevelEntryButton::onDown));
 	addComponent(tc);
 
-	_levelNum=TextSprite::alloc();
+	_levelNum=TextSprite::alloc()->retain<TextSprite>();
 	_levelNum->setFont(TestAppDelegate::customFont);
 	_levelNum->setAlgin(AlginMiddle);
 	addChild(_levelNum);
@@ -26,8 +26,9 @@ void LevelEntryButton::init(){
 
 void LevelEntryButton::updateUI(int level){
 	_level=level-1;
-	_levelNum->setText(std::to_string((long double)level));
-	
+	std::stringstream sstrm;
+	sstrm << level;
+	_levelNum->setText( sstrm.str());
 	if(_level>GameData::unlockedLevel){
 		_levelNum->removeSelf();
 		addChild(_lock);

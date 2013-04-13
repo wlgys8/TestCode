@@ -34,7 +34,13 @@ JNIEXPORT
 		TCApplication_android::instance()->bindAppDelegate(d);
 		TCApplication_android::instance()->onCreateGame();
 }
-
+JNIEXPORT
+	void
+	JNICALL																	  
+	Java_com_testcode_library_TCRender_nativeDestroy( JNIEnv* env,
+	jobject thiz ){
+		TCApplication_android::instance()->onDestroy();
+}
 static TCTouchEvent evt=TCTouchEvent();
 static bool touched=false;
 JNIEXPORT
@@ -48,6 +54,7 @@ JNIEXPORT
 			touched=false;
 		}
 }
+
 JNIEXPORT
 	void
 	JNICALL																	  

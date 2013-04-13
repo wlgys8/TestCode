@@ -2,11 +2,10 @@
 #include "TCResources.h"
 #include <iostream>
 #include<sstream>
+#include "DataStream.h"
 void MapData::init(const std::string& filename){
-	unsigned long size;
-	unsigned char* dataStream=TCResources::loadDataStreamInAssets(filename,&size);
-	std::istringstream ins((char*)dataStream);
-	
+	DataStream* dataStream=TCResources::loadDataStreamInAssets(filename);
+	std::istringstream ins((char*)dataStream->data());
 	std::string str;
 	std::getline(ins,str);//get first line
 
@@ -51,7 +50,6 @@ _xsize(0),
 }
 
 MapData::~MapData(){
-	DebugLog("release map data");
 	if(_data){
 		for(int i=0;i<_ysize;i++){
 			TC_DELETE_ARRAY(_data[i]);

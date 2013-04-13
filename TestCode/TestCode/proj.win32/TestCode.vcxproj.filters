@@ -82,6 +82,9 @@
     <Filter Include="Engine2D\Font">
       <UniqueIdentifier>{7da365d9-2eb9-452f-b9dc-86c25b498185}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{6d10a99c-d543-4c46-934b-67810fc86f30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Commons\TCCommon.cpp">
@@ -257,6 +260,15 @@
     </ClCompile>
     <ClCompile Include="..\Engine2D\Font\TCCustomFont.cpp">
       <Filter>Engine2D\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Resources\DataStream.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Resources\UserPref.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\IO\DirectoryUtil.cpp">
+      <Filter>IO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -438,12 +450,6 @@
     <ClInclude Include="..\Core\Math\TCColorCurve.h">
       <Filter>Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="..\third_part\libopenal\al.h">
-      <Filter>Support\openal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third_part\libopenal\alc.h">
-      <Filter>Support\openal</Filter>
-    </ClInclude>
     <ClInclude Include="..\Audio\AudioManager.h">
       <Filter>Audio</Filter>
     </ClInclude>
@@ -467,9 +473,6 @@
     </ClInclude>
     <ClInclude Include="..\Core\TCObject.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="TCPrimitiveDrawer.h">
-      <Filter>Engine2D\Scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine2D\Scene\RenderElements\TCRenderElement.h">
       <Filter>Engine2D\Scene\RenderElements</Filter>
@@ -521,6 +524,21 @@
     </ClInclude>
     <ClInclude Include="..\Engine2D\Font\TCCustomFont.h">
       <Filter>Engine2D\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\win32\libopenal\al.h">
+      <Filter>Support\openal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_part\win32\libopenal\alc.h">
+      <Filter>Support\openal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resources\DataStream.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Resources\UserPref.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\IO\DirectoryUtil.h">
+      <Filter>IO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

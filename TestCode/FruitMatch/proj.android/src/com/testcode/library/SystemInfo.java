@@ -25,5 +25,13 @@ public class SystemInfo {
 		Log.e("apk path", apkFilePath);
 		return apkFilePath;
 	}
+	
+	public static String getCacheDir(){
+		return TestCodeActivity.currentActivity().getCacheDir().getPath();
+	}
+	
+	public static String getFileDir(){
+		return TestCodeActivity.currentActivity().getFilesDir().getPath();
+	}
 
 }

@@ -53,6 +53,8 @@ public:
 	void onCreateGame(){
 		_appDelegate->onCreateGame();
 	}
+
+	void onDestroy();
 };
 
 NS_TC_END

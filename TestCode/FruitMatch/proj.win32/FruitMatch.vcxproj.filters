@@ -53,9 +53,6 @@
     <ClCompile Include="..\Classes\TestAppDelegate.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\TestO.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Map\FruitMap.cpp">
       <Filter>Classes\Map</Filter>
     </ClCompile>
@@ -122,9 +119,6 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TestAppDelegate.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TestO.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Map\FruitMap.h">

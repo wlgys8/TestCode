@@ -46,6 +46,7 @@
     <ClCompile Include="..\Engine2D\Scene\TCTransform.cpp" />
     <ClCompile Include="..\Engine2D\Texture\TCTexture.cpp" />
     <ClCompile Include="..\Engine2D\Texture\TextureRegion.cpp" />
+    <ClCompile Include="..\IO\DirectoryUtil.cpp" />
     <ClCompile Include="..\OpenGL\TCEGLView.cpp" />
     <ClCompile Include="..\OpenGL\TCRender.cpp" />
     <ClCompile Include="..\Platform\Android\TCAndroidClass.cpp" />
@@ -56,12 +57,14 @@
     <ClCompile Include="..\Platform\TCApplication_android.cpp" />
     <ClCompile Include="..\Platform\TCApplication_win32.cpp" />
     <ClCompile Include="..\Platform\TCScreen.cpp" />
+    <ClCompile Include="..\Resources\DataStream.cpp" />
     <ClCompile Include="..\Resources\TCBitmap.cpp" />
     <ClCompile Include="..\Resources\TCFileUtils.cpp" />
     <ClCompile Include="..\Resources\TCPngUtils.cpp" />
     <ClCompile Include="..\Resources\TCResources.cpp" />
     <ClCompile Include="..\Resources\TCTexturePackerUtil.cpp" />
     <ClCompile Include="..\Resources\TCTextureRegionManager.cpp" />
+    <ClCompile Include="..\Resources\UserPref.cpp" />
     <ClCompile Include="..\Support\json\lib_json\json_reader.cpp" />
     <ClCompile Include="..\Support\json\lib_json\json_value.cpp" />
     <ClCompile Include="..\Support\json\lib_json\json_writer.cpp" />
@@ -115,6 +118,7 @@
     <ClInclude Include="..\Engine2D\Texture\TextureRegion.h" />
     <ClInclude Include="..\Engine2D\Touch\TCTouchEvent.h" />
     <ClInclude Include="..\GameApp\AppDelegate.h" />
+    <ClInclude Include="..\IO\DirectoryUtil.h" />
     <ClInclude Include="..\OpenGL\TCEGLView.h" />
     <ClInclude Include="..\OpenGL\tcgles.h" />
     <ClInclude Include="..\OpenGL\TCRender.h" />
@@ -129,12 +133,14 @@
     <ClInclude Include="..\Platform\TCApplication_android.h" />
     <ClInclude Include="..\Platform\TCApplication_win32.h" />
     <ClInclude Include="..\Platform\TCPlatform.h" />
+    <ClInclude Include="..\Resources\DataStream.h" />
     <ClInclude Include="..\Resources\TCBitmap.h" />
     <ClInclude Include="..\Resources\TCFileUtils.h" />
     <ClInclude Include="..\Resources\TCPngUtils.h" />
     <ClInclude Include="..\Resources\TCResources.h" />
     <ClInclude Include="..\Resources\TCTexturePackerUtil.h" />
     <ClInclude Include="..\Resources\TCTextureRegionManager.h" />
+    <ClInclude Include="..\Resources\UserPref.h" />
     <ClInclude Include="..\Support\json\include\json\autolink.h" />
     <ClInclude Include="..\Support\json\include\json\config.h" />
     <ClInclude Include="..\Support\json\include\json\features.h" />
@@ -150,15 +156,14 @@
     <ClInclude Include="..\Support\zip_support\unzip.h" />
     <ClInclude Include="..\Support\zip_support\zip.h" />
     <ClInclude Include="..\TCSingleton.h" />
-    <ClInclude Include="..\third_part\libopenal\al.h" />
-    <ClInclude Include="..\third_part\libopenal\alc.h" />
     <ClInclude Include="..\third_part\win32\libmpg123\mpg123.h" />
+    <ClInclude Include="..\third_part\win32\libopenal\al.h" />
+    <ClInclude Include="..\third_part\win32\libopenal\alc.h" />
     <ClInclude Include="..\third_part\win32\libvorbis\codec.h" />
     <ClInclude Include="..\third_part\win32\libvorbis\ogg.h" />
     <ClInclude Include="..\third_part\win32\libvorbis\os_types.h" />
     <ClInclude Include="..\third_part\win32\libvorbis\vorbisenc.h" />
     <ClInclude Include="..\third_part\win32\libvorbis\vorbisfile.h" />
-    <ClInclude Include="TCPrimitiveDrawer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6B9A1E84-2A69-4962-9B71-7479CB3E57CF}</ProjectGuid>

@@ -100,7 +100,6 @@
     <ClCompile Include="..\Classes\Map\MapDataManager.cpp" />
     <ClCompile Include="..\Classes\Role\Role.cpp" />
     <ClCompile Include="..\Classes\TestAppDelegate.cpp" />
-    <ClCompile Include="..\Classes\TestO.cpp" />
     <ClCompile Include="..\Classes\UI\AnimationData.cpp" />
     <ClCompile Include="..\Classes\UI\GameOverDialog.cpp" />
     <ClCompile Include="..\Classes\UI\LevelEntryButton.cpp" />
@@ -125,7 +124,6 @@
     <ClInclude Include="..\Classes\Role\Role.h" />
     <ClInclude Include="..\Classes\Role\RoleXigua.h" />
     <ClInclude Include="..\Classes\TestAppDelegate.h" />
-    <ClInclude Include="..\Classes\TestO.h" />
     <ClInclude Include="..\Classes\UI\AnimationData.h" />
     <ClInclude Include="..\Classes\UI\GameOverDialog.h" />
     <ClInclude Include="..\Classes\UI\LevelEntryButton.h" />

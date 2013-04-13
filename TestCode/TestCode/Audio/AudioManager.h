@@ -9,6 +9,7 @@
 #include "TCMacros.h"
 #include "TCSingleton.h"
 #include "Audio/TCAudioBuffer.h"
+#include "DataStream.h"
 NS_TC_BEGIN
 typedef struct {
 	char  riff[4];//'RIFF'
@@ -50,12 +51,12 @@ private:
 	ALCdevice* _device;
 	ALCcontext* _context;
 	BufferMap _bufferMap;
-	unsigned char* loadwav(unsigned char*  fileStream,const unsigned long& size,BasicWAVEHeader* header);
+	unsigned char* loadwav(const unsigned char*  fileStream,const unsigned long& size,BasicWAVEHeader* header);
 	unsigned char* loadwav(const char* filename,BasicWAVEHeader* header);
 	ALuint createBufferFromWave(unsigned char* data,BasicWAVEHeader header);
 
 public:
-	AudioBuffer* load(const std::string& filePath,unsigned char* fileStream,const unsigned long& size);
+	AudioBuffer* load(const std::string& filePath,DataStream* fileStream);
 	AudioSource* createSource(const AudioBuffer* buffer);
 	AudioSource* createSource(const std::string& filePath);
 	void unload(const std::string& filePath);

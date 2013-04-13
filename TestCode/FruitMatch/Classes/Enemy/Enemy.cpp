@@ -5,7 +5,7 @@ Enemy::Enemy(){
 	Sprite::initWithImageName("enemy_snake.png");
 }
 
-static float speed=400.0f/10;
+static float speed=400.0f/60;
 
 void Enemy::reset(){
 	setLocalPosition(Vector2f(200,370));

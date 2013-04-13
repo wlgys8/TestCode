@@ -10,10 +10,19 @@ class AndroidSystemInfo{
 
 private:
 	static std::string _sourceDir;
+	static std::string _cacheDir;
+	static std::string _fileDir;
 public:
 	static inline const std::string& sourceDir(){
 		return _sourceDir;
 	}
+	static inline const std::string& cacheDir(){
+		return _cacheDir;
+	}
+	static inline const std::string& fileDir(){
+		return _fileDir;
+	}
+
 	static void init();
 
 };

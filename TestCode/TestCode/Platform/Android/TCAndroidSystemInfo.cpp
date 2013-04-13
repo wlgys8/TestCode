@@ -20,14 +20,23 @@ extern "C" {
 
 NS_TC_BEGIN
 std::string AndroidSystemInfo::_sourceDir;
+std::string AndroidSystemInfo::_cacheDir;
+std::string AndroidSystemInfo::_fileDir;
 
-void AndroidSystemInfo::init(){
-	jstring str=JNIHelper::callStaticMethod<jstring>("com/testcode/library/SystemInfo","getSourceDir","Ljava/lang/String;");
+static std::string callGetString_(const std::string& methodName){
+	jstring str=JNIHelper::callStaticMethod<jstring>("com/testcode/library/SystemInfo",methodName.c_str(),"Ljava/lang/String;");
 	const char* ret=JNIHelper::getEnv()->GetStringUTFChars(str,0);
-	_sourceDir=std::string(ret);
+	std::string rets=std::string(ret);
 	JNIHelper::getEnv()->ReleaseStringUTFChars(str,ret);
+	return rets;
+}
+void AndroidSystemInfo::init(){
+	_sourceDir=callGetString_("getSourceDir");
+	_cacheDir=callGetString_("getCacheDir");
+	_fileDir=callGetString_("getFileDir");
 	DebugLog("[AndroidSystemInfo]sourceDir=%s",_sourceDir.c_str());
-
+	DebugLog("[AndroidSystemInfo]cacheDir=%s",_cacheDir.c_str());
+	DebugLog("[AndroidSystemInfo]fileDir=%s",_fileDir.c_str());
 }
 
 NS_TC_END

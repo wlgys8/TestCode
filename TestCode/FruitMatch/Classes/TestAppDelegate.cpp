@@ -14,6 +14,7 @@
 #include "ui/LevelMenu.h"
 #include "Map/MapDataManager.h"
 #include "ui/AnimationData.h"
+#include "data/GameData.h"
 USING_NS_TC;
 
 CustomFont* TestAppDelegate::customFont=0;
@@ -26,7 +27,7 @@ void TestAppDelegate::onCreateGame(){
 	TCResources::loadAudioInAssets("background.wav");
 	MapDataManager::instance()->loadAllMapData();
 	AnimationData::init();
-
+	GameData::load();
 	customFont=CustomFont::alloc();
 	customFont->retain();
 	customFont->registerPair("0","num_0.png");
@@ -60,12 +61,10 @@ void TestAppDelegate::lateUpdate(){
 void TestAppDelegate::onResume(){
 
 }
- 
-void TestAppDelegate::onDestroyGame(){
-
-
-}
-
 void TestAppDelegate::onPause(){
 
 }
+void TestAppDelegate::onDestroyGame(){
+	GameData::save();
+}
+

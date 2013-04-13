@@ -4,21 +4,20 @@
 #endif
 NS_TC_BEGIN
 bool TCTexturePackerUtil::loadJsonFile(std::string path,TexturePacker& packerOutput){
-	unsigned long size;
-	unsigned char* buffer= 0;
+	DataStream* dataStream= 0;
 #if TC_TARGET_PLATFORM==TC_PLATFORM_ANDROID
-	buffer= TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(), path.c_str(),&size);
+	dataStream= TCFileUtils::getFileDataFromZip(AndroidSystemInfo::sourceDir().c_str(), path.c_str());
 #else
-	buffer= TCFileUtils::getFileData(path.c_str(),&size);
+	dataStream= TCFileUtils::getFileData(path.c_str());
 #endif
 	
 
 	bool ret=false;
-	if(buffer){
+	if(dataStream){
 		do{
 			Json::Reader reader;
 			Json::Value root;
-			if(!reader.parse((char*)buffer,root,false)){
+			if(!reader.parse((char*)dataStream->data(),root,false)){
 				break;
 			}
 			TPMeta& meta=packerOutput.meta;
@@ -47,8 +46,9 @@ bool TCTexturePackerUtil::loadJsonFile(std::string path,TexturePacker& packerOut
 			}
 			ret=true;
 		}while(0);
+		dataStream->releaseData();//release right now
 	}
-	TC_DELETE_ARRAY(buffer);
+	
 	return ret;
 }
 NS_TC_END

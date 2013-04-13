@@ -8,6 +8,7 @@ public:
 	static int currentLevel;
 	static int unlockedLevel;
 
-
+	static void load();
+	static void save();
 };
 #endif

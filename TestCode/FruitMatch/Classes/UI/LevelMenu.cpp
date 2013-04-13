@@ -13,7 +13,8 @@ void LevelMenu::init(){
 	_root=Sprite::alloc("level_menu.png");
 	_root->retain();
 
-	_buttonList.reserve(6*4);
+//	_buttonList.reserve(6*4);
+
 	for(int i=0;i<6;i++){
 		for(int j=0;j<4;j++){
 			int x=-165+110*j;
@@ -35,7 +36,7 @@ void LevelMenu::show(){
 	int i=1;
 	DebugLog("%d",_buttonList.size());
 	for(it=_buttonList.begin();it!=_buttonList.end();it++){
-		//(*it)->updateUI(i++);
+		(*it)->updateUI(i++);
 	}
 }
 

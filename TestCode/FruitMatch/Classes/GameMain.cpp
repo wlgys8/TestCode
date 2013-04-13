@@ -15,6 +15,7 @@
 #include "ui/PauseDialog.h"
 #include "data/GameData.h"
 #include "ui/GameOverDialog.h"
+#include <sstream>
 static AudioSource* _src;
 
 GameMain::GameMain(){
@@ -96,14 +97,13 @@ void GameMain::reset(){
 }
 
 void GameMain::loadTo(int lv){
-	FruitMap::instance()->loadMap(MapDataManager::instance()->find("level_"+std::to_string((long double)lv)+".txt"));
+	std::stringstream sstrm;
+	sstrm << lv;
+	FruitMap::instance()->loadMap(MapDataManager::instance()->find("level_"+ sstrm.str()+".txt"));
 	_enemy->reset();
 	_grass->setPart(Rect(0,0,1,1));
 	_grass->setUpdatable(true);
 	GameData::currentLevel=lv;
-	if(lv>GameData::unlockedLevel){
-		GameData::unlockedLevel=lv;
-	}
 }
 GameMain::~GameMain(){
 	if(_src){

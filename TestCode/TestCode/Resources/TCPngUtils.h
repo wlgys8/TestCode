@@ -1,7 +1,7 @@
 #ifndef __TC_PNG_UTILS_H__
 #define __TC_PNG_UTILS_H__
 #include "TCBitmap.h"
-
+#include "DataStream.h"
 NS_TC_BEGIN
 
 typedef struct {
@@ -14,7 +14,7 @@ class TCPngUtils
 {
 public:
 	static TCBitmap* decodePngByFileName(const char* filename);
-	static TCBitmap* decodePngByFileData(const char* bitmapName,void * pData, unsigned long pDatalen);
+	static TCBitmap* decodePngByFileData(const char* bitmapName,DataStream * pData);
 	static TCBitmap* decodePngByFileNameInZip(const char* zipPath,const char* filename);
 	
 };
