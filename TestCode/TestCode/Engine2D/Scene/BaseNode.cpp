@@ -14,7 +14,8 @@ _delegateUpdate(0),
 _scale(Vector2f(1,1)),
 _isUpdatable(true),
 _isTouchIntercepted(false),
-_isUpdateIntercepted(false)
+_isUpdateIntercepted(false),
+_isActive(true)
 {
 	_childrenList=ArrayList();
 	_componentMap=map<ComponentType,BaseComponent*>();

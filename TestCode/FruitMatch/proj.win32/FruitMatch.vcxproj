@@ -87,14 +87,15 @@
     <ResourceCompile Include="FruitMatch.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\Data\GameData.cpp" />
     <ClCompile Include="..\Classes\Enemy\Enemy.cpp" />
-    <ClCompile Include="..\Classes\Enemy\EnemyManager.cpp" />
     <ClCompile Include="..\Classes\Fruit\Bullet.cpp" />
     <ClCompile Include="..\Classes\Fruit\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\Fruit\Fruit.cpp" />
     <ClCompile Include="..\Classes\GameMain.cpp" />
     <ClCompile Include="..\Classes\Map\ConnectionEffect.cpp" />
     <ClCompile Include="..\Classes\Map\FruitMap.cpp" />
+    <ClCompile Include="..\Classes\Map\Grass.cpp" />
     <ClCompile Include="..\Classes\Map\MapData.cpp" />
     <ClCompile Include="..\Classes\Map\MapDataManager.cpp" />
     <ClCompile Include="..\Classes\Role\Role.cpp" />
@@ -110,14 +111,15 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\Data\GameData.h" />
     <ClInclude Include="..\Classes\Enemy\Enemy.h" />
-    <ClInclude Include="..\Classes\Enemy\EnemyManager.h" />
     <ClInclude Include="..\Classes\Fruit\Bullet.h" />
     <ClInclude Include="..\Classes\Fruit\BulletFactory.h" />
     <ClInclude Include="..\Classes\Fruit\Fruit.h" />
     <ClInclude Include="..\Classes\GameMain.h" />
     <ClInclude Include="..\Classes\Map\ConnectionEffect.h" />
     <ClInclude Include="..\Classes\Map\FruitMap.h" />
+    <ClInclude Include="..\Classes\Map\Grass.h" />
     <ClInclude Include="..\Classes\Map\MapData.h" />
     <ClInclude Include="..\Classes\Map\MapDataManager.h" />
     <ClInclude Include="..\Classes\Role\Role.h" />

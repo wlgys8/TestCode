@@ -102,7 +102,7 @@ bool PauseDialog::onReplayUp(const TCTouchEvent& evt){
 bool PauseDialog::onReplayClick(const TCTouchEvent& evt){
 	hide();
 	GameMain::instance()->resume();
-	FruitMap::instance()->resetMap();
+	GameMain::instance()->reset();
 	return true;
 }
 void PauseDialog::show(){

@@ -16,6 +16,7 @@ private:
 	bool onDown(const TCTouchEvent& evt);
 
 	TextSprite* _levelNum;
+	Sprite* _lock;
 	int _level;
 public:
 

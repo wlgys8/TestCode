@@ -2,7 +2,7 @@
 #include "TCTouchComponent.h"
 #include "ui/LevelMenu.h"
 #include "GameMain.h"
-
+#include "Data/GameData.h"
 #include "TestAppDelegate.h"
 
 LevelEntryButton::LevelEntryButton(){
@@ -11,8 +11,8 @@ LevelEntryButton::LevelEntryButton(){
 
 void LevelEntryButton::init(){
 	Sprite::initWithImageName("level_item.png");
-//	Sprite* lock=Sprite::alloc("level_lock.png");
-//	addChild(lock);
+	_lock=Sprite::alloc("level_lock.png")->retain<Sprite>();;
+	addChild(_lock);
 	TCTouchComponent* tc=TCTouchComponent::alloc();
 	tc->bindDelegateTarget(this);
 	tc->registerDownEvent(touchSelector(LevelEntryButton::onDown));
@@ -27,6 +27,16 @@ void LevelEntryButton::init(){
 void LevelEntryButton::updateUI(int level){
 	_level=level-1;
 	_levelNum->setText(std::to_string((long double)level));
+	
+	if(_level>GameData::unlockedLevel){
+		_levelNum->removeSelf();
+		addChild(_lock);
+		ensureTouchObject()->setTouchable(false);
+	}else{
+		_lock->removeSelf();
+		addChild(_levelNum);
+		ensureTouchObject()->setTouchable(true);
+	}
 	//DebugLog("%s","12"+level);
 }
 

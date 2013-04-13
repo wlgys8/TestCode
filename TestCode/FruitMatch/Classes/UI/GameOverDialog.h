@@ -14,14 +14,17 @@ private:
 	Sprite* _background;
 	Sprite* _restart;
 	Sprite* _menu;
+	Sprite* _next;
 private:
 	GameOverDialog();
 	~GameOverDialog();
 
 	bool onRestartClick(const TCTouchEvent& evt);
 	bool onMenuClick(const TCTouchEvent& evt);
+	bool onNextClick(const TCTouchEvent& evt);
+	bool onMaskDown(const TCTouchEvent& evt);
 public:
-	void show();
+	void show(bool win);
 	void hide();
 	static GameOverDialog* instance();
 

@@ -6,7 +6,6 @@
 #include "Enemy/Enemy.h"
 #include "ParticleSystem/TCParticleSystem.h"
 #include "Map/ConnectionEffect.h"
-#include "Enemy/EnemyManager.h"
 #include "Audio/AudioManager.h"
 #include "Camera/TCCamera.h"
 #include "Audio/TCAudioLoader.h"
@@ -14,7 +13,8 @@
 #include "Map/MapDataManager.h"
 #include "TCTime.h"
 #include "ui/PauseDialog.h"
-
+#include "data/GameData.h"
+#include "ui/GameOverDialog.h"
 static AudioSource* _src;
 
 GameMain::GameMain(){
@@ -47,8 +47,27 @@ void GameMain::init(){
 	_pauseBtn->setLocalPosition(Vector2f(-200,400));
 
 	PauseDialog::instance()->init();
-}
 
+
+	_grass=Sprite::alloc("grass.png")->retain<Sprite>();
+	_background->addChild(_grass);
+	_grass->setLocalPosition(Vector2f(0,360));
+
+	_grass->registerUpdate(this,updateSelector(GameMain::onGrassUpdate));
+
+	_enemy=Enemy::alloc()->retain<Enemy>();
+	_background->addChild(_enemy);
+	_enemy->reset();
+}
+void GameMain::onGrassUpdate(){
+	float percent=(_enemy->localPosition().x+210)/470;
+	_grass->setPart(Rect(0,0,percent,1));
+	if(percent<0){
+		GameOverDialog::instance()->show(false);
+		_grass->setUpdatable(false);
+	}
+	
+}
 void GameMain::resume(){
 	_background->setTouchIntercept(false);
 	_background->setUpdateIntercept(false);
@@ -60,7 +79,7 @@ bool GameMain::onPauseDown(const TCTouchEvent& evt){
 	return true;
 }
 void GameMain::show(int lv){
-	FruitMap::instance()->loadMap(MapDataManager::instance()->find("level_"+std::to_string((long double)lv)+".txt"));
+	loadTo(lv);
 	Camera* ca= TCSceneManager::instance()->findCamera("main");
 	ca->rootNode()->addChild(_background);
 }
@@ -69,6 +88,23 @@ void GameMain::hide(){
 	_background->removeSelf();
 }
 
+void GameMain::reset(){
+	FruitMap::instance()->resetMap();
+	_enemy->reset();
+	_grass->setPart(Rect(0,0,1,1));
+	_grass->setUpdatable(true);
+}
+
+void GameMain::loadTo(int lv){
+	FruitMap::instance()->loadMap(MapDataManager::instance()->find("level_"+std::to_string((long double)lv)+".txt"));
+	_enemy->reset();
+	_grass->setPart(Rect(0,0,1,1));
+	_grass->setUpdatable(true);
+	GameData::currentLevel=lv;
+	if(lv>GameData::unlockedLevel){
+		GameData::unlockedLevel=lv;
+	}
+}
 GameMain::~GameMain(){
 	if(_src){
 		_src->release();

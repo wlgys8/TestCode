@@ -29,6 +29,9 @@
     <Filter Include="Classes\UI">
       <UniqueIdentifier>{f76f0f2c-da8d-4e35-a21f-af20ed6c8c22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Data">
+      <UniqueIdentifier>{dab2e3b8-6956-4344-8be6-1818b8737dbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="small.ico">
@@ -80,9 +83,6 @@
     <ClCompile Include="..\Classes\Map\ConnectionEffect.cpp">
       <Filter>Classes\Map</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemy\EnemyManager.cpp">
-      <Filter>Classes\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="..\proj.android\jni\AndroidMain.cpp">
       <Filter>android</Filter>
     </ClCompile>
@@ -106,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\UI\AnimationData.cpp">
       <Filter>Classes\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Map\Grass.cpp">
+      <Filter>Classes\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Data\GameData.cpp">
+      <Filter>Classes\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,9 +160,6 @@
     <ClInclude Include="..\Classes\Map\ConnectionEffect.h">
       <Filter>Classes\Map</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enemy\EnemyManager.h">
-      <Filter>Classes\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="..\proj.android\jni\AndroidMain.h">
       <Filter>android</Filter>
     </ClInclude>
@@ -180,6 +183,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\UI\AnimationData.h">
       <Filter>Classes\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Map\Grass.h">
+      <Filter>Classes\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Data\GameData.h">
+      <Filter>Classes\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

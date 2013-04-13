@@ -1,32 +1,25 @@
 #include "Enemy/Enemy.h"
+#include "TCTime.h"
 
-Enemy::Enemy(EnemyType type):_hp(25){
-	if(type==Enemy_Snake){
-		Sprite::initWithImageName("enemy_snake.png");
-	}
-	initBloodBar();
+Enemy::Enemy(){
+	Sprite::initWithImageName("enemy_snake.png");
 }
 
-void Enemy::initBloodBar(){
-	Sprite* red=Sprite::alloc("bloodbar_red.png");
-	Sprite* green=Sprite::alloc("bloodbar_green.png");
-	addChild(red);
-	addChild(green);
-	red->setLocalPosition(Vector2f(-10,50));
-	green->setLocalPosition(Vector2f(-10,50));
-	_greenBar=green->retain<Sprite>();
-	_greenBar->setPart(Rect(0,0,1,1));
+static float speed=400.0f/10;
+
+void Enemy::reset(){
+	setLocalPosition(Vector2f(200,370));
 }
-void Enemy::hurt(){
-	_hp--;
-	_greenBar->setPart(Rect(0,0,_hp/25,1));
+void Enemy::invokeUpdate(){
+	setLocalPosition(localPosition()+Vector2f(-speed*Time::deltaTime(),0));
+	Sprite::invokeUpdate();
 }
+
 Enemy::~Enemy(){
-
 }
 
-Enemy* Enemy::alloc(EnemyType type){
-	Enemy* ret=new Enemy(type);
+Enemy* Enemy::alloc(){
+	Enemy* ret=new Enemy();
 	ret->autoRelease();
 	return ret;
 }

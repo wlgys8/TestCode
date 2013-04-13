@@ -4,6 +4,7 @@
 #include "Role/Role.h"
 #include "Map/MapData.h"
 #include "TCTouchComponent.h"
+#include "Enemy/Enemy.h"
 USING_NS_TC;
 
 class GameMain:public TCObject{
@@ -12,8 +13,11 @@ private:
 	GameMain();
 	Sprite* _background;
 	Sprite* _pauseBtn;
-
+	Enemy* _enemy;
+	Sprite* _grass;
 	bool onPauseDown(const TCTouchEvent& evt);
+
+	void onGrassUpdate();
 
 public:
 	void init();
@@ -23,6 +27,10 @@ public:
 	void hide();
 
 	void resume();
+
+	void reset();
+
+	void loadTo(int lv);
 
 	static GameMain* instance();
 

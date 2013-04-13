@@ -7,7 +7,6 @@
 #include "TCResources.h"
 #include "GameMain.h"
 #include "Fruit/BulletFactory.h"
-#include "Enemy/EnemyManager.h"
 #include "TCRender.h"
 #include "Camera/TCCamera.h"
 #include "Debug/TCRenderStatistics.h"

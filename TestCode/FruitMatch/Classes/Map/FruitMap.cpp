@@ -208,7 +208,7 @@ int FruitMap::select(Vector2 ij){
 			_matchSound->play();
 			_restFruitCount-=2;
 			if(_restFruitCount<2){
-				GameOverDialog::instance()->show();// over
+				GameOverDialog::instance()->show(true);// over
 				return 0;
 			}
 

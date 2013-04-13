@@ -7,6 +7,7 @@
 #include "ui/LevelMenu.h"
 #include "GameMain.h"
 #include "ui/AnimationData.h"
+#include "data/GameData.h"
 
 GameOverDialog::GameOverDialog(){
 	_background=Sprite::alloc("gameover_win.png");
@@ -28,7 +29,7 @@ GameOverDialog::GameOverDialog(){
 	_background->addChild(_restart);
 	_restart->setLocalPosition(Vector2f(0,-80));
 
-	TCTouchComponent* tc=TCTouchComponent::alloc();
+	TCTouchComponent* tc=_restart->ensureTouchObject();
 	_restart->addComponent(tc);
 	tc->bindDelegateTarget(this);
 	tc->registerDownEvent(touchSelector(GameOverDialog::onRestartClick));
@@ -36,16 +37,30 @@ GameOverDialog::GameOverDialog(){
 	_menu=Sprite::alloc("gameover_back.png");
 	_menu->retain();
 	_background->addChild(_menu);
-	_menu->setLocalPosition(Vector2f(-50,-80));
+	_menu->setLocalPosition(Vector2f(-80,-80));
 
-	TCTouchComponent* tc2=TCTouchComponent::alloc();
-	_menu->addComponent(tc2);
-	tc2->bindDelegateTarget(this);
-	tc2->registerDownEvent(touchSelector(GameOverDialog::onMenuClick));
+	tc=_menu->ensureTouchObject();
+	tc->bindDelegateTarget(this);
+	tc->registerDownEvent(touchSelector(GameOverDialog::onMenuClick));
+
+	_next=Sprite::alloc("gameover_next.png")->retain<Sprite>();
+	_background->addChild(_next);
+	_next->setLocalPosition(Vector2f(80,-80));
+
+	tc=_next->ensureTouchObject();
+	tc->bindDelegateTarget(this);
+	tc->registerDownEvent(touchSelector(GameOverDialog::onNextClick));
+
+	_blackMask->ensureTouchObject()->bindDelegateTarget(this);
+	_blackMask->ensureTouchObject()->registerDownEvent(touchSelector(GameOverDialog::onMaskDown));
+}
+
+bool GameOverDialog::onMaskDown(const TCTouchEvent& evt){
+	return true;
 }
 
 bool GameOverDialog::onRestartClick(const TCTouchEvent& evt){
-	FruitMap::instance()->resetMap();
+	GameMain::instance()->reset();
 	hide();
 	return true;
 }
@@ -54,6 +69,12 @@ bool GameOverDialog::onMenuClick(const TCTouchEvent& evt){
 	GameMain::instance()->hide();
 	LevelMenu::instance()->show();
 
+	return true;
+}
+bool GameOverDialog::onNextClick(const TCTouchEvent& evt){
+	hide();
+	GameMain::instance()->resume();
+	GameMain::instance()->loadTo(GameData::currentLevel+1);
 	return true;
 }
 GameOverDialog::~GameOverDialog(){
@@ -72,10 +93,16 @@ GameOverDialog::~GameOverDialog(){
 
 }
 
-void GameOverDialog::show(){
+void GameOverDialog::show(bool win){
+	if(win){
+		_background->setImage("gameover_win.png");
+	}else{
+		_background->setImage("gameover_lose.png");
+	}
 	Camera* ca= TCSceneManager::instance()->findCamera("main");
 	ca->rootNode()->addChild(_blackMask);
 	_background->animation()->play();
+	_next->setActive(win);
 }
 
 void GameOverDialog::hide(){

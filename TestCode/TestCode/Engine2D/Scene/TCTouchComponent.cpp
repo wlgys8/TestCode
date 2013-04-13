@@ -13,6 +13,9 @@ TCTouchComponent::~TCTouchComponent(){
 	_delegateTarget=0;
 }
 bool TCTouchComponent::onDispatchTouch(const TCTouchEvent& touchEvent){
+	if(!_isTouchable){
+		return false;
+	}
 	if(!_delegateTarget){
 		return false;
 	}

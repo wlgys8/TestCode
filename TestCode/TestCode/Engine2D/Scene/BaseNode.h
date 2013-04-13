@@ -41,6 +41,7 @@ private:
 	bool _isUpdatable;
 	bool _isUpdateIntercepted;
 	bool _isTouchIntercepted;
+	bool _isActive;
 protected:
 	~BaseNode();
 	BaseNode();
@@ -61,15 +62,21 @@ public:
 		return _isUpdatable;
 	}
 
-	bool inline isUpdateIntercepted(){
+	bool inline isUpdateIntercepted() const{
 		return _isUpdateIntercepted;
 	}
 
-	bool inline isTouchIntercepted(){
+	bool inline isTouchIntercepted() const{
 		return _isTouchIntercepted;
 	}
 
+	void inline setActive(bool isActive){
+		_isActive=isActive;
+	}
 
+	inline bool isActive() const{
+		return _isActive;
+	}
 
 	//
 	void addChild(BaseNode* child);

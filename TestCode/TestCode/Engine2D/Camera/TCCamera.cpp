@@ -20,6 +20,9 @@ Camera::~Camera(){
 }
 
 static bool touchNode(BaseNode* node,TCTouchEvent& touchEvent,const TCMatrix3x3& worldToParentMatrix){
+	if(!node->isActive()){
+		return false;
+	}
 	if(node->isUpdateIntercepted()){
 		return false;
 	}
@@ -51,6 +54,9 @@ void Camera::dispatchTouch(TCTouchEvent& event){
 	touchNode(_rootNode,event,TCMatrix3x3());
 }
 static void updateNode(BaseNode* node){
+	if(!node->isActive()){
+		return;
+	}
 	if(node->isTouchIntercepted()){
 		return;
 	}
@@ -66,6 +72,9 @@ void Camera::update(){
 }
 
 static void drawNode(BaseNode* node,const TCMatrix3x3& parentToWorldMatrix){
+	if(!node->isActive()){
+		return;
+	}
 	TCDrawer* drawer= (TCDrawer*)(node->getComponment(ComponentDrawer));
 	TCMatrix3x3 localToWorldMatrix=TCMatrix3x3(parentToWorldMatrix);
 	localToWorldMatrix.mul(node->localToParentMatrix());
